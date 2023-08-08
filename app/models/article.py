@@ -15,7 +15,8 @@ class Article(db.Model):
     updatedAt = db.Column(db.DateTime, default=db.func.now())
 
     #RELATIONSHIPS
-
+    #Many to One respectively: Articles to User
+    author = db.relationship("User", back_populates="article")
     #
 
     def to_dict(self):

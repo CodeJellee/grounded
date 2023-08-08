@@ -19,8 +19,11 @@ class Workshop(db.Model):
     updatedAt = db.Column(db.DateTime, default=db.func.now())
 
     #RELATIONSHIPS
+    #Many to One respectively: Workshops to User
+    creator = db.relationship("User", back_populates="workshop")
 
-    #
+    #Many to One respectively: Workshops to CartItem //delete on the parent here
+    cart = db.relationship("CartItem", back_populates="workshop", cascade="all, delete-orphan")
 
     def to_dict(self):
         return{

@@ -15,8 +15,12 @@ class CartItem(db.Model):
     updatedAt = db.Column(db.DateTime, default=db.func.now())
 
     #RELATIONSHIPS
-
-    #
+    #One to One respectively: CartItem to User
+    user = db.relationship("User", back_populates="cart")
+    #One to Many respectively: CartItem to Products
+    product = db.relationship("Product", back_populates="cart")
+    #One to Many respectively: CartIem to Workshops
+    workshop = db.relationship("Workshop", back_populates="cart")
 
     def to_dict(self):
         return {

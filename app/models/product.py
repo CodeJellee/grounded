@@ -18,7 +18,13 @@ class Product(db.Model):
     updatedAt = db.Column(db.DateTime, default=db.func.now())
 
     ##RELATIONSHIPS
+    #Many to One respectively: Products to Seller
+    seller = db.relationship("User", back_populates="product")
 
+    #Many to One respectively: Products to CartItem //delete on the parent here
+    cart = db.relationship("CartItem", back_populates="product", cascade="all, delete-orphan")
+    #one to Many respectively: Products to ProductImages //delete on the parent here
+    image = db.relationship("ProductImage", back_populates="product", cascade="all, delete-orphan")
 
     #
 
@@ -47,7 +53,8 @@ class ProductImage(db.Model):
     product_image = db.Column(db.Text, nullable=True)
 
     #RELATIONSHIPS
-
+    #Many to One respectively: ProductImages to Product
+    product = db.relationship("Product", back_populates="image")
 
     #
 
@@ -57,6 +64,3 @@ class ProductImage(db.Model):
             "productId": self.productId,
             "product_image": self.product_image
         }
-
-
-
