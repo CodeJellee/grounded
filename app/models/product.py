@@ -25,7 +25,6 @@ class Product(db.Model):
     cart = db.relationship("CartItem", back_populates="product", cascade="all, delete-orphan")
     #one to Many respectively: Products to ProductImages //delete on the parent here
     image = db.relationship("ProductImage", back_populates="product", cascade="all, delete-orphan")
-
     #
 
     def to_dict(self):
