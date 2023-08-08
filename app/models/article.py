@@ -4,7 +4,7 @@ class Article(db.Model):
     __tablename__ = "articles"
 
     if environment == "production":
-        __table_args_ = {"schema": SCHEMA}
+        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     authorId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
@@ -28,5 +28,3 @@ class Article(db.Model):
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt,
         }
-
-
