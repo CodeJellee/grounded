@@ -7,9 +7,9 @@ class CartItem(db.Model):
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    userId= db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=True)
+    userId= db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     productId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")), nullable=False)
-    workshopId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("workshops.id")), nullable=True)
+    workshopId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("workshops.id")), nullable=False)
     cart_quantity = db.Column(db.Integer, nullable=False)
     createdAt = db.Column(db.DateTime, default=db.func.now())
     updatedAt = db.Column(db.DateTime, default=db.func.now())
