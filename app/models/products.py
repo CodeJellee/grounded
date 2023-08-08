@@ -19,6 +19,9 @@ class Product(db.Model):
 
     ##RELATIONSHIPS
 
+
+    #
+
     def to_dict(self):
         return{
             "id": self.id,
@@ -30,4 +33,27 @@ class Product(db.Model):
             "product_preview_image": self.product_preview_image,
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt,
+        }
+
+
+class ProductImage(db.Model):
+    __tablename__ = "product_images"
+
+    if environment == "production":
+        __table_args__ = {"schema": SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    productId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id")))
+    product_image = db.Column(db.Text, nullable=True)
+
+    #RELATIONSHIPS
+
+
+    #
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "productId": self.productId,
+            "product_image": self.product_image
         }
