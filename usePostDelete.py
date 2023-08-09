@@ -164,21 +164,22 @@
 #     if environment == "production":
 #         op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")
 
-#     op.create_table('workshops',
-#     sa.Column('id', sa.Integer(), nullable=False),
-#     sa.Column('creatorId', sa.Integer(), nullable=False),
-#     sa.Column('workshop_title', sa.String(length=225), nullable=False),
-#     sa.Column('workshop_description', sa.Text(), nullable=False),
-#     sa.Column('workshop_price', sa.Numeric(precision=10, scale=2), nullable=False),
-#     sa.Column('workshop_date', sa.Date(), nullable=False),
-#     sa.Column('workshop_location', sa.String(length=225), nullable=False),
-#     sa.Column('workshop_duration', sa.Integer(), nullable=False),
-#     sa.Column('workshop_image', sa.Text(), nullable=False),
-#     sa.Column('createdAt', sa.DateTime(), nullable=True),
-#     sa.Column('updatedAt', sa.DateTime(), nullable=True),
-#     sa.ForeignKeyConstraint(['creatorId'], ['users.id'], ),
-#     sa.PrimaryKeyConstraint('id')
-#     )
+    # op.create_table('workshops',
+    # sa.Column('id', sa.Integer(), nullable=False),
+    # sa.Column('creatorId', sa.Integer(), nullable=False),
+    # sa.Column('workshop_title', sa.String(length=225), nullable=False),
+    # sa.Column('workshop_description', sa.Text(), nullable=False),
+    # sa.Column('workshop_price', sa.Numeric(precision=10, scale=2), nullable=False),
+    # sa.Column('workshop_date', sa.Date(), nullable=False),
+    # sa.Column('workshop_time', sa.Time(), nullable=False),
+    # sa.Column('workshop_location', sa.String(length=225), nullable=False),
+    # sa.Column('workshop_duration', sa.Integer(), nullable=False),
+    # sa.Column('workshop_image', sa.Text(), nullable=False),
+    # sa.Column('createdAt', sa.DateTime(), nullable=True),
+    # sa.Column('updatedAt', sa.DateTime(), nullable=True),
+    # sa.ForeignKeyConstraint(['creatorId'], ['users.id'], ),
+    # sa.PrimaryKeyConstraint('id')
+    # )
 
 #     if environment == "production":
 #         op.execute(f"ALTER TABLE workshops SET SCHEMA {SCHEMA};")
