@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: a482f9988f94
+Revision ID: c99a00ede6e2
 Revises:
-Create Date: 2023-08-08 18:28:26.930208
+Create Date: 2023-08-08 19:57:39.434393
 
 """
 from alembic import op
@@ -12,9 +12,8 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 
-
 # revision identifiers, used by Alembic.
-revision = 'a482f9988f94'
+revision = 'c99a00ede6e2'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -77,6 +76,7 @@ def upgrade():
     sa.Column('workshop_description', sa.Text(), nullable=False),
     sa.Column('workshop_price', sa.Numeric(precision=10, scale=2), nullable=False),
     sa.Column('workshop_date', sa.Date(), nullable=False),
+    sa.Column('workshop_time', sa.Time(), nullable=False),
     sa.Column('workshop_location', sa.String(length=225), nullable=False),
     sa.Column('workshop_duration', sa.Integer(), nullable=False),
     sa.Column('workshop_image', sa.Text(), nullable=False),
@@ -91,9 +91,9 @@ def upgrade():
 
     op.create_table('cart_items',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('userId', sa.Integer(), nullable=True),
+    sa.Column('userId', sa.Integer(), nullable=False),
     sa.Column('productId', sa.Integer(), nullable=False),
-    sa.Column('workshopId', sa.Integer(), nullable=True),
+    sa.Column('workshopId', sa.Integer(), nullable=False),
     sa.Column('cart_quantity', sa.Integer(), nullable=False),
     sa.Column('createdAt', sa.DateTime(), nullable=True),
     sa.Column('updatedAt', sa.DateTime(), nullable=True),
@@ -106,6 +106,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
 
+
     op.create_table('product_images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('productId', sa.Integer(), nullable=True),
@@ -116,6 +117,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE product_images SET SCHEMA {SCHEMA};")
+        
     # ### end Alembic commands ###
 
 
