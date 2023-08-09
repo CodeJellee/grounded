@@ -131,6 +131,7 @@
 #     if environment == "production":
 #         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
+
 #     op.create_table('articles',
 #     sa.Column('id', sa.Integer(), nullable=False),
 #     sa.Column('authorId', sa.Integer(), nullable=False),
@@ -161,7 +162,6 @@
 #     sa.PrimaryKeyConstraint('id')
 #     )
 
-
 #     if environment == "production":
 #         op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")
 
@@ -185,11 +185,12 @@
 #     if environment == "production":
 #         op.execute(f"ALTER TABLE workshops SET SCHEMA {SCHEMA};")
 
+
 #     op.create_table('cart_items',
 #     sa.Column('id', sa.Integer(), nullable=False),
-#     sa.Column('userId', sa.Integer(), nullable=True),
+#     sa.Column('userId', sa.Integer(), nullable=False),
 #     sa.Column('productId', sa.Integer(), nullable=False),
-#     sa.Column('workshopId', sa.Integer(), nullable=True),
+#     sa.Column('workshopId', sa.Integer(), nullable=False),
 #     sa.Column('cart_quantity', sa.Integer(), nullable=False),
 #     sa.Column('createdAt', sa.DateTime(), nullable=True),
 #     sa.Column('updatedAt', sa.DateTime(), nullable=True),
@@ -202,6 +203,7 @@
 #     if environment == "production":
 #         op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
 
+
 #     op.create_table('product_images',
 #     sa.Column('id', sa.Integer(), nullable=False),
 #     sa.Column('productId', sa.Integer(), nullable=True),
@@ -212,6 +214,7 @@
 
 #     if environment == "production":
 #         op.execute(f"ALTER TABLE product_images SET SCHEMA {SCHEMA};")
+
 #     # ### end Alembic commands ###
 
 
