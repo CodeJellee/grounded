@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ModalProvider, Modal } from "./context/Modal";
 import configureStore from "./store";
 import * as sessionActions from "./store/session";
+import * as productActions from "./store/product"
 import App from "./App";
 
 import "./index.css";
@@ -15,7 +16,12 @@ const store = configureStore();
 if (process.env.NODE_ENV !== "production") {
 	window.store = store;
 	window.sessionActions = sessionActions;
+	window.productActions = productActions;
 }
+
+//example to use in console to test thunk
+//window.store.dispatch(window.actionName.thunkName(arg))
+//window.store.dispatch(window.productActions.thunkGetAllProducts())
 
 // Wrap the application with the Modal provider and render the Modal component
 // after the App component so that all the Modal content will be layered as

@@ -1,9 +1,13 @@
+//adding the initialState categories into the prev/next state in browser
+
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import session from './session'
+import session from './session';
+import products from './product';
 
 const rootReducer = combineReducers({
   session,
+  products,
 });
 
 
