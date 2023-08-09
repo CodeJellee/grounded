@@ -8,5 +8,6 @@ class NewProduct(FlaskForm):
     price = FloatField("Price", validators=[DataRequired()])
     product_quantity = IntegerField("Product Quantity", validators=[DataRequired()])
     product_description = TextAreaField("Product Description", validators=[DataRequired()])
+    product_dimension = TextAreaField("Product Dimension", validators=[DataRequired()])
     product_review_image = StringField("Product Preview Image", validators=[DataRequired()])
     submit = SubmitField("Submit")
