@@ -1,16 +1,17 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import db, User, Product, ProductImage, CartItem
 from app.forms import NewProduct, NewProductImage, NewArticle, NewWorkshop
 from sqlalchemy import insert
 from pprint import pprint
 
+
 product_routes = Blueprint("products", __name__)
 
 # prefix /products
 
 #GET all Products -checked on postman
-@product_routes.route("/")
+@product_routes.route("/", methods=["GET"])
 def get_products():
     dictionaryDataResponse = {}
     products = Product.query.all()
@@ -26,7 +27,7 @@ def get_products():
 
 
 #GET Single Product- checked on postman
-@product_routes.route("/<int:id>")
+@product_routes.route("/<int:id>", methods=["GET"])
 def product_info(id):
     product = Product.query.get(id)
     if not product:
@@ -42,7 +43,7 @@ def product_info(id):
 
 
 #GET Products sold by user -checked on postman
-@product_routes.route("/current")
+@product_routes.route("/current", methods=["GET"])
 @login_required
 def current_user_products():
     # pprint('THIS IS CURRENT_USER', current_user)
@@ -50,3 +51,28 @@ def current_user_products():
     # pprint('THIS IS CURRENT_USER_ID', curr_user_id)
     user_products = Product.query.filter(Product.sellerId == curr_user_id).all()
     return {"Products": [p.to_dict() for p in user_products]}
+
+#POST new product by user - checked on postman
+@product_routes.route("/new", methods=["POST"])
+@login_required
+def create_new_product():
+    form = NewProduct()
+
+    #need to get CSRF_TOKEN for flask-wtf/wtforms to work on production
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        new_product = Product(
+            sellerId=current_user.to_dict()["id"],
+            item_name=form.data["item_name"],
+            product_price=form.data["product_price"],
+            product_quantity=form.data["product_quantity"],
+            product_description=form.data["product_description"],
+            product_dimension=form.data["product_dimension"],
+            product_preview_image=form.data["product_preview_image"],
+        )
+        # pprint('THIS IS NEW_PRODUCT', new_product)
+        db.session.add(new_product)
+        db.session.commit()
+        return new_product.to_dict()
+    else:
+        return {"errors": form.errors}
