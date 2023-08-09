@@ -147,19 +147,20 @@
 #         op.execute(f"ALTER TABLE articles SET SCHEMA {SCHEMA};")
 
 
-#     op.create_table('products',
-#     sa.Column('id', sa.Integer(), nullable=False),
-#     sa.Column('sellerId', sa.Integer(), nullable=False),
-#     sa.Column('item_name', sa.String(length=225), nullable=False),
-#     sa.Column('product_price', sa.Numeric(precision=10, scale=2), nullable=False),
-#     sa.Column('product_quantity', sa.Integer(), nullable=False),
-#     sa.Column('product_description', sa.Text(), nullable=False),
-#     sa.Column('product_preview_image', sa.Text(), nullable=False),
-#     sa.Column('createdAt', sa.DateTime(), nullable=True),
-#     sa.Column('updatedAt', sa.DateTime(), nullable=True),
-#     sa.ForeignKeyConstraint(['sellerId'], ['users.id'], ),
-#     sa.PrimaryKeyConstraint('id')
-#     )
+    # op.create_table('products',
+    # sa.Column('id', sa.Integer(), nullable=False),
+    # sa.Column('sellerId', sa.Integer(), nullable=False),
+    # sa.Column('item_name', sa.String(length=225), nullable=False),
+    # sa.Column('product_price', sa.Numeric(precision=10, scale=2), nullable=False),
+    # sa.Column('product_quantity', sa.Integer(), nullable=False),
+    # sa.Column('product_description', sa.Text(), nullable=False),
+    # sa.Column('product_dimension', sa.Text(), nullable=False),
+    # sa.Column('product_preview_image', sa.Text(), nullable=False),
+    # sa.Column('createdAt', sa.DateTime(), nullable=True),
+    # sa.Column('updatedAt', sa.DateTime(), nullable=True),
+    # sa.ForeignKeyConstraint(['sellerId'], ['users.id'], ),
+    # sa.PrimaryKeyConstraint('id')
+    # )
 
 #     if environment == "production":
 #         op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")

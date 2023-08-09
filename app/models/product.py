@@ -13,6 +13,7 @@ class Product(db.Model):
     product_price = db.Column(db.Numeric(precision=10, scale=2), nullable = False)
     product_quantity = db.Column(db.Integer, nullable=False)
     product_description = db.Column(db.Text, nullable=False)
+    product_dimension = db.Column(db.Text, nullable=False)
     product_preview_image = db.Column(db.Text, nullable=False)
     createdAt = db.Column(db.DateTime, default=db.func.now())
     updatedAt = db.Column(db.DateTime, default=db.func.now())
@@ -35,6 +36,7 @@ class Product(db.Model):
             "product_price": self.product_price,
             "product_quantity": self.product_quantity,
             "product_description": self.product_description,
+            "product_dimension": self.product_dimension,
             "product_preview_image": self.product_preview_image,
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt,
