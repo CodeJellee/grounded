@@ -92,19 +92,17 @@ def update_product(id):
 
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
-        new_product = Product(
-            sellerId=current_user.to_dict()["id"],
-            item_name=form.data["item_name"],
-            product_price=form.data["product_price"],
-            product_quantity=form.data["product_quantity"],
-            product_description=form.data["product_description"],
-            product_dimension=form.data["product_dimension"],
-            product_preview_image=form.data["product_preview_image"],
-        )
+        product.id=id
+        product.sellerId=current_user.to_dict()["id"]
+        product.item_name=form.data["item_name"]
+        product.product_price=form.data["product_price"]
+        product.product_quantity=form.data["product_quantity"]
+        product.product_description=form.data["product_description"]
+        product.product_dimension=form.data["product_dimension"]
+        product.product_preview_image=form.data["product_preview_image"]
         # pprint('THIS IS NEW_PRODUCT', new_product)
-        db.session.add(new_product)
         db.session.commit()
-        return new_product.to_dict()
+        return product.to_dict()
     else:
         return {"errors": form.errors}
 

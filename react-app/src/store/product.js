@@ -2,7 +2,7 @@
 const GET_ALL_PRODUCTS = "products/GET_ALL_PRODUCTS"
 const GET_EACH_PRODUCT = "products/GET_EACH_PRODUCT"
 const CREATE_NEW_PRODUCT = "products/CREATE_NEW_PRODUCT"
-// const UPDATE_EACH_PRODUCT = "/products/UPDATE_EACH_PRODUCT"
+const UPDATE_EACH_PRODUCT = "/products/UPDATE_EACH_PRODUCT"
 const DELETE_EACH_PRODUCT = "products/DELETE_EACH_PRODUCT"
 
 
@@ -23,10 +23,12 @@ const actionCreateNewProduct = (product, currentUser) => ({
     currentUser,
 })
 
-// const actionUpdateSingleProduct = (product) => ({
-//     type: UPDATE_EACH_PRODUCT,
-//     product,
-// })
+const actionUpdateSingleProduct = (productId, product, currentUser) => ({
+    type: UPDATE_EACH_PRODUCT,
+    productId,
+    product,
+    currentUser,
+})
 
 const actionDeleteSingleProduct = (product, data) => ({
     type: DELETE_EACH_PRODUCT,
@@ -103,30 +105,30 @@ export const thunkCreateNewProduct = (product, currentUser) => async (dispatch) 
 }
 
 
-// export const thunkUpdateSingleProduct = (productId, product) => async(dispatch) => {
+export const thunkUpdateSingleProduct = (productId, updatedProduct, currentUser) => async(dispatch) => {
 
-//     try{
-//         let response = await fetch(`/api/products/${productId}`, {
-//             method: "PUT",
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify(product),
-//         });
+    try{
+        let response = await fetch(`/api/products/${productId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedProduct),
+        });
 
-//         if (response.ok){
-//             const data = await response.json();
-//             dispatch(actionUpdateSingleProduct(product, data))
-//             return data
-//         } else {
-//             const errorResponse = await response.json();
-//             return errorResponse
-//         }
+        if (response.ok){
+            const data = await response.json();
+            dispatch(actionUpdateSingleProduct(productId, data, currentUser))
+            return data
+        } else {
+            const errorResponse = await response.json();
+            return errorResponse
+        }
 
-//     } catch (e) {
-//         return { error: e.message}
-//     }
-// }
+    } catch (e) {
+        return { error: e.message}
+    }
+}
 
 
 export const thunkDeleteSingleProduct = (productId) => async (dispatch) => {
@@ -189,21 +191,24 @@ export default function reducer(state = initialState, action) {
             }
             return newState
         }
-        // case UPDATE_EACH_PRODUCT:{
+        case UPDATE_EACH_PRODUCT:{
 
-        //     console.log('editProductReducer action.product', action.product)
+            console.log('editProductReducer action.product', action.product)
 
-        //     newState = { ...state }
-        //     newState.singleProduct = {}
-        //     newState.products = { ...newState.products }
-        //     newState.userProducts = { ...newState.userProducts }
+            newState = { ...state }
+            newState.singleProduct = {}
+            newState.products = { ...newState.products }
+            newState.userProducts = { ...newState.userProducts }
 
-        //     newState.singleProduct = action.product
-        //     newState.products[action.product.id] = action.product
-        //     newState.userProducts[action.product.id] = action.product
-        //     return newState
+            newState.singleProduct = action.product
+            newState.products[action.productId] = {
+                Seller: action.currentUser,
+                ...action.product,
+            }
+            newState.userProducts[action.productId] = action.product
+            return newState
 
-        // }
+        }
 
         case DELETE_EACH_PRODUCT:{
             newState = { ...state };
