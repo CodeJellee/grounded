@@ -78,6 +78,27 @@ def create_new_product():
         return {"errors": form.errors}
 
 
+#POST new extra product image by productId by user - checked on postman
+@product_routes.route("/<int:id>/images", methods=["POST"])
+@login_required
+def add_images(id):
+    form = NewProductImage()
+
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        product = Product.query.get(id)
+
+        new_image = ProductImage(
+            productId=product.id,
+            product_image=form.data["product_image"],
+        )
+        db.session.add(new_image)
+        db.session.commit()
+        return new_image.to_dict()
+    else:
+        return {"errors": form.errors}
+
+
 #UPDATE product by user - checked on postman
 @product_routes.route("/<int:id>", methods=["PUT"])
 @login_required

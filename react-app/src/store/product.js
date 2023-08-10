@@ -1,7 +1,8 @@
 //TYPE----------------------------------------------------------------------------------------------//
 const GET_ALL_PRODUCTS = "products/GET_ALL_PRODUCTS"
 const GET_EACH_PRODUCT = "products/GET_EACH_PRODUCT"
-
+const CREATE_NEW_PRODUCT = "prodcuts/CREATE_NEW_PRODUCT"
+// const UPDATE_EACH_PRODUCT = "/products/UPDATE_EACH_PRODUCT"
 
 
 //ACTION----------------------------------------------------------------------------------------------//
@@ -15,6 +16,15 @@ const actionGetSingleProduct = (product) => ({
     product,
 })
 
+const actionCreateNewProduct = (product) => ({
+    type: CREATE_NEW_PRODUCT,
+    product,
+})
+
+// const  actionUpdateSingleProduct = (product) => ({
+//     type: UPDATE_EACH_PRODUCT,
+//     product,
+// })
 
 
 //THUNKS----------------------------------------------------------------------------------------------//
@@ -55,6 +65,43 @@ export const thunkGetSingleProduct = (productId) => async (dispatch) => {
 }
 
 
+export const thunkCreateNewProduct = (product) => async (dispatch) => {
+    try {
+
+        console.log("thunkCreateNew Body:", JSON.stringify(product))
+
+        let response = await fetch (`/api/products/new`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(product),
+        });
+
+        if (response.ok){
+            const data = await response.json();
+            dispatch(actionCreateNewProduct(data));
+            return data
+        } else {
+            const errorResponse = await response.json();
+            return errorResponse
+        }
+
+    } catch (e) {
+        return { error: e.message };
+    }
+}
+
+
+// export const thunkUpdateSingleProduct = (productId) => async(dispatch) => {
+//     const response = await fetch(`/api/products/${productId}`, {
+//         method: "POST",
+//         headers: {
+
+//         }
+//     })
+// }
+
 //REDUCER----------------------------------------------------------------------------------------------//
 
 let initialState = {
@@ -80,11 +127,24 @@ export default function reducer(state = initialState, action) {
         case GET_EACH_PRODUCT:{
             newState = { ...state };
             const product = action.product;
-            console.log('get each item- product', product)
+            // console.log('get each item- product', product)
             newState.singleProduct = { ...product };
             newState.singleProduct.Seller = { ...product.Seller };
             newState.singleProduct.ProductImages.push (...product.ProductImages)
             return newState;
+        }
+        case CREATE_NEW_PRODUCT:{
+            newState = { ...state };
+            newState.singleProduct = {};
+            const product = action.product;
+            console.log('createNewProductReducer action.product', product)
+            newState.singleProduct = product;
+            newState.products[product.New_Product.id] = {
+                Seller: product.Seller,
+                ProductImages: product.ProductImages,
+                ...product.New_Product,
+            }
+            return newState
         }
 
         default:
