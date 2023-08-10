@@ -20,11 +20,19 @@ function Navigation({ isLoaded }){
 				<div className='title-link'>
 					<NavLink exact to="/" className='title-link'>grounded.</NavLink>
 				</div>
-				{isLoaded && (
-					<div className='title-login'>
-						<ProfileButton user={sessionUser} className='login-link'/>
+				<div className='header-login-insta-cart'>
+					{isLoaded && (
+						<div className='title-login'>
+							<ProfileButton user={sessionUser} className='login-link'/>
+						</div>
+					)}
+					<div>
+						<i className="fa-brands fa-instagram"></i>
 					</div>
-				)}
+					<div>
+						<i className="fas fa-shopping-cart" />
+					</div>
+				</div>
 			</div>
 		</div>
 	);
@@ -32,11 +40,3 @@ function Navigation({ isLoaded }){
 
 export default Navigation;
 
-{/* <div className="linkSet2">
-<div className="login" href="">Login</div>
-<div className="insta" href="">
-	<img className="insta-icon" src="/SoilBoy/insta.png"/>
-</div>
-<div className="cart" href="">
-	<img className="cart-img" src="/SoilBoy/cart.png"/>
-</div> */}

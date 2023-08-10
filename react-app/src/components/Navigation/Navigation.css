@@ -1,15 +1,39 @@
-.header-container{
-  display: flex;
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.header-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+}
+
+.linkSet1 {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 7%;
+  padding-left: 14%;
+  padding-top: 5%;
 }
 
 .title-link{
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 30px;
   font-weight: bold;
-  /* text-align: center; */
+  text-align: center;
   text-decoration: none;
   color: black;
-  /* padding-top: 10px; */
+  padding-top: 5%;
+}
+
+.header-login-insta-cart{
+  display: inline-flex;
+  justify-content: right;
+  align-items: center;
+  column-gap: 7%;
+  padding-right: 14%;
+  padding-top: 5%;
 }
 
 .profile-dropdown {
@@ -21,6 +45,6 @@
 }
 
 
-.fas fa-user-circle{
+/* .fas fa-user-circle{
   justify-content: right;
-}
+} */
