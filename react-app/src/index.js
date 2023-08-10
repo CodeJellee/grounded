@@ -43,7 +43,13 @@ if (process.env.NODE_ENV !== "production") {
 //         product_description: "Beautiful try plant",
 //         product_dimension: "insert dimension here",
 //         product_preview_image: "try url",
-//     })
+//     }, {
+//     email: "demo@aa.io",
+//     first_name: "Demo",
+//     id: 1,
+//     last_name: "User",
+//     username: "Demo"
+// })
 // );
 
 ////manually checking if seller will be added during creation of new product to mimic what will happen in the component side
