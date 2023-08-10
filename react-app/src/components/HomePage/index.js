@@ -9,28 +9,17 @@ function HomePage(){
 
     return(
         <>
-        {/* <div className="header-container">
-            <div className="linkSet1">
-                <div className="links" href="">Shop</div>
-                <div className="links" href="">Workshops</div>
-                <div className="links" href="">Articles</div>
-                <div className="links" href="">About</div>
-                <div className="links" href="">Contact</div>
+        <div className="homepage-whole-container">
+            <div className="first-quarter-container">
+            <h2>'As interesting as a plant'</h2>
+
+            <div class="button-container">
+                <a href="">
+                    <button class="shop-button">Shop Now</button>
+                </a>
             </div>
-
-            <h1>grounded.</h1>
-
-            <div className="linkSet2">
-                <div className="login" href="">Login</div>
-                <div className="insta" href="">
-                    <img className="insta-icon" src="/SoilBoy/insta.png"/>
-                </div>
-                <div className="cart" href="">
-                    <img className="cart-img" src="/SoilBoy/cart.png"/>
-                </div>
             </div>
-
-        </div> */}
+        </div>
         </>
     )
 }

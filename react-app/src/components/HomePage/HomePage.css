@@ -1,6 +1,43 @@
-body {
+/* body {
     background: url(https://groundedfullstack.s3.amazonaws.com/grounded_product_images/background-img.jpeg) no-repeat fixed center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+} */
+
+
+.first-quarter-container {
+    background: url(https://groundedfullstack.s3.amazonaws.com/grounded_product_images/background-img.jpeg) no-repeat fixed center;
+    /* background-repeat: no-repeat; */
+    /* background-attachment: fixed; */
+    background-size: cover;
+}
+
+.first-quarter-container {
+    padding-top: 200px;
+    padding-left: 1.5%;
+    padding-bottom: 600px;
+}
+
+h2 {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 56px;
+    width: 400px;
+    height: fit-content;
+}
+
+.button-container {
+    height: 50px;
+}
+
+.shop-button {
+    height: 55px;
+    width: 130px;
+    border-radius: 50px;
+    font-size: 15px;
+    background-color: none;
+}
+
+.shop-button:hover {
+    cursor: pointer;
 }
