@@ -24,6 +24,36 @@ if (process.env.NODE_ENV !== "production") {
 //PRODUCTS-----------------------------------------------
 //window.store.dispatch(window.productActions.thunkGetAllProducts())
 //window.store.dispatch(window.productActions.thunkGetSingleProduct(:productId))
+//window.store.dispatch(window.productActions.thunkDeleteSingleProduct(:productId))
+// window.store.dispatch(
+// 	window.productActions.thunkCreateNewProduct({
+// 		item_name: "try plant",
+// 		price: "300",
+// 		product_quantity: "2",
+// 		product_description: "Beautiful try plant",
+// 		product_dimension: "insert dimension here",
+// 		product_preview_image: "try url",
+// 	})
+//   );
+
+////manually checking if seller will be added during creation of new product to mimic what will happen in the component side
+// window.store.dispatch(
+// 	window.productActions.thunkCreateNewProduct({
+// 		item_name: "xxtry plant",
+// 		product_price: 300.87,
+// 		product_quantity: 2,
+// 		product_description: "Beautiful try plant",
+// 		product_dimension: "insert dimension here",
+// 		product_preview_image: "try url",
+// 	}, {
+//     email: "demo@aa.io",
+//     first_name: "Demo",
+//     id: 1,
+//     last_name: "User",
+//     username: "Demo"
+// })
+//   );
+
 
 // Wrap the application with the Modal provider and render the Modal component
 // after the App component so that all the Modal content will be layered as
