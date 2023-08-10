@@ -35,6 +35,16 @@ if (process.env.NODE_ENV !== "production") {
 // 		product_preview_image: "try url",
 // 	})
 //   );
+// window.store.dispatch(
+//     window.productActions.thunkUpdateSingleProduct(2, {
+//         item_name: "TESTINGtry plant",
+//         price: "300",
+//         product_quantity: "2",
+//         product_description: "Beautiful try plant",
+//         product_dimension: "insert dimension here",
+//         product_preview_image: "try url",
+//     })
+// );
 
 ////manually checking if seller will be added during creation of new product to mimic what will happen in the component side
 // window.store.dispatch(

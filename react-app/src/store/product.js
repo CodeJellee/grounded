@@ -23,7 +23,7 @@ const actionCreateNewProduct = (product, currentUser) => ({
     currentUser,
 })
 
-// const  actionUpdateSingleProduct = (product) => ({
+// const actionUpdateSingleProduct = (product) => ({
 //     type: UPDATE_EACH_PRODUCT,
 //     product,
 // })
@@ -78,7 +78,7 @@ export const thunkGetSingleProduct = (productId) => async (dispatch) => {
 export const thunkCreateNewProduct = (product, currentUser) => async (dispatch) => {
     try {
 
-        console.log("thunkCreateNew Body:", JSON.stringify(product))
+        // console.log("thunkCreateNew Body:", JSON.stringify(product))
 
         let response = await fetch (`/api/products/new`, {
             method: "POST",
@@ -103,13 +103,29 @@ export const thunkCreateNewProduct = (product, currentUser) => async (dispatch) 
 }
 
 
-// export const thunkUpdateSingleProduct = (productId) => async(dispatch) => {
-//     const response = await fetch(`/api/products/${productId}`, {
-//         method: "POST",
-//         headers: {
+// export const thunkUpdateSingleProduct = (productId, product) => async(dispatch) => {
 
+//     try{
+//         let response = await fetch(`/api/products/${productId}`, {
+//             method: "PUT",
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify(product),
+//         });
+
+//         if (response.ok){
+//             const data = await response.json();
+//             dispatch(actionUpdateSingleProduct(product, data))
+//             return data
+//         } else {
+//             const errorResponse = await response.json();
+//             return errorResponse
 //         }
-//     })
+
+//     } catch (e) {
+//         return { error: e.message}
+//     }
 // }
 
 
@@ -173,6 +189,22 @@ export default function reducer(state = initialState, action) {
             }
             return newState
         }
+        // case UPDATE_EACH_PRODUCT:{
+
+        //     console.log('editProductReducer action.product', action.product)
+
+        //     newState = { ...state }
+        //     newState.singleProduct = {}
+        //     newState.products = { ...newState.products }
+        //     newState.userProducts = { ...newState.userProducts }
+
+        //     newState.singleProduct = action.product
+        //     newState.products[action.product.id] = action.product
+        //     newState.userProducts[action.product.id] = action.product
+        //     return newState
+
+        // }
+
         case DELETE_EACH_PRODUCT:{
             newState = { ...state };
             newState.products = { ...newState.products };
