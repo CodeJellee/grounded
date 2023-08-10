@@ -80,6 +80,45 @@ def create_new_product():
     else:
         return {"errors": form.errors}
 
+#UPDATE product by user - checked on postman
+@product_routes.route("/<int:id>", methods=["PUT"])
+@login_required
+def update_product(id):
+    product = Product.query.get(id)
+    if not product:
+        return {"message": "Product couldn't be found."}
+
+    form = NewProduct()
+
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        new_product = Product(
+            sellerId=current_user.to_dict()["id"],
+            item_name=form.data["item_name"],
+            product_price=form.data["product_price"],
+            product_quantity=form.data["product_quantity"],
+            product_description=form.data["product_description"],
+            product_dimension=form.data["product_dimension"],
+            product_preview_image=form.data["product_preview_image"],
+        )
+        # pprint('THIS IS NEW_PRODUCT', new_product)
+        db.session.add(new_product)
+        db.session.commit()
+        return new_product.to_dict()
+    else:
+        return {"errors": form.errors}
+
+
+#DELETE product by user -checked on postman
+@product_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
+def delete_product(id):
+    product_to_delete = Product.query.get(id)
+    if not product_to_delete:
+        return{"message": "Product couldn't be found."}
+    db.session.delete(product_to_delete)
+    db.session.commit()
+    return{"message": "Product successfully deleted!"}
 
 #POST new extra product image by productId by user - checked on postman
 @product_routes.route("/<int:id>/images", methods=["POST"])
@@ -126,43 +165,13 @@ def update_images(id):
     else:
         return {"errors": form.errors}
 
-
-#UPDATE product by user - checked on postman
-@product_routes.route("/<int:id>", methods=["PUT"])
+#DELETE extra product image by productId by user- checked on postman
+@product_routes.route("/<int:id>/images", methods=["DELETE"])
 @login_required
-def update_product(id):
-    product = Product.query.get(id)
-    if not product:
-        return {"message": "Product couldn't be found."}
-
-    form = NewProduct()
-
-    form["csrf_token"].data = request.cookies["csrf_token"]
-    if form.validate_on_submit():
-        new_product = Product(
-            sellerId=current_user.to_dict()["id"],
-            item_name=form.data["item_name"],
-            product_price=form.data["product_price"],
-            product_quantity=form.data["product_quantity"],
-            product_description=form.data["product_description"],
-            product_dimension=form.data["product_dimension"],
-            product_preview_image=form.data["product_preview_image"],
-        )
-        # pprint('THIS IS NEW_PRODUCT', new_product)
-        db.session.add(new_product)
-        db.session.commit()
-        return new_product.to_dict()
-    else:
-        return {"errors": form.errors}
-
-
-#DELETE product by user -checked on postman
-@product_routes.route("/<int:id>", methods=["DELETE"])
-@login_required
-def delete_product(id):
-    product_to_delete = Product.query.get(id)
-    if not product_to_delete:
+def delete_image(id):
+    image_to_delete = ProductImage.query.get(id)
+    if not image_to_delete:
         return{"message": "Product couldn't be found."}
-    db.session.delete(product_to_delete)
+    db.session.delete(image_to_delete)
     db.session.commit()
     return{"message": "Product successfully deleted!"}
