@@ -1,1 +1,8 @@
 /* TODO Add site wide styles */
+body {
+    background-color: white
+    /* background-color: rgba(255,249,240,255); */
+    /* background-color: #fff9f0 this is the hex version of above*/
+    ;
+
+}

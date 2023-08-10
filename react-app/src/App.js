@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import GetAllProducts from "./components/Products/GetAllProducts";
+import { thunkGetAllProducts } from "./store/product";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,7 +15,9 @@ function App() {
   // const userExists = useSelector((exist) => exist.session.user)
 
   useEffect(() => {
-    dispatch(authenticate()).then(() => setIsLoaded(true)) //skeleton
+    dispatch(authenticate())
+      .then(() => setIsLoaded(true)) //skeleton
+      .then(() => dispatch(thunkGetAllProducts())) //thunk hydrates the store on mount/when first loading site, not sure if I need this now...
 
       // .then(() => {
       //   if (userExists != null) {
@@ -40,12 +43,12 @@ function App() {
           <Route exact path="/">
             <HomePage />
           </Route>
-          <Route exact path="/login" >
+          {/* <Route exact path="/login" >
             <LoginFormPage />
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
-          </Route>
+          </Route> */}
           <Route exact path="/products">
             <GetAllProducts />
           </Route>

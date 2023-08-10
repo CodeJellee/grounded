@@ -1,0 +1,30 @@
+/* Get All Products CSS *************************/
+
+.all-products-container{
+    padding-top: 100px;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+
+/* Each Product CSS ******************************/
+/* img {
+    aspect-ratio: 6/5;
+} */
+
+.product-page-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+
+}
+
+.main-single-product-container{
+    padding-top: 70px;
+}
+
+
+.each-product-preview-image{
+    width: 100%;
+    height: 180%;
+}
