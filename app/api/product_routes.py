@@ -30,13 +30,16 @@ def get_products():
 @product_routes.route("/<int:id>", methods=["GET"])
 def product_info(id):
     product = Product.query.get(id)
+
     if not product:
         return {"message": "Product couldn't be found."}
+
     product = product.to_dict()
     sellerId = product["sellerId"]
     seller = User.query.get(sellerId).to_dict()
-    product_images = ProductImage.query.filter(ProductImage.productId == id)
-    product_images = [each.to_dict() for each in product_images]
+    product_images = ProductImage.query.filter(ProductImage.productId == id).first()
+    # product_images = [each.to_dict() for each in product_images] --> if planning to do more than 1 photo, keep this and change .first() to .all()
+    product_images = product_images.to_dict() if product_images else None
     product["Seller"] = seller
     product["ProductImages"] = product_images
     return product

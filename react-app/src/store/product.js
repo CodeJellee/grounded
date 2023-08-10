@@ -106,7 +106,7 @@ export const thunkCreateNewProduct = (product) => async (dispatch) => {
 
 let initialState = {
     products: {},
-    singleProduct: { Seller: {}, ProductImages:[]},
+    singleProduct: { Seller: {}, ProductImages:{}},
     userProducts: {},
 };
 
