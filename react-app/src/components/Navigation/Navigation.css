@@ -1,7 +1,26 @@
+.header-container{
+  display: flex;
+}
+
+.title-link{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  /* text-align: center; */
+  text-decoration: none;
+  color: black;
+  /* padding-top: 10px; */
+}
+
 .profile-dropdown {
   position: absolute;
 }
 
 .hidden {
   display: none;
+}
+
+
+.fas fa-user-circle{
+  justify-content: right;
 }
