@@ -164,7 +164,7 @@
 }
 
 .create-new-product-form{
-    padding-top: 130px;
+    padding-top: 80px;
     justify-self: center;
     justify-content: center;
     justify-items: center;
@@ -174,12 +174,18 @@
 .create-new-product-form-details{
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: 30px;
+    row-gap: 20px;
 
 }
 
 .all-input-boxes{
-    height: 55px;
+    height: 50px;
     width: 300px;
     border-radius: 50px;
+    text-align: center;
+}
+
+.errors{
+    text-align: center;
+    color: red;
 }

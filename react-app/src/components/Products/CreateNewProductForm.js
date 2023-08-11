@@ -72,11 +72,11 @@ const CreateNewProductForm = () => {
         }
 
         if (productDescription.length < 10) {
-            errorsObject.productDescription = "Description needs to be more than 10 characters."
+            errorsObject.productDescription = "Needs to be more than 10 characters."
         }
 
         if (productDescription.length > 255) {
-            errorsObject.productDescription = "Description needs to be less than 255 characters."
+            errorsObject.productDescription = "Needs to be less than 255 characters."
         }
 
         if (productDimension === "") {
@@ -127,7 +127,7 @@ const CreateNewProductForm = () => {
                 <form className="create-new-product-form" type="submit">
                     <div className="create-new-product-form-details">
                         <label>
-                            <div>Name {submitted && errors.itemName && <div className="errors">{errors.itemName}</div>}</div>
+                            <div>{submitted && errors.itemName && <div className="errors">{errors.itemName}</div>}</div>
                             <input
                                 type="text"
                                 name="itemName"
@@ -138,18 +138,18 @@ const CreateNewProductForm = () => {
                             />
                         </label>
                         <label>
-                            <div>Price {submitted && errors.productPrice && <div className="errors">{errors.productPrice}</div>}</div>
+                            <div>{submitted && errors.productPrice && <div className="errors">{errors.productPrice}</div>}</div>
                             <input
                                 type="text" //can try number....
                                 name="productPrice"
                                 className="all-input-boxes"
-                                placeholder="$"
+                                placeholder="Price $USD"
                                 value={productPrice}
                                 onChange={(e) => setProductPrice(e.target.value)}
                             />
                         </label>
                         <label>
-                            <div>Quantity {submitted && errors.productQuantity && <div className="errors">{errors.productQuantity}</div>}</div>
+                            <div>{submitted && errors.productQuantity && <div className="errors">{errors.productQuantity}</div>}</div>
                             <input
                                 type="text"//can try number....
                                 name="productQuantity"
@@ -160,19 +160,19 @@ const CreateNewProductForm = () => {
                             />
                         </label>
                         <label>
-                            <div>Description {submitted && errors.productDescription && <div className="errors">{errors.productDescription}</div>}</div>
+                            <div>{submitted && errors.productDescription && <div className="errors">{errors.productDescription}</div>}</div>
                             <textarea
                                 type="text"
                                 name="productDescription"
                                 className="all-input-boxes"
                                 style={{ width: '300px', height: '150px' }}
-                                placeholder="Tell me about your plant!"
+                                placeholder="Tell us about your plant!"
                                 value={productDescription}
                                 onChange={(e) => setProductDescription(e.target.value)}
                             />
                         </label>
                         <label>
-                            <div>Dimension {submitted && errors.productDimension && <div className="errors">{errors.productDimension}</div>}</div>
+                            <div>{submitted && errors.productDimension && <div className="errors">{errors.productDimension}</div>}</div>
                             <input
                                 type="text"
                                 name="productDimension"
@@ -183,7 +183,7 @@ const CreateNewProductForm = () => {
                             />
                         </label>
                         <label>
-                            <div>Preview Image {submitted && errors.productPreviewImage && <div className="errors">{errors.productPreviewImage}</div>}</div>
+                            <div>{submitted && errors.productPreviewImage && <div className="errors">{errors.productPreviewImage}</div>}</div>
                             <input
                                 type="text"
                                 name="productPreviewImage"
