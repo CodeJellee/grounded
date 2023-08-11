@@ -1,6 +1,7 @@
 //TYPE----------------------------------------------------------------------------------------------//
 const GET_ALL_PRODUCTS = "products/GET_ALL_PRODUCTS"
 const GET_EACH_PRODUCT = "products/GET_EACH_PRODUCT"
+const GET_USERS_PRODUCTS ="products/GET_USERS_PRODUCTS"
 const CREATE_NEW_PRODUCT = "products/CREATE_NEW_PRODUCT"
 const UPDATE_EACH_PRODUCT = "/products/UPDATE_EACH_PRODUCT"
 const DELETE_EACH_PRODUCT = "products/DELETE_EACH_PRODUCT"
@@ -15,6 +16,11 @@ const actionGetAllProducts = (products) => ({
 const actionGetSingleProduct = (product) => ({
     type: GET_EACH_PRODUCT,
     product,
+})
+
+const actionGetUsersProducts = (products) => ({
+    type: GET_USERS_PRODUCTS,
+    products,
 })
 
 const actionCreateNewProduct = (product, currentUser) => ({
@@ -75,6 +81,25 @@ export const thunkGetSingleProduct = (productId) => async (dispatch) => {
     }
 
     return "Product couldn't be found.";
+}
+
+export const thunkGetUsersProducts = () => async (dispatch) => {
+    try {
+        let response = await fetch(`/api/products/current`, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (response.ok) {
+            const userProducts = await response.json()
+            dispatch(actionGetUsersProducts(userProducts))
+        } else {
+            throw new Error("Failed to fetch user products")
+        }
+    } catch (e) {
+        return { error: e.message }
+    }
 }
 
 
@@ -175,6 +200,15 @@ export default function reducer(state = initialState, action) {
             newState.singleProduct = { ...product };
             newState.singleProduct.Seller = { ...product.Seller };
             newState.singleProduct.ProductImages = { ...product.ProductImages }
+            return newState;
+        }
+        case GET_USERS_PRODUCTS:{
+            newState = { ...state };
+
+            newState.userProducts = {};
+            action.products.Products.forEach(
+                (product) => (newState.userProducts[product.id] = product)
+            );
             return newState;
         }
         case CREATE_NEW_PRODUCT:{
