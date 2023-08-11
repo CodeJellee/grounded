@@ -39,7 +39,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <a onClick={openMenu}>
+      <a href="" onClick={openMenu}>
         {/* <i className="fas fa-user-circle" /> */}
         Login
       </a>

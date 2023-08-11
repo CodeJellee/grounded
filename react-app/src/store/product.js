@@ -59,6 +59,7 @@ export const thunkGetAllProducts = () => async (dispatch) => {
 
 
 export const thunkGetSingleProduct = (productId) => async (dispatch) => {
+    console.log('ARE WE HITTING THIS THUNK', productId)
     const response = await fetch(`/api/products/${productId}`, {
         method: "GET",
         headers: {
@@ -73,7 +74,7 @@ export const thunkGetSingleProduct = (productId) => async (dispatch) => {
         return data;
     }
 
-    return "Product does not exist";
+    return "Product couldn't be found.";
 }
 
 

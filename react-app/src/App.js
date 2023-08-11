@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import GetAllProducts from "./components/Products/GetAllProducts";
+import GetProductById from "./components/Products/ProductDetailPage";
 import { thunkGetAllProducts } from "./store/product";
 
 function App() {
@@ -51,6 +52,9 @@ function App() {
           </Route> */}
           <Route exact path="/products">
             <GetAllProducts />
+          </Route>
+          <Route path="/products/:productId">
+            <GetProductById />
           </Route>
         </Switch>
       )}

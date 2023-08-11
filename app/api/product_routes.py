@@ -29,6 +29,7 @@ def get_products():
 #GET Single Product- checked on postman
 @product_routes.route("/<int:id>", methods=["GET"])
 def product_info(id):
+    print('this is coming from the route', id)
     product = Product.query.get(id)
 
     if not product:
