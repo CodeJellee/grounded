@@ -25,7 +25,7 @@ const GetAllProducts = () => {
     return(
         <>
             <div className="all-products-container">
-                <a onClick={featureComingSoonClick}>+ Filter</a>
+                <a className="filter-link" onClick={featureComingSoonClick}>+ Filter</a>
                 <div className="product-page-grid">
                     {allProducts.map((product) => (
                         <NavLink to={`/products/${product.id}`} className="product-link" title={product.name}>

@@ -25,6 +25,7 @@ if (process.env.NODE_ENV !== "production") {
 //window.store.dispatch(window.productActions.thunkGetAllProducts())
 //window.store.dispatch(window.productActions.thunkGetSingleProduct(:productId))
 //window.store.dispatch(window.productActions.thunkDeleteSingleProduct(:productId))
+//window.store.dispatch(window.productActions.thunkGetUsersProducts())
 // window.store.dispatch(
 // 	window.productActions.thunkCreateNewProduct({
 // 		item_name: "try plant",

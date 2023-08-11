@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom"
+import { Link, useHistory, NavLink } from "react-router-dom"
 import GetAllProducts from "../Products/GetAllProducts"; //grab images here for the frontpage tile view OR manually do it?
 import "./HomePage.css"
 
@@ -14,9 +14,9 @@ function HomePage(){
             <h2>'As interesting as a plant'</h2>
 
             <div class="button-container">
-                <a href="">
+                <NavLink to={`/products`}>
                     <button class="shop-button">Shop Now</button>
-                </a>
+                </NavLink>
             </div>
             </div>
         </div>
