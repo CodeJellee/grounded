@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { thunkCreateNewProduct, thunkGetSingleProduct} from "../../store/product"
-// import "./CreateNewProduct.css"
+import "./Products.css"
 
 
 const CreateNewProductForm = () => {
@@ -119,8 +119,82 @@ const CreateNewProductForm = () => {
 
     return (
         <>
-            <div>
-                <h1>CREATE PRODUCT PAGE</h1>
+            <div className="create-new-product-form-container">
+                <div>
+                    <h2>What plant do you want to sell?</h2>
+                    <button className="create-new-product-form-submit-button" onClick={onSubmit}>Create Product</button>
+                </div>
+                <form className="create-new-product-form" type="submit">
+                    <div className="create-new-product-form-details">
+                        <label>
+                            <div>Name {submitted && errors.itemName && <div className="errors">{errors.itemName}</div>}</div>
+                            <input
+                                type="text"
+                                name="itemName"
+                                className="all-input-boxes"
+                                placeholder="Product Name"
+                                value={itemName}
+                                onChange={(e) => setItemName(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            <div>Price {submitted && errors.productPrice && <div className="errors">{errors.productPrice}</div>}</div>
+                            <input
+                                type="text" //can try number....
+                                name="productPrice"
+                                className="all-input-boxes"
+                                placeholder="$"
+                                value={productPrice}
+                                onChange={(e) => setProductPrice(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            <div>Quantity {submitted && errors.productQuantity && <div className="errors">{errors.productQuantity}</div>}</div>
+                            <input
+                                type="text"//can try number....
+                                name="productQuantity"
+                                className="all-input-boxes"
+                                placeholder="Quantity"
+                                value={productQuantity}
+                                onChange={(e) => setProductQuantity(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            <div>Description {submitted && errors.productDescription && <div className="errors">{errors.productDescription}</div>}</div>
+                            <textarea
+                                type="text"
+                                name="productDescription"
+                                className="all-input-boxes"
+                                style={{ width: '300px', height: '150px' }}
+                                placeholder="Tell me about your plant!"
+                                value={productDescription}
+                                onChange={(e) => setProductDescription(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            <div>Dimension {submitted && errors.productDimension && <div className="errors">{errors.productDimension}</div>}</div>
+                            <input
+                                type="text"
+                                name="productDimension"
+                                className="all-input-boxes"
+                                placeholder="Plant Dimensions"
+                                value={productDimension}
+                                onChange={(e) => setProductDimension(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            <div>Preview Image {submitted && errors.productPreviewImage && <div className="errors">{errors.productPreviewImage}</div>}</div>
+                            <input
+                                type="text"
+                                name="productPreviewImage"
+                                className="all-input-boxes"
+                                placeholder="Preview Image"
+                                value={productPreviewImage}
+                                onChange={(e) => setProductPreviewImage(e.target.value)}
+                            />
+                        </label>
+                    </div>
+                </form>
             </div>
         </>
     )
