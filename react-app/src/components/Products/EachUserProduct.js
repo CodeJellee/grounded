@@ -1,6 +1,14 @@
+import { useModal } from "../../context/Modal"
+import DeleteProductModal from "./DeleteProductModal";
 
 
 function EachUserProduct({product}) {
+    const { setModalContent } = useModal()
+
+    const featureComingSoonClick = () => {
+        alert("Feature coming soon!");
+    };
+
 
     return (
         <div className="main-single-product-container">
@@ -12,9 +20,9 @@ function EachUserProduct({product}) {
                     <div className="each-product-name-price">
                         <div className="each-product-name">{product.item_name}</div>
                         <div className="edit-delete-container">
-                            <a className="edit-delete-links">Edit</a>
+                            <a className="edit-delete-links" onClick={featureComingSoonClick}>Edit</a>
                             <div className="each-product-price">${product.product_price}</div>
-                            <a className="edit-delete-links">Delete</a>
+                            <a className="edit-delete-links" onClick={(() => setModalContent(<DeleteProductModal productId={product.id}/>))}>Delete</a>
                         </div>
                     </div>
                 </div>

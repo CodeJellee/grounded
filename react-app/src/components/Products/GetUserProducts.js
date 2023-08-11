@@ -21,7 +21,10 @@ const GetUserProducts = () => {
         <>
             <div className="all-products-container">
                 <h3 className="user-selling-blurb">Plants You Are Selling!</h3>
-                <a onClick={featureComingSoonClick}>+ Filter</a>
+                <div className="user-selling-new-and-filter">
+                    <a className="list-another-plant-to-sell">List another plant to sell!</a>
+                    <a className="filter-link" onClick={featureComingSoonClick}>+ Filter</a>
+                </div>
                 <div className="product-page-grid">
                     {allUserProducts.map((product) => (
                         <NavLink to={`/products/${product.id}`} className="product-link" title={product.name}>

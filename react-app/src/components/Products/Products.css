@@ -101,6 +101,25 @@
     color: #88896f;
 }
 
+.user-selling-new-and-filter{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.list-another-plant-to-sell{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #856055;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.filter-link{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #856055;
+    cursor: pointer;
+}
+
 .edit-delete-container{
     display: flex;
     flex-direction: row;
@@ -108,7 +127,10 @@
 }
 
 .edit-delete-links{
-    padding-top: 10px
+    padding-top: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #856055;
+    cursor: pointer;
+    text-decoration: underline;
 
 }
-
