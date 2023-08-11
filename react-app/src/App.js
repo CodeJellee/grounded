@@ -8,31 +8,33 @@ import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import GetAllProducts from "./components/Products/GetAllProducts";
 import GetProductById from "./components/Products/ProductDetailPage";
-import { thunkGetAllProducts } from "./store/product";
+import GetUserProducts from "./components/Products/GetUserProducts";
+import { thunkGetAllProducts, thunkGetUsersProducts } from "./store/product";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  // const userExists = useSelector((exist) => exist.session.user)
+  const userExists = useSelector((exist) => exist.session.user)
 
   useEffect(() => {
     dispatch(authenticate())
       .then(() => setIsLoaded(true)) //skeleton
       .then(() => dispatch(thunkGetAllProducts())) //thunk hydrates the store on mount/when first loading site, not sure if I need this now...
 
-      // .then(() => {
-      //   if (userExists != null) {
-      //     return Promise.all([
-      //       //will add dispatch for shopping cart and user products only if a userExists
+      .then(() => {
+        if (userExists != null) {
+          return Promise.all([
+            dispatch(thunkGetUsersProducts())
+            //add cart thunk here too eventually
 
-      //     ]);
-      //   }
-      //   return Promise.resolve();
-      // })
+          ]);
+        }
+        return Promise.resolve();
+      })
 
-      // .catch((error) => {
-      //   console.error("Error occurred:", error);
-      // });
+      .catch((error) => {
+        console.error("Error occurred:", error);
+      });
 
   }, [dispatch]);
 
@@ -52,6 +54,9 @@ function App() {
           </Route> */}
           <Route exact path="/products">
             <GetAllProducts />
+          </Route>
+          <Route exact path="/products/current">
+            <GetUserProducts />
           </Route>
           <Route path="/products/:productId">
             <GetProductById />

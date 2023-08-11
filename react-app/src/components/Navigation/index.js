@@ -29,7 +29,7 @@ function Navigation({ isLoaded }){
 						</div>
 					)}
 					<div>
-						<NavLink exact to="/current">
+						<NavLink exact to="/products/current">
 							<i className="fas fa-leaf"></i>
 						</NavLink>
 					</div>

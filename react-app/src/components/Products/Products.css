@@ -53,35 +53,6 @@
 
 /* Product Detail Page CSS ******************************/
 
-
-/* .product-detail-image-container {
-    display: flex;
-    padding-top: 100px;
-    column-gap: 30px;
-    align-content: space-between;
-}
-
-.product-detail-description{
-    padding-left: 4%;
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-
-}
-
-.product-detail-image {
-    width: 500px;
-    height: 600px;
-}
-
-
-
-.product-by-id-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-} */
-
 .product-detail-image-container {
     display: flex;
     padding-top: 90px;
@@ -120,3 +91,24 @@
 .add-to-cart-button:hover {
     cursor: pointer;
 }
+
+
+/* Get User Products CSS ******************************/
+
+.user-selling-blurb{
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #88896f;
+}
+
+.edit-delete-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.edit-delete-links{
+    padding-top: 10px
+
+}
+
