@@ -11,7 +11,7 @@ const GetProductById = () => {
     const productState = useSelector((state) => (state.products.singleProduct))
     const history = useHistory()
 
-    console.log('PRODUCT DETAIL PAGE USE SELECTOR', productState)
+    // console.log('PRODUCT DETAIL PAGE USE SELECTOR', productState)
 
     // useEffect(() => {
 

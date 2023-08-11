@@ -27,7 +27,7 @@ def seed_products(users):
             "product_price": 55.00,
             "product_description": "This plant is grown as bonsai, and requires minimal pruning. A bright environment will be perfect for this centrepiece.",
             "product_quantity": 2,
-            "product_dimension": "Potted Plant: W: 25-35 cm H: 40-50 cm",
+            "product_dimension": "W: 25-35 cm H: 40-50 cm",
             "product_preview_image": "https://groundedfullstack.s3.amazonaws.com/grounded_product_images/Feronailis-Bonsai.jpg"
         },
         {

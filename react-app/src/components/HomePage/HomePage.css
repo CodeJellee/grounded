@@ -8,12 +8,13 @@
 
 .first-quarter-container {
     background: url(https://groundedfullstack.s3.amazonaws.com/grounded_product_images/background-img.jpeg) no-repeat fixed center;
-    /* background-repeat: no-repeat; */
-    /* background-attachment: fixed; */
+    /* background-repeat: no-repeat;
+    background-attachment: fixed; */
     background-size: cover;
 }
 
 .first-quarter-container {
+
     padding-top: 200px;
     padding-left: 1.5%;
     padding-bottom: 600px;
