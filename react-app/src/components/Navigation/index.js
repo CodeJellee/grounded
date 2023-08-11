@@ -11,7 +11,9 @@ function Navigation({ isLoaded }){
 		<div>
 			<div className='header-container'>
 				<div className="linkSet1">
-					<div className="links" href="">Shop</div>
+					<NavLink to={`/products`}>
+						<div className="links" href="">Shop</div>
+					</NavLink>
 					<div className="links" href="">Workshops</div>
 					<div className="links" href="">Articles</div>
 					<div className="links" href="">About</div>
@@ -39,4 +41,3 @@ function Navigation({ isLoaded }){
 }
 
 export default Navigation;
-
