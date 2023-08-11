@@ -19,7 +19,8 @@ const CreateNewProductForm = () => {
     const [productPrice, setProductPrice] = useState("");
     const [productQuantity, setProductQuantity] = useState("");
     const [productDescription, setProductDescription] = useState("");
-    const [productDimension, setProductDimension] = useState("");
+    const [productDimension1, setProductDimension1] = useState("");
+    const [productDimension2, setProductDimension2] = useState("");
     const [productPreviewImage, setProductPreviewImage] = useState("");
 
     const [errors, setErrors] = useState({});
@@ -35,8 +36,20 @@ const CreateNewProductForm = () => {
             errorsObject.itemName = "Item name is required.";
         }
 
+        if (itemName.length < 5) {
+            errorsObject.itemName = "Min. 5 characters required.";
+        }
+
+        if (itemName.length > 50) {
+            errorsObject.itemName = "Less than 50 characters required.";
+        }
+
         if (productPrice === "") {
             errorsObject.productPrice = "Price is required.";
+        }
+
+        if (productPrice === 0 || productPrice < 0) {
+            errorsObject.productPrice = "Price needs to be at least 1."
         }
 
         if (productPrice.length > 6) {
@@ -55,7 +68,7 @@ const CreateNewProductForm = () => {
             errorsObject.productQuantity = "Quantity is required.";
         }
 
-        if (productQuantity === 0) {
+        if (productQuantity === 0 || productQuantity < 0) {
             errorsObject.productQuantity = "Quantity needs to be at least 1."
         }
 
@@ -79,8 +92,12 @@ const CreateNewProductForm = () => {
             errorsObject.productDescription = "Needs to be less than 255 characters."
         }
 
-        if (productDimension === "") {
-            errorsObject.productDimension = "Dimension is required."
+        if (productDimension1 === "") {
+            errorsObject.productDimension1 = "Dimension is required."
+        }
+
+        if (productDimension2 === "") {
+            errorsObject.productDimension2 = "Dimension is required."
         }
 
         if (productPreviewImage === "") {
@@ -99,7 +116,7 @@ const CreateNewProductForm = () => {
             product_price: Number(productPrice),
             product_quantity: Number(productQuantity),
             product_description: productDescription,
-            product_dimension: productDimension,
+            product_dimension: productDimension1 + ' ' + productDimension2,
             product_preview_image: productPreviewImage
         };
 
@@ -171,17 +188,82 @@ const CreateNewProductForm = () => {
                                 onChange={(e) => setProductDescription(e.target.value)}
                             />
                         </label>
-                        <label>
-                            <div>{submitted && errors.productDimension && <div className="errors">{errors.productDimension}</div>}</div>
+                        {/* <label>
+                            <div>{submitted && errors.productDimension1 && <div className="errors">{errors.productDimension1}</div>}</div>
                             <input
                                 type="text"
-                                name="productDimension"
+                                name="productDimension1"
                                 className="all-input-boxes"
                                 placeholder="Plant Dimensions"
-                                value={productDimension}
-                                onChange={(e) => setProductDimension(e.target.value)}
+                                value={productDimension1}
+                                onChange={(e) => setProductDimension1(e.target.value)}
                             />
-                        </label>
+                        </label> */}
+
+                        <div className="create-new-product-product-dimension-container">
+                            <label>
+                            <div>{submitted && errors.productDimension1 && <div className="errors">{errors.productDimension1}</div>}</div>
+                            <select
+                                name="productDimension1"
+                                className="all-input-boxes-drop-box"
+                                placeholder="Height"
+                                value={productDimension1}
+                                onChange={(e) => setProductDimension1(e.target.value)}
+                                >
+                                <option value="">Select Width</option>
+                                <option value="W: 5 - 6 cm">W: 5 - 6 cm</option>
+                                <option value="W: 6 - 7 cm">W: 6 - 7 cm</option>
+                                <option value="W: 7 - 8 cm">W: 7 - 8 cm</option>
+                                <option value="W: 8 - 9 cm">W: 8 - 9 cm</option>
+                                <option value="W: 9 - 10 cm">W: 9 - 10 cm</option>
+                                <option value="W: 10 - 15 cm">W: 10 - 15 cm</option>
+                                <option value="W: 15 - 20 cm">W: 15 - 20 cm</option>
+                                <option value="W: 20 - 25 cm">W: 20 - 25 cm</option>
+                                <option value="W: 25 - 30 cm">W: 25 - 30 cm</option>
+                                <option value="W: 30 - 35 cm">W: 30 - 35 cm</option>
+                                <option value="W: 35 - 40 cm">W: 35 - 40 cm</option>
+                                <option value="W: 40 - 45 cm">W: 40 - 45 cm</option>
+                                <option value="W: 45 - 50 cm">W: 45 - 50 cm</option>
+                                <option value="W: 50 - 55 cm">W: 50 - 55 cm</option>
+                                <option value="W: 55 - 60 cm">W: 55 - 60 cm</option>
+                                <option value="W: 60 - 65 cm">W: 60 - 65 cm</option>
+                                <option value="W: 65 - 70 cm">W: 65 - 70 cm</option>
+                                <option value="W: 70 - 75 cm">W: 70 - 75 cm</option>
+                                <option value="W: 75 - 80 cm">W: 75 - 80 cm</option>
+                            </select>
+                            </label>
+                            <label>
+                            <div>{submitted && errors.productDimension2 && <div className="errors">{errors.productDimension2}</div>}</div>
+                            <select
+                                name="productDimension2"
+                                className="all-input-boxes-drop-box"
+                                placeholder="Width"
+                                value={productDimension2}
+                                onChange={(e) => setProductDimension2(e.target.value)}
+                                >
+                                <option value="">Select Height</option>
+                                <option value="H: 5 - 6 cm">H: 5 - 6 cm</option>
+                                <option value="H: 6 - 7 cm">H: 6 - 7 cm</option>
+                                <option value="H: 7 - 8 cm">H: 7 - 8 cm</option>
+                                <option value="H: 8 - 9 cm">H: 8 - 9 cm</option>
+                                <option value="H: 9 - 10 cm">H: 9 - 10 cm</option>
+                                <option value="H: 10 - 15 cm">H: 10 - 15 cm</option>
+                                <option value="H: 15 - 20 cm">H: 15 - 20 cm</option>
+                                <option value="H: 20 - 25 cm">H: 20 - 25 cm</option>
+                                <option value="H: 25 - 30 cm">H: 25 - 30 cm</option>
+                                <option value="H: 30 - 35 cm">H: 30 - 35 cm</option>
+                                <option value="H: 35 - 40 cm">H: 35 - 40 cm</option>
+                                <option value="H: 40 - 45 cm">H: 40 - 45 cm</option>
+                                <option value="H: 45 - 50 cm">H: 45 - 50 cm</option>
+                                <option value="H: 50 - 55 cm">H: 50 - 55 cm</option>
+                                <option value="H: 55 - 60 cm">H: 55 - 60 cm</option>
+                                <option value="H: 60 - 65 cm">H: 60 - 65 cm</option>
+                                <option value="H: 65 - 70 cm">H: 65 - 70 cm</option>
+                                <option value="H: 70 - 75 cm">H: 70 - 75 cm</option>
+                                <option value="H: 75 - 80 cm">H: 75 - 80 cm</option>
+                            </select>
+                            </label>
+                        </div>
                         <label>
                             <div>{submitted && errors.productPreviewImage && <div className="errors">{errors.productPreviewImage}</div>}</div>
                             <input

@@ -189,3 +189,15 @@
     text-align: center;
     color: red;
 }
+
+
+.create-new-product-product-dimension-container{
+    display: flex;
+}
+
+.all-input-boxes-drop-box{
+    height: 50px;
+    width: 175px;
+    border-radius: 50px;
+    text-align: center;
+}
