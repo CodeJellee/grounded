@@ -11,7 +11,7 @@ function EachProduct({product}) {
                     </div>
                     <div className="each-product-name-price">
                         <div className="each-product-name">{product.item_name}</div>
-                        <div className="each-product-price">{product.product_price}</div>
+                        <div className="each-product-price">${product.product_price}</div>
                     </div>
                 </div>
             </div>
