@@ -29,7 +29,9 @@ function Navigation({ isLoaded }){
 						</div>
 					)}
 					<div>
-						<i className="fa-brands fa-instagram"></i>
+						<NavLink exact to="/products/current">
+							<i className="fas fa-leaf"></i>
+						</NavLink>
 					</div>
 					<div>
 						<i className="fas fa-shopping-cart" />

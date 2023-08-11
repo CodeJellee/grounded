@@ -50,3 +50,87 @@
     text-decoration: none; /* Remove the underline */
     /* Any other styling you want to apply */
 }
+
+/* Product Detail Page CSS ******************************/
+
+.product-detail-image-container {
+    display: flex;
+    padding-top: 90px;
+  }
+
+  .product-detail-description {
+    flex: 1; /* Takes up 50% of the container's width */
+    padding-left: 4%; /* Add padding for spacing */
+    box-sizing: border-box; /* Include padding in width calculation */
+    padding-top: 90px;
+  }
+
+  .product-detail-image {
+    flex: 1; /* Takes up 50% of the container's width */
+    padding: 10px; /* Add padding for spacing */
+    box-sizing: border-box; /* Include padding in width calculation */
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+  }
+
+  .product-by-id-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+  }
+
+  .add-to-cart-button {
+    height: 55px;
+    width: 130px;
+    border-radius: 50px;
+    font-size: 15px;
+    background-color: none;
+}
+
+.add-to-cart-button:hover {
+    cursor: pointer;
+}
+
+
+/* Get User Products CSS ******************************/
+
+.user-selling-blurb{
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #88896f;
+}
+
+.user-selling-new-and-filter{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.list-another-plant-to-sell{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #856055;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.filter-link{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #856055;
+    cursor: pointer;
+}
+
+.edit-delete-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.edit-delete-links{
+    padding-top: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #856055;
+    cursor: pointer;
+    text-decoration: underline;
+
+}
