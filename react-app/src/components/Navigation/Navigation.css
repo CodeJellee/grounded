@@ -1,3 +1,46 @@
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.header-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1; /* Ensures the header appears above other elements */
+
+}
+
+.linkSet1 {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 7%;
+  padding-left: 14%;
+  padding-top: 5%;
+}
+
+.title-link{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  padding-top: 5%;
+}
+
+.header-login-insta-cart{
+  display: inline-flex;
+  justify-content: right;
+  align-items: center;
+  column-gap: 7%;
+  padding-right: 14%;
+  padding-top: 5%;
+}
+
 .profile-dropdown {
   position: absolute;
 }
@@ -5,3 +48,8 @@
 .hidden {
   display: none;
 }
+
+
+/* .fas fa-user-circle{
+  justify-content: right;
+} */
