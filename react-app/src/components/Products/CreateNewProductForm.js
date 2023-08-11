@@ -165,7 +165,7 @@ const CreateNewProductForm = () => {
                                 type="text"
                                 name="productDescription"
                                 className="all-input-boxes"
-                                style={{ width: '300px', height: '150px' }}
+                                style={{ width: '350px', height: '150px' }}
                                 placeholder="Tell us about your plant!"
                                 value={productDescription}
                                 onChange={(e) => setProductDescription(e.target.value)}
