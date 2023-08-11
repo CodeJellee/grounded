@@ -93,11 +93,11 @@ const CreateNewProductForm = () => {
         }
 
         if (productDimension1 === "") {
-            errorsObject.productDimension1 = "Dimension is required."
+            errorsObject.productDimension1 = "Width is required."
         }
 
         if (productDimension2 === "") {
-            errorsObject.productDimension2 = "Dimension is required."
+            errorsObject.productDimension2 = "Height is required."
         }
 
         if (productPreviewImage === "") {
@@ -127,10 +127,10 @@ const CreateNewProductForm = () => {
         if (fetchResponseFromThunk) {
             await dispatch(
                 thunkGetSingleProduct(
-                    fetchResponseFromThunk.product.id
+                    fetchResponseFromThunk.id
                 )
             );
-            history.push(`/products/${fetchResponseFromThunk.product.id}`)
+            history.push(`/products/${fetchResponseFromThunk.id}`)
         }
     };
 
