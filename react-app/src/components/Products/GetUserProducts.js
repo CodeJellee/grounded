@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import { thunkGetUsersProducts } from "../../store/product";
 import EachUserProduct from "./EachUserProduct";
+import CreateNewProductForm from "./CreateNewProductForm";
 import "./Products.css"
 
 const GetUserProducts = () => {
@@ -22,7 +23,9 @@ const GetUserProducts = () => {
             <div className="all-products-container">
                 <h3 className="user-selling-blurb">Plants You Are Selling!</h3>
                 <div className="user-selling-new-and-filter">
-                    <a className="list-another-plant-to-sell">List another plant to sell!</a>
+                    <NavLink to={`/products/new`} className="create-new-product-link">
+                        <a className="list-another-plant-to-sell">List another plant to sell!</a>
+                    </NavLink>
                     <a className="filter-link" onClick={featureComingSoonClick}>+ Filter</a>
                 </div>
                 <div className="product-page-grid">
