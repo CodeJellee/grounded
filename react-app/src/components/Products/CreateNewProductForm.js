@@ -116,7 +116,7 @@ const CreateNewProductForm = () => {
             product_price: Number(productPrice),
             product_quantity: Number(productQuantity),
             product_description: productDescription,
-            product_dimension: productDimension1 + ' ' + productDimension2,
+            product_dimension: productDimension1 + ' x ' + productDimension2,
             product_preview_image: productPreviewImage
         };
 

@@ -34,7 +34,11 @@ const EditProductForm = () => {
             setProductDescription(oldProductInfo.product_description || "");
             setProductPreviewImage(oldProductInfo.product_preview_image || "");
             if (oldProductInfo.product_dimension) {
-                const [width, height] = oldProductInfo.product_dimension.split(' ');
+                // console.log('before the split', oldProductInfo.product_dimension)
+                // const what = oldProductInfo.product_dimension.split(' ')
+                // console.log(what)
+                const [width, height] = oldProductInfo.product_dimension.split('x');
+                console.log( 'this is width', width, 'this is height', height)
                 setProductDimension1(width || "");
                 setProductDimension2(height || "")
             }
@@ -149,7 +153,7 @@ const EditProductForm = () => {
             product_price: Number(productPrice),
             product_quantity: Number(productQuantity),
             product_description: productDescription,
-            product_dimension: productDimension1 + ' ' + productDimension2,
+            product_dimension: productDimension1 + ' x ' + productDimension2,
             product_preview_image: productPreviewImage
         };
 
@@ -234,7 +238,7 @@ const EditProductForm = () => {
                                 value={productDimension1}
                                 onChange={(e) => setProductDimension1(e.target.value)}
                                 >
-                                <option value="">Select Width</option>
+                                <option value={productDimension1}>{productDimension1}</option>
                                 <option value="W: 5 - 6 cm">W: 5 - 6 cm</option>
                                 <option value="W: 6 - 7 cm">W: 6 - 7 cm</option>
                                 <option value="W: 7 - 8 cm">W: 7 - 8 cm</option>
@@ -265,7 +269,7 @@ const EditProductForm = () => {
                                 value={productDimension2}
                                 onChange={(e) => setProductDimension2(e.target.value)}
                                 >
-                                <option value="">Select Height</option>
+                                <option value={productDimension2}>{productDimension2}</option>
                                 <option value="H: 5 - 6 cm">H: 5 - 6 cm</option>
                                 <option value="H: 6 - 7 cm">H: 6 - 7 cm</option>
                                 <option value="H: 7 - 8 cm">H: 7 - 8 cm</option>
