@@ -65,7 +65,7 @@ export const thunkGetAllProducts = () => async (dispatch) => {
 
 
 export const thunkGetSingleProduct = (productId) => async (dispatch) => {
-    console.log('ARE WE HITTING THIS THUNK', productId)
+    // console.log('ARE WE HITTING THIS THUNK', productId)
     const response = await fetch(`/api/products/${productId}`, {
         method: "GET",
         headers: {
@@ -216,7 +216,7 @@ export default function reducer(state = initialState, action) {
             newState.singleProduct = {};
             const product = action.product;
 
-            console.log('createNewProductReducer action.product', product)
+            // console.log('createNewProductReducer action.product', product)
             newState.singleProduct = product;
 
             newState.products[product.id] = {

@@ -29,7 +29,7 @@ if (process.env.NODE_ENV !== "production") {
 // window.store.dispatch(
 // 	window.productActions.thunkCreateNewProduct({
 // 		item_name: "try plant",
-// 		price: "300",
+// 		product_price: "300",
 // 		product_quantity: "2",
 // 		product_description: "Beautiful try plant",
 // 		product_dimension: "insert dimension here",
@@ -39,7 +39,7 @@ if (process.env.NODE_ENV !== "production") {
 // window.store.dispatch(
 //     window.productActions.thunkUpdateSingleProduct(2, {
 //         item_name: "TESTINGtry plant",
-//         price: "300",
+//         product_price: "300",
 //         product_quantity: "2",
 //         product_description: "Beautiful try plant",
 //         product_dimension: "insert dimension here",
