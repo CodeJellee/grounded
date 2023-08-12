@@ -90,6 +90,10 @@ def update_product(id):
     if not product:
         return {"message": "Product couldn't be found."}
 
+    # Check if the product's seller ID matches the current user's ID
+    # if product.sellerId != current_user.id:
+    #     return {"message": "You are not authorized to update this product."}
+
     form = NewProduct()
 
     form["csrf_token"].data = request.cookies["csrf_token"]
