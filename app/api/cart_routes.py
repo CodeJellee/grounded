@@ -14,7 +14,7 @@ cart_routes = Blueprint("cart_items", __name__)
 # url_prefix='/api/carts'
 
 
-#GET all cart items, pending purchase -checked on postman
+#GET all cart items, pending purchase -checked on postman, W/ UPDATE
 @cart_routes.route("/", methods=["GET"])
 @login_required
 def get_current_cart():
@@ -51,7 +51,7 @@ def get_current_cart():
     #         }
 
 
-#GET all cart items, purchase history -checked on postman
+#GET all cart items, purchase history -checked on postman W/ UPDATE
 @cart_routes.route("/history", methods=["GET"])
 @login_required
 def get_past_cart():
