@@ -11,7 +11,7 @@ const EditProductForm = () => {
     const history = useHistory()
 
     let { productId } = useParams();
-    console.log('what is this productId from the params?', productId)
+    // console.log('what is this productId from the params?', productId)
 
     const oldProductInfo = useSelector((state) => (state.products.singleProduct))
     // console.log('what is oldProductInfo from editProductForm', oldProductInfo)
