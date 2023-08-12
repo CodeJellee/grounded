@@ -1,20 +1,20 @@
 """empty message
 
-Revision ID: b11fedc8d041
+Revision ID: 63f84d2e9541
 Revises:
-Create Date: 2023-08-11 20:34:41.947695
+Create Date: 2023-08-11 23:04:23.324770
 
 """
 from alembic import op
 import sqlalchemy as sa
+
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 
-
 # revision identifiers, used by Alembic.
-revision = 'b11fedc8d041'
+revision = '63f84d2e9541'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,6 +33,11 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
+
     op.create_table('articles',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('authorId', sa.Integer(), nullable=False),
@@ -44,6 +49,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['authorId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE articles SET SCHEMA {SCHEMA};")
+
     op.create_table('products',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('sellerId', sa.Integer(), nullable=False),
@@ -58,6 +67,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['sellerId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE products SET SCHEMA {SCHEMA};")
+
     op.create_table('workshops',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('creatorId', sa.Integer(), nullable=False),
@@ -74,12 +87,17 @@ def upgrade():
     sa.ForeignKeyConstraint(['creatorId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE workshops SET SCHEMA {SCHEMA};")
+
     op.create_table('cart_items',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('userId', sa.Integer(), nullable=False),
-    sa.Column('productId', sa.Integer(), nullable=False),
-    sa.Column('workshopId', sa.Integer(), nullable=False),
+    sa.Column('productId', sa.Integer(), nullable=True),
+    sa.Column('workshopId', sa.Integer(), nullable=True),
     sa.Column('cart_quantity', sa.Integer(), nullable=False),
+    sa.Column('purchased', sa.Boolean(), nullable=False),
     sa.Column('createdAt', sa.DateTime(), nullable=True),
     sa.Column('updatedAt', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['productId'], ['products.id'], ),
@@ -87,6 +105,11 @@ def upgrade():
     sa.ForeignKeyConstraint(['workshopId'], ['workshops.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE cart_items SET SCHEMA {SCHEMA};")
+
+
     op.create_table('product_images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('productId', sa.Integer(), nullable=True),
@@ -94,6 +117,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['productId'], ['products.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE product_images SET SCHEMA {SCHEMA};")
+
     # ### end Alembic commands ###
 
 

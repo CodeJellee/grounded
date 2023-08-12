@@ -185,13 +185,13 @@
 #     if environment == "production":
 #         op.execute(f"ALTER TABLE workshops SET SCHEMA {SCHEMA};")
 
-
 #     op.create_table('cart_items',
 #     sa.Column('id', sa.Integer(), nullable=False),
 #     sa.Column('userId', sa.Integer(), nullable=False),
-#     sa.Column('productId', sa.Integer(), nullable=False),
-#     sa.Column('workshopId', sa.Integer(), nullable=False),
+#     sa.Column('productId', sa.Integer(), nullable=True),
+#     sa.Column('workshopId', sa.Integer(), nullable=True),
 #     sa.Column('cart_quantity', sa.Integer(), nullable=False),
+#     sa.Column('purchased', sa.Boolean(), nullable=False),
 #     sa.Column('createdAt', sa.DateTime(), nullable=True),
 #     sa.Column('updatedAt', sa.DateTime(), nullable=True),
 #     sa.ForeignKeyConstraint(['productId'], ['products.id'], ),
