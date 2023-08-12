@@ -85,6 +85,7 @@ def create_new_product():
 @product_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def update_product(id):
+
     product = Product.query.get(id)
     if not product:
         return {"message": "Product couldn't be found."}

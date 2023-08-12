@@ -1,5 +1,6 @@
 import { useModal } from "../../context/Modal"
 import DeleteProductModal from "./DeleteProductModal";
+import { NavLink } from "react-router-dom";
 
 
 function EachUserProduct({product}) {
@@ -20,7 +21,9 @@ function EachUserProduct({product}) {
                     <div className="each-product-name-price">
                         <div className="each-product-name">{product.item_name}</div>
                         <div className="edit-delete-container">
-                            <a className="edit-delete-links" onClick={featureComingSoonClick}>Edit</a>
+                            <NavLink exact to={`/products/${product.id}/edit`}>
+                                <a className="edit-delete-links">Edit</a>
+                            </NavLink>
                             <div className="each-product-price">${product.product_price}</div>
                             <a className="edit-delete-links" onClick={(() => setModalContent(<DeleteProductModal productId={product.id}/>))}>Delete</a>
                         </div>

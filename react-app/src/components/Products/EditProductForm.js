@@ -1,17 +1,49 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { thunkCreateNewProduct, thunkGetSingleProduct} from "../../store/product"
+import { thunkGetSingleProduct, thunkUpdateSingleProduct} from "../../store/product"
+import { useParams } from "react-router-dom";
 import "./Products.css"
 
 
-const CreateNewProductForm = () => {
-    // let { productId } = useParams()
-    const sessionUser = useSelector((state) => state.session.user)
-    // const productState = useSelector((state) => (state.products.singleProduct))
-
-    const dispatch = useDispatch();
+const EditProductForm = () => {
+    const dispatch = useDispatch()
     const history = useHistory()
+
+    let { productId } = useParams();
+    // console.log('what is this productId from the params?', productId)
+
+    const oldProductInfo = useSelector((state) => (state.products.singleProduct))
+    // console.log('what is oldProductInfo from editProductForm', oldProductInfo)
+
+
+    const sessionUser = useSelector((state) => state.session.user)
+
+    useEffect(() => {
+        dispatch(thunkGetSingleProduct(productId));
+        // console.log('is this thunkgetsingleproduct working?')
+    }, [dispatch])
+
+
+    useEffect(() => {
+        if (oldProductInfo) {
+            // console.log('is the oldproduct infomration herre wokring?')
+            setItemName(oldProductInfo.item_name || "");
+            setProductPrice(oldProductInfo.product_price || "");
+            setProductQuantity(oldProductInfo.product_quantity || "");
+            setProductDescription(oldProductInfo.product_description || "");
+            setProductPreviewImage(oldProductInfo.product_preview_image || "");
+            if (oldProductInfo.product_dimension) {
+                // console.log('before the split', oldProductInfo.product_dimension)
+                // const what = oldProductInfo.product_dimension.split(' ')
+                // console.log(what)
+                const [width, height] = oldProductInfo.product_dimension.split('x');
+                console.log( 'this is width', width, 'this is height', height)
+                setProductDimension1(width || "");
+                setProductDimension2(height || "")
+            }
+        }
+    }, [oldProductInfo])
 
 
     const [sellerId, setSellerId] = useState("");
@@ -25,6 +57,10 @@ const CreateNewProductForm = () => {
 
     const [errors, setErrors] = useState({});
     const [submitted, setSubmitted] = useState(false)
+
+
+
+
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -110,6 +146,7 @@ const CreateNewProductForm = () => {
 
         if (Object.values(errorsObject).length > 0) return setErrors(errorsObject); // if there are any errors, stop here and return the errors
 
+
         let payload = {
             sellerId: sessionUser.id,
             item_name: itemName,
@@ -121,9 +158,8 @@ const CreateNewProductForm = () => {
         };
 
 
-        let fetchResponseFromThunk = await dispatch(thunkCreateNewProduct(payload, sessionUser));
-        console.log('what are we getting back after creating a product s/p dispatch', fetchResponseFromThunk)
-
+        let fetchResponseFromThunk = await dispatch(thunkUpdateSingleProduct(productId, payload, sessionUser));
+        console.log('what is the edit product fetchResponse', fetchResponseFromThunk)
         if (fetchResponseFromThunk) {
             await dispatch(
                 thunkGetSingleProduct(
@@ -132,14 +168,17 @@ const CreateNewProductForm = () => {
             );
             history.push(`/products/${fetchResponseFromThunk.id}`)
         }
-    };
+
+        history.push(`/products/${fetchResponseFromThunk.id}`)
+
+    }
 
     return (
         <>
             <div className="create-new-product-form-container">
                 <div>
-                    <h2>What plant do you want to sell?</h2>
-                    <button className="create-new-product-form-submit-button" onClick={onSubmit}>Create Product</button>
+                    <h2>Lets update your plant!</h2>
+                    <button className="create-new-product-form-submit-button" onClick={onSubmit}>Update Product</button>
                 </div>
                 <form className="create-new-product-form" type="submit">
                     <div className="create-new-product-form-details">
@@ -157,7 +196,7 @@ const CreateNewProductForm = () => {
                         <label>
                             <div>{submitted && errors.productPrice && <div className="errors">{errors.productPrice}</div>}</div>
                             <input
-                                type="text" //can try number....
+                                type="text"
                                 name="productPrice"
                                 className="all-input-boxes"
                                 placeholder="Price $USD"
@@ -168,7 +207,7 @@ const CreateNewProductForm = () => {
                         <label>
                             <div>{submitted && errors.productQuantity && <div className="errors">{errors.productQuantity}</div>}</div>
                             <input
-                                type="text"//can try number....
+                                type="text"
                                 name="productQuantity"
                                 className="all-input-boxes"
                                 placeholder="Quantity"
@@ -188,17 +227,6 @@ const CreateNewProductForm = () => {
                                 onChange={(e) => setProductDescription(e.target.value)}
                             />
                         </label>
-                        {/* <label>
-                            <div>{submitted && errors.productDimension1 && <div className="errors">{errors.productDimension1}</div>}</div>
-                            <input
-                                type="text"
-                                name="productDimension1"
-                                className="all-input-boxes"
-                                placeholder="Plant Dimensions"
-                                value={productDimension1}
-                                onChange={(e) => setProductDimension1(e.target.value)}
-                            />
-                        </label> */}
 
                         <div className="create-new-product-product-dimension-container">
                             <label>
@@ -210,7 +238,7 @@ const CreateNewProductForm = () => {
                                 value={productDimension1}
                                 onChange={(e) => setProductDimension1(e.target.value)}
                                 >
-                                <option value="">Select Width</option>
+                                <option value={productDimension1}>{productDimension1}</option>
                                 <option value="W: 5 - 6 cm">W: 5 - 6 cm</option>
                                 <option value="W: 6 - 7 cm">W: 6 - 7 cm</option>
                                 <option value="W: 7 - 8 cm">W: 7 - 8 cm</option>
@@ -241,7 +269,7 @@ const CreateNewProductForm = () => {
                                 value={productDimension2}
                                 onChange={(e) => setProductDimension2(e.target.value)}
                                 >
-                                <option value="">Select Height</option>
+                                <option value={productDimension2}>{productDimension2}</option>
                                 <option value="H: 5 - 6 cm">H: 5 - 6 cm</option>
                                 <option value="H: 6 - 7 cm">H: 6 - 7 cm</option>
                                 <option value="H: 7 - 8 cm">H: 7 - 8 cm</option>
@@ -281,6 +309,9 @@ const CreateNewProductForm = () => {
         </>
     )
 
-}
 
-export default CreateNewProductForm;
+
+};
+
+
+export default EditProductForm;
