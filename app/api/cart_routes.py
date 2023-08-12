@@ -20,7 +20,35 @@ cart_routes = Blueprint("cart_items", __name__)
 def get_current_cart():
     curr_user_id = current_user.to_dict()["id"]
     user_cart_pending = CartItem.query.filter(CartItem.userId == curr_user_id, CartItem.purchased == False).all()
-    return {"CurrentCart": [p.to_dict() for p in user_cart_pending]}
+    cart_item_list_of_dictionaries = [p.to_dict() for p in user_cart_pending]
+    # print('THIS IS USER CART PENDING', testing)
+    # print('AM I GRABBING THE PRODUCT INFO', testing.productId)
+
+    cart_with_product_info = []
+
+    for item in cart_item_list_of_dictionaries:
+        product_id = item['productId']
+        product_info = Product.query.filter(Product.id == product_id).first()
+        if product_info:
+            item_with_product_info = item.copy() #cart info
+            item_with_product_info["Product"] = product_info.to_dict() #product info
+            cart_with_product_info.append(item_with_product_info) #appending to create a list
+
+    return {"CurrentCart": cart_with_product_info} #returning a CurrentCart object with a list of objects for each product with cart info and product info
+        # print("ARE THESE PRINTING THE ID", product_id) #yes these print the proper productId
+        # print('does this show all product info', product_info.to_dict())
+
+    # print('what is product_info', product_info.to_dict())
+    # print('this should be all items in current cart', item)
+
+    # product_info = Product.query.filter(Product.id == product_id).all()
+    # print('WHAT IS PRODUCT_INFO', product_info.to_dict())
+
+
+    # product_info = Product.query.filter(Product.id == user_cart_pending.productId)
+    # return {"CurrentCart": [p.to_dict() for p in user_cart_pending],
+    #         "Product": "should be here"
+    #         }
 
 
 #GET all cart items, purchase history -checked on postman
@@ -29,7 +57,20 @@ def get_current_cart():
 def get_past_cart():
     curr_user_id = current_user.to_dict()["id"]
     user_cart_purchased = CartItem.query.filter(CartItem.userId == curr_user_id, CartItem.purchased == True).all()
-    return {"PastCart": [p.to_dict() for p in user_cart_purchased]}
+    cart_item_list_of_dictionaries = [p.to_dict() for p in user_cart_purchased]
+
+    cart_with_product_info = []
+
+    for item in cart_item_list_of_dictionaries:
+        product_id = item['productId']
+        product_info = Product.query.filter(Product.id == product_id).first()
+        if product_info:
+            item_with_product_info = item.copy() #cart info
+            item_with_product_info["Product"] = product_info.to_dict() #product info
+            cart_with_product_info.append(item_with_product_info) #appending to create a list
+
+    return {"PastCart": cart_with_product_info} #returning a CurrentCart object with a list of objects for each product with cart info and product info
+    # return {"PastCart": [p.to_dict() for p in user_cart_purchased]}
 
 #POST will be located within product_routes
 
