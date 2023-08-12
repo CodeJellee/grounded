@@ -13,6 +13,7 @@ from .config import Config
 # All of these API routes can be transferred to the api/__init__.py then imported here as one line as:
 # from .api import user_routes, auth_routes, cart_routes, products_routes, reviews_routes, favorites_routes
 from .api.product_routes import product_routes
+from .api.cart_routes import cart_routes
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
@@ -32,7 +33,8 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
-app.register_blueprint(product_routes, url_prefix="/api/products")
+app.register_blueprint(product_routes, url_prefix='/api/products')
+app.register_blueprint(cart_routes, url_prefix='/api/carts')
 db.init_app(app)
 Migrate(app, db)
 
@@ -94,8 +96,3 @@ def react_root(path):
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
-
-
-
-
-
