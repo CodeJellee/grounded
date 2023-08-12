@@ -179,3 +179,68 @@ def delete_image(id):
     db.session.delete(image_to_delete)
     db.session.commit()
     return{"message": "Product successfully deleted!"}
+
+#CART ROUTE BELOW
+#POST add item to cart - checked on postman
+@product_routes.route("/<int:id>/to_cart", methods=["POST"])
+@login_required
+def post_to_cart(id):
+    curr_user_id = current_user.to_dict()["id"]
+    product_id_exists = Product.query.get(id)
+
+    if not product_id_exists:
+        return {"message": "Product couldn't be found."}
+
+    already_in_cart = (
+        db.session.query(CartItem)
+        .filter((CartItem.userId == curr_user_id) & (CartItem.productId == id))
+        .first()
+    )
+
+    if already_in_cart:
+        return {"message": "Product in cart already!"}
+
+    if product_id_exists and curr_user_id == product_id_exists.sellerId:
+        return {"message": "You may not add your own product to cart."}
+
+    if product_id_exists and product_id_exists.sellerId != curr_user_id:
+        add_to_cart = CartItem(userId=curr_user_id, productId=id, cart_quantity=1)
+        db.session.add(add_to_cart)
+        db.session.commit()
+        # new_state_update = {
+        #     "CurrentCart": add_to_cart.to_dict(),
+        #     "Product": product_id_exists.to_dict(),
+
+        # }
+
+        #decided to just explicitly write out how I want the return to look like
+        new_state_update = {
+            "CurrentCart": [
+                {
+                    "cart_quantity": add_to_cart.cart_quantity,
+                    "createdAt": add_to_cart.createdAt,
+                    "id": add_to_cart.id,
+                    "productId": add_to_cart.productId,
+                    "purchased": add_to_cart.purchased,
+                    "updatedAt": add_to_cart.updatedAt,
+                    "userId": add_to_cart.userId,
+                    "workshopId": add_to_cart.workshopId,
+                    "Product": {
+                        "createdAt": product_id_exists.createdAt,
+                        "id": product_id_exists.id,
+                        "item_name": product_id_exists.item_name,
+                        "product_description": product_id_exists.product_description,
+                        "product_dimension": product_id_exists.product_dimension,
+                        "product_preview_image": product_id_exists.product_preview_image,
+                        "product_price": product_id_exists.product_price,
+                        "product_quantity": product_id_exists.product_quantity,
+                        "sellerId": product_id_exists.sellerId,
+                        "updatedAt": product_id_exists.updatedAt,
+                    },
+                }
+            ]
+        }
+
+        return new_state_update
+    else:
+        return {"message": "Product couldn't be added to cart."}
