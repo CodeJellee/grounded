@@ -16,9 +16,10 @@ const actionGetPastCart = (cart) => ({
     cart,
 })
 
-const actionDeleteCurrentCartItem = (productId) => ({
+const actionDeleteCurrentCartItem = (productId, data) => ({
     type: DELETE_CURRENT_CART_ITEM,
-    productId
+    productId,
+    data
 })
 
 //THUNK----------------------------------------------------------------------------------------------//
@@ -47,12 +48,18 @@ export const thunkGetPastCart = () => async (dispatch) => {
 }
 
 export const thunkDeleteCurrentCartItem = (productId) => async (dispatch) => {
-    let cartItem = await fetch(`/api/carts/${productId}`, {
+    let response = await fetch(`/api/carts/${productId}`, {
         method: "DELETE",
     });
-    cartItem = await cartItem.json();
-    await dispatch(actionDeleteCurrentCartItem(cartItem))
-    return cartItem;
+
+    if(response.ok){
+        const data = await response.json();
+        console.log('what is data here', data)
+        dispatch(actionDeleteCurrentCartItem(productId, data));
+        return data
+    }
+
+    return "Product could not be deleted from cart"
 }
 
 //REDUCER----------------------------------------------------------------------------------------------//
@@ -80,7 +87,9 @@ export default function reducer(state = initialState, action) {
         case DELETE_CURRENT_CART_ITEM: {
             newState = { ...state };
             newState.currentCart = { ...newState.currentCart };
-            delete newState.currentCart[action.cartItemId];
+            // console.log('what is this?', action.productId, action.product, action.cart)
+
+            delete newState.currentCart[action.data.item_data.id];
             return newState;
         }
         default:

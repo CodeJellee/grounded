@@ -109,4 +109,4 @@ def delete_current_cart_item(productId):
         return {"message": "Product couldn't be found."}
     db.session.delete(cart_item_to_delete)
     db.session.commit()
-    return{"message": "Product successfully removed from your cart!"}
+    return{"item_data": cart_item_to_delete.to_dict(), "message": "Product successfully removed from your cart!"}

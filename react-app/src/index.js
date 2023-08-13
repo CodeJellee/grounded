@@ -76,7 +76,7 @@ if (process.env.NODE_ENV !== "production") {
 //CART----------------------------------------------------------------------------------
 //window.store.dispatch(window.cartActions.thunkGetCurrentCart())
 //window.store.dispatch(window.cartActions.thunkGetPastCart())
-//window.store.dispatch(window.productActions.thunkDeleteSingleProduct(:productId))
+//window.store.dispatch(window.cartActions.thunkDeleteCurrentCartItem(:productId))
 
 
 // Wrap the application with the Modal provider and render the Modal component
