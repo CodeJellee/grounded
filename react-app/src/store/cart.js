@@ -160,6 +160,7 @@ export default function reducer(state = initialState, action) {
         case POST_ITEM_IN_CART: {
             newState = { ...state };
             const productPayload = action.response;
+            // console.log('what is this', productPayload.CurrentCart)
 
             if (productPayload && productPayload.CurrentCart && productPayload.CurrentCart.length > 0) {
                 const cartItem = productPayload.CurrentCart[0];
