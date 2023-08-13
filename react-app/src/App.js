@@ -12,6 +12,8 @@ import GetUserProducts from "./components/Products/GetUserProducts";
 import CreateNewProductForm from "./components/Products/CreateNewProductForm";
 import EditProductForm from "./components/Products/EditProductForm";
 import { thunkGetAllProducts, thunkGetUsersProducts } from "./store/product";
+import { thunkGetCurrentCart } from "./store/cart";
+import { thunkGetPastCart } from "./store/cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,8 +28,9 @@ function App() {
       .then(() => {
         if (userExists != null) {
           return Promise.all([
-            dispatch(thunkGetUsersProducts())
-            //add cart thunk here too eventually
+            dispatch(thunkGetUsersProducts()),
+            dispatch(thunkGetCurrentCart()),
+            dispatch(thunkGetPastCart())
 
           ]);
         }
@@ -57,6 +60,9 @@ function App() {
           <Route exact path="/products">
             <GetAllProducts />
           </Route>
+          {/* <Route exact path="/carts">
+            <GetAllProducts />
+          </Route> */}
           <Route exact path="/products/current">
             <GetUserProducts />
           </Route>

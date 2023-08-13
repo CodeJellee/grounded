@@ -7,6 +7,7 @@ import { ModalProvider, Modal } from "./context/Modal";
 import configureStore from "./store";
 import * as sessionActions from "./store/session";
 import * as productActions from "./store/product"
+import * as cartActions from "./store/cart"
 import App from "./App";
 
 import "./index.css";
@@ -17,6 +18,7 @@ if (process.env.NODE_ENV !== "production") {
 	window.store = store;
 	window.sessionActions = sessionActions;
 	window.productActions = productActions;
+	window.cartActions = cartActions;
 }
 
 //example to use in console to test thunk
@@ -70,6 +72,11 @@ if (process.env.NODE_ENV !== "production") {
 //     username: "Demo"
 // })
 //   );
+
+//CART----------------------------------------------------------------------------------
+//window.store.dispatch(window.cartActions.thunkGetCurrentCart())
+//window.store.dispatch(window.cartActions.thunkGetPastCart())
+//window.store.dispatch(window.productActions.thunkDeleteSingleProduct(:productId))
 
 
 // Wrap the application with the Modal provider and render the Modal component
