@@ -4,10 +4,12 @@ import { Redirect, useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
+import LoginFormModal from "../LoginFormModal";
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
 	const history = useHistory();
+	const { setModalContent } = useModal()
 
 	const sessionUser = useSelector((state) => state.session.user);
 	const [first_name, setFirst_name] = useState("");
@@ -67,7 +69,7 @@ function SignupFormModal() {
     // Confirm Password
     if (confirmPassword === "") {
 		errorsObject.confirmPassword = "Confirm Password is required.";
-    } else if (password !== confirmPassword) {
+    } if (password !== confirmPassword) {
 		errorsObject.confirmPassword = "Passwords must match.";
     }
 
@@ -87,70 +89,92 @@ function SignupFormModal() {
 
   return (
     <>
-      <h1>Sign Up</h1>
+      <h3 className="login-model-title">Create Account</h3>
       <form onSubmit={onSubmit}>
-        <label>
-          First Name
-		  <div>{submitted && errors.first_name && <div className="errors">{errors.first_name}</div>}</div>
-          <input
-            type="text"
-            value={first_name}
-            onChange={(e) => setFirst_name(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Last Name
-		  <div>{submitted && errors.last_name && <div className="errors">{errors.last_name}</div>}</div>
-          <input
-            type="text"
-            value={last_name}
-            onChange={(e) => setLast_name(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Email
-		  <div>{submitted && errors.email && <div className="errors">{errors.email}</div>}</div>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Username
-		  <div>{submitted && errors.username && <div className="errors">{errors.username}</div>}</div>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-		  <div>{submitted && errors.password && <div className="errors">{errors.password}</div>}</div>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Confirm Password
-		  <div>{submitted && errors.confirmPassword && <div className="errors">{errors.confirmPassword}</div>}</div>
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Sign Up</button>
+		<div className="signup-modal-info">
+			<div className="sign-up-form-data">
+				<label className="sign-up-info">
+				<div>{submitted && errors.first_name && <div className="errors">{errors.first_name}</div>}</div>
+				<input
+					className="new-login-info"
+					type="text"
+					placeholder="First Name"
+					value={first_name}
+					onChange={(e) => setFirst_name(e.target.value)}
+					required
+				/>
+				</label>
+				<label className="sign-up-info">
+				<div>{submitted && errors.last_name && <div className="errors">{errors.last_name}</div>}</div>
+				<input
+					className="new-login-info"
+					type="text"
+					placeholder="Last Name"
+					value={last_name}
+					onChange={(e) => setLast_name(e.target.value)}
+					required
+				/>
+				</label>
+			</div>
+			<div className="sign-up-form-data">
+				<label className="sign-up-info">
+				<div>{submitted && errors.email && <div className="errors">{errors.email}</div>}</div>
+				<input
+					className="new-login-info"
+					type="text"
+					placeholder="Email"
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+					required
+				/>
+				</label>
+				<label className="sign-up-info">
+				<div>{submitted && errors.username && <div className="errors">{errors.username}</div>}</div>
+				<input
+					className="new-login-info"
+					type="text"
+					value={username}
+					placeholder="Username"
+					onChange={(e) => setUsername(e.target.value)}
+					required
+				/>
+				</label>
+			</div>
+			<div className="sign-up-form-data">
+				<label className="sign-up-info">
+				<div>{submitted && errors.password && <div className="errors">{errors.password}</div>}</div>
+				<input
+					className="new-login-info"
+					type="password"
+					placeholder="Password"
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+					required
+				/>
+				</label>
+				<label className="sign-up-info">
+				<div>{submitted && errors.confirmPassword && <div className="errors">{errors.confirmPassword}</div>}</div>
+				<input
+					className="new-login-info"
+					type="password"
+					placeholder="Re-type Password"
+					value={confirmPassword}
+					onChange={(e) => setConfirmPassword(e.target.value)}
+					required
+				/>
+				</label>
+			</div>
+			<div className="login-model-button-container">
+				<button className="login-model-button" type="submit">Create account</button>
+			</div>
+		</div>
       </form>
+	  <div className="login-model-sign-up-container">
+        <div className="need-account">Have an account?</div>
+        <div>
+          <a className="signup-bottom-button" onClick={(() => setModalContent(<LoginFormModal />))}>Login</a>
+        </div>
+      </div>
     </>
   );
 }
