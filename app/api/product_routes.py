@@ -243,4 +243,4 @@ def post_to_cart(id):
 
         return new_state_update
     else:
-        return {"message": "Product couldn't be added to cart."}
+        return {"item_data":new_state_update,"message": "Product couldn't be added to cart."}
