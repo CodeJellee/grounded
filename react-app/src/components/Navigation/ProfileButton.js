@@ -80,6 +80,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import LoginFormModal from "../LoginFormModal";
 import { useModal } from "../../context/Modal"
+import SignupFormModal from "../SignupFormModal"
 
 // import ProfileModal from "../ProfileModal";
 
@@ -100,7 +101,10 @@ function ProfileButton({ user }) {
           {/* <ProfileModal user={user} /> */}
         </>
       ) : (
-        <a onClick={(() => setModalContent(<LoginFormModal />))}>Login</a>
+        <>
+          <a onClick={(() => setModalContent(<LoginFormModal />))}>Login</a>
+          {/* <a onClick={(() => setModalContent(<SignupFormModal />))}>Sign Up</a> */}
+        </>
       )}
     </>
   );
