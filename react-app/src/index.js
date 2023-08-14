@@ -82,7 +82,11 @@ if (process.env.NODE_ENV !== "production") {
 //         cart_quantity: "3",
 //     })
 // );
-
+// window.store.dispatch(
+//     window.cartActions.thunkUpdateItemQuantity(30, {
+//         cart_quantity: "1",
+//     })
+// );
 
 
 // Wrap the application with the Modal provider and render the Modal component

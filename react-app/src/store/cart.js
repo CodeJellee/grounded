@@ -5,6 +5,7 @@ const GET_CURRENT_CART = "carts/GET_CURRENT_CART"
 const GET_PAST_CART = "carts/GET_PAST_CART"
 const DELETE_CURRENT_CART_ITEM = "carts/DELETE_CURRENT_CART_ITEM"
 const POST_ITEM_IN_CART = "carts/POST_ITEM_IN_CART"
+const UPDATE_ITEM_QUANTITY = "carts/UPDATE_ITEM_QUANTITY"
 
 //ACTION----------------------------------------------------------------------------------------------//
 const actionGetCurrentCart = (cart) => ({
@@ -23,14 +24,13 @@ const actionDeleteCurrentCartItem = (productId, data) => ({
     data
 })
 
-// const actionPostItemInCart = (productId, cart_quantity) => ({
-//     type: POST_ITEM_IN_CART,
-//     productId,
-//     cart_quantity,
-// })
-
 const actionPostItemInCart = (response) => ({
     type: POST_ITEM_IN_CART,
+    response,
+})
+
+const actionUpdateItemQuantity = (response) => ({
+    type: UPDATE_ITEM_QUANTITY,
     response,
 })
 
@@ -103,6 +103,35 @@ export const thunkPostItemToCart = (productId, cart_quantity) => async (dispatch
 
 }
 
+export const thunkUpdateItemQuantity = (id, cart_quantity) => async (dispatch) => {
+    try{
+        // console.log("we hit before? and what is cartId", cartId)
+        let response = await fetch(`/api/carts/${id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(
+                cart_quantity,
+            ),
+        });
+
+
+        if (response.ok){
+            const data = await response.json();
+            dispatch(actionUpdateItemQuantity(data));
+            return data
+        } else {
+            const errorResponse = await response.json();
+            return errorResponse
+        }
+
+    } catch (e) {
+        return { error: e.message };
+    }
+
+}
+
 //REDUCER----------------------------------------------------------------------------------------------//
 let initialState = { currentCart: {}, pastCart: {}}
 
@@ -133,28 +162,23 @@ export default function reducer(state = initialState, action) {
             delete newState.currentCart[action.data.item_data.id];
             return newState;
         }
+
         // case POST_ITEM_IN_CART: {
         //     newState = { ...state };
-        //     const productPayLoad = action.response;
-        //     console.log('WAHT IS THE PRODUCTPAYLOAD, GRAB CART ITEM', productPayLoad)
-        //     newState.currentCart = { ...newState.currentCart }
-        //     newState.currentCart[productPayLoad.productId.CurrentCart.productId] = {
-        //         Product: productPayLoad.Product,
-        //         ...productPayLoad.data.item_data
+        //     const productPayload = action.response;
+        //     // console.log('what is this', productPayload.CurrentCart)
+
+        //     if (productPayload && productPayload.CurrentCart && productPayload.CurrentCart.length > 0) {
+        //         const cartItem = productPayload.CurrentCart[0];
+        //         newState.currentCart = {
+        //             ...newState.currentCart,
+        //             [cartItem.productId]: {
+        //                 ...cartItem,
+        //                 Product: cartItem.Product,
+        //             },
+        //         };
         //     }
-        //     return newState;
-        // }
-        // case POST_ITEM_IN_CART: {
-        //     newState = { ...state };
-        //     const productPayLoad = action.response;
-        //     console.log('WAHT IS THE PRODUCTPAYLOAD, GRAB CART ITEM', productPayLoad)
-        //     newState.currentCart = {
-        //         ...newState.currentCart,
-        //         [productPayLoad.CurrentCart[0].productId]: {
-        //             ...productPayLoad.CurrentCart[0],
-        //             Product: productPayLoad.currentCart[0].Product
-        //         }
-        //     }
+
         //     return newState;
         // }
         case POST_ITEM_IN_CART: {
@@ -162,20 +186,61 @@ export default function reducer(state = initialState, action) {
             const productPayload = action.response;
             // console.log('what is this', productPayload.CurrentCart)
 
-            if (productPayload && productPayload.CurrentCart && productPayload.CurrentCart.length > 0) {
-                const cartItem = productPayload.CurrentCart[0];
-                newState.currentCart = {
-                    ...newState.currentCart,
-                    [cartItem.productId]: {
-                        ...cartItem,
-                        Product: cartItem.Product,
-                    },
-                };
-            }
-
+            const cartItem = productPayload.CurrentCart[0];
+            newState.currentCart = {
+                ...newState.currentCart,
+                [cartItem.productId]: {
+                    ...cartItem,
+                    Product: cartItem.Product,
+                },
+            };
             return newState;
         }
+        // case UPDATE_ITEM_QUANTITY: {
+        //     newState = { ...state };
+        //     const productPayload = action.response;
+        //     // console.log('what is this', productPayload.CurrentCart)
+
+        //     newState.currentCart = {
+        //         ...newState.currentCart,
+        //         [productPayload.id]: {
+        //             ...newState.currentCart[productPayload.id],
+        //             cart_quantity: productPayload.cart_quantity,
+        //         },
+        //     };
+        //     return newState;
+        // }
+        // case UPDATE_ITEM_QUANTITY: {
+        //     newState = { ...state };
+        //     const updatedCartItem = action.response;
+        //     console.log('what is this updatedCartItem', updatedCartItem)
+        //     const updatedCart = {
+        //         ...state.currentCart,
+        //         [updatedCartItem.id]: {
+        //             ...state.currentCart[updatedCartItem.id],
+        //             cart_quantity: updatedCartItem.cart_quantity,
+        //         },
+        //     }
+        //     return { ...state, currentCart: updatedCart}
+        // }
+        case POST_ITEM_IN_CART: {
+            newState = { ...state };
+            const productPayload = action.response;
+            // console.log('what is this', productPayload.CurrentCart)
+
+            const cartItem = productPayload.CurrentCart[0];
+            newState.currentCart = {
+                ...newState.currentCart,
+                [cartItem.id]: {
+                    ...cartItem,
+                    Product: cartItem.Product,
+                },
+            };
+            return newState;
+        }
+
         default:
             return state
     }
+
 }
