@@ -5,7 +5,7 @@ const GET_CURRENT_CART = "carts/GET_CURRENT_CART"
 const GET_PAST_CART = "carts/GET_PAST_CART"
 const DELETE_CURRENT_CART_ITEM = "carts/DELETE_CURRENT_CART_ITEM"
 const POST_ITEM_IN_CART = "carts/POST_ITEM_IN_CART"
-const UPDATE_ITEM_QUANTITY = "carts/UPDATE_ITEM_QUANTITY"
+const UPDATE_ITEM_QUANTITY_AND_PURCHASE = "carts/UPDATE_ITEM_QUANTITY_AND_PURCHASE"
 
 //ACTION----------------------------------------------------------------------------------------------//
 const actionGetCurrentCart = (cart) => ({
@@ -29,8 +29,8 @@ const actionPostItemInCart = (response) => ({
     response,
 })
 
-const actionUpdateItemQuantity = (response) => ({
-    type: UPDATE_ITEM_QUANTITY,
+const actionUpdateItemQuantityAndPurchase = (response) => ({
+    type: UPDATE_ITEM_QUANTITY_AND_PURCHASE,
     response,
 })
 
@@ -103,7 +103,7 @@ export const thunkPostItemToCart = (productId, cart_quantity) => async (dispatch
 
 }
 
-export const thunkUpdateItemQuantity = (id, cart_quantity) => async (dispatch) => {
+export const thunkUpdateItemQuantityAndPurchase = (id, cart_quantity, purchased) => async (dispatch) => {
     try{
         // console.log("we hit before? and what is cartId", cartId)
         let response = await fetch(`/api/carts/${id}`, {
@@ -113,13 +113,14 @@ export const thunkUpdateItemQuantity = (id, cart_quantity) => async (dispatch) =
             },
             body: JSON.stringify(
                 cart_quantity,
+                purchased,
             ),
         });
 
 
         if (response.ok){
             const data = await response.json();
-            dispatch(actionUpdateItemQuantity(data));
+            dispatch(actionUpdateItemQuantityAndPurchase(data));
             return data
         } else {
             const errorResponse = await response.json();
@@ -196,7 +197,7 @@ export default function reducer(state = initialState, action) {
             };
             return newState;
         }
-        // case UPDATE_ITEM_QUANTITY: {
+        // case UPDATE_ITEM_QUANTITY_AND_PURCHASE: {
         //     newState = { ...state };
         //     const productPayload = action.response;
         //     newState.currentCart = { ...newState.currentCart };
@@ -219,7 +220,7 @@ export default function reducer(state = initialState, action) {
 
         //     return newState;
         // }
-        case UPDATE_ITEM_QUANTITY: {
+        case UPDATE_ITEM_QUANTITY_AND_PURCHASE: {
             newState = { ...state };
 
             const productPayload = action.response;
