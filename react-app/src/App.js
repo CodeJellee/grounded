@@ -14,6 +14,7 @@ import EditProductForm from "./components/Products/EditProductForm";
 import { thunkGetAllProducts, thunkGetUsersProducts } from "./store/product";
 import { thunkGetCurrentCart } from "./store/cart";
 import { thunkGetPastCart } from "./store/cart";
+import ProtectedRoute from "./components/auth/ProtectedRoute"
 
 function App() {
   const dispatch = useDispatch();
@@ -63,15 +64,15 @@ function App() {
           {/* <Route exact path="/carts">
             <GetAllProducts />
           </Route> */}
-          <Route exact path="/products/current">
+          <ProtectedRoute exact path="/products/current">
             <GetUserProducts />
-          </Route>
-          <Route exact path="/products/new">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/products/new">
             <CreateNewProductForm />
-          </Route>
-          <Route exact path="/products/:productId/edit">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/products/:productId/edit">
             <EditProductForm />
-          </Route>
+          </ProtectedRoute>
           <Route path="/products/:productId">
             <GetProductById />
           </Route>
