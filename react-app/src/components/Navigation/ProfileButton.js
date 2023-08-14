@@ -80,17 +80,21 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import LoginFormModal from "../LoginFormModal";
 import { useModal } from "../../context/Modal"
+import { useHistory } from "react-router-dom";
+import { thunkGetUsersProducts } from "../../store/product";
 // import SignupFormModal from "../SignupFormModal"
 
 // import ProfileModal from "../ProfileModal";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { setModalContent } = useModal()
 
-  const handleLogout = (e) => {
+  const handleLogout = async(e) => {
     e.preventDefault();
-    dispatch(logout());
+    await dispatch(logout())
+    history.push("/");
   };
 
   return (
