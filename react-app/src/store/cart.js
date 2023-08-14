@@ -199,63 +199,43 @@ export default function reducer(state = initialState, action) {
         // case UPDATE_ITEM_QUANTITY: {
         //     newState = { ...state };
         //     const productPayload = action.response;
-        //     // console.log('what is this', productPayload.CurrentCart)
+        //     newState.currentCart = { ...newState.currentCart };
 
-        //     newState.currentCart = {
-        //         ...newState.currentCart,
-        //         [productPayload.id]: {
-        //             ...newState.currentCart[productPayload.id],
-        //             cart_quantity: productPayload.cart_quantity,
-        //         },
-        //     };
-        //     return newState;
-        // }
-        // case UPDATE_ITEM_QUANTITY: {
-        //     newState = { ...state };
-        //     const updatedCartItem = action.response;
-        //     console.log('what is this updatedCartItem', updatedCartItem)
-        //     const updatedCart = {
-        //         ...state.currentCart,
-        //         [updatedCartItem.id]: {
-        //             ...state.currentCart[updatedCartItem.id],
-        //             cart_quantity: updatedCartItem.cart_quantity,
-        //         },
-        //     }
-        //     return { ...state, currentCart: updatedCart}
-        // }
-        // case POST_ITEM_IN_CART: {
-        //     newState = { ...state };
-        //     const productPayload = action.response;
-        //     console.log('What is Product Payload:', productPayload);
+        //     console.log('Product Payload:', productPayload);
 
-        //     const cartItem = productPayload.CurrentCart;
-        //     console.log('waht is cartItem', cartItem)
 
-        //     newState.currentCart = {
-        //         ...newState.currentCart,
+        //     const cartItem = productPayload;
+        //     console.log('Processing Cart Item:', cartItem);
+
+        //     newState.currentCart[cartItem.productId] = {
         //         [cartItem.id]: {
         //             ...cartItem,
         //             Product: cartItem.Product,
         //         },
         //     };
+
+
+        //     console.log('New State:', newState);
+
         //     return newState;
         // }
         case UPDATE_ITEM_QUANTITY: {
             newState = { ...state };
-            const productPayload = action.response;
 
+            const productPayload = action.response;
             console.log('Product Payload:', productPayload);
 
+            newState.currentCart = { ...newState.currentCart };
 
-            const cartItem = productPayload;
+            const cartItem = productPayload.CurrentCart; // Assuming CurrentCart is an array
             console.log('Processing Cart Item:', cartItem);
 
-            newState.currentCart = {
-                ...newState.currentCart,
-                [cartItem.id]: {
-                    ...cartItem,
-                    Product: cartItem.Product,
-                },
+            console.log('what is cartItem.id', cartItem.id)
+            newState.currentCart[cartItem.id] = {
+                ...newState.currentCart[cartItem.id],
+                cart_quantity: cartItem.cart_quantity,
+                purchased: cartItem.purchased,
+                Product: cartItem.Product,
             };
 
 

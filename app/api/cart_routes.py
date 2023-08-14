@@ -122,7 +122,7 @@ def update_current_cart_item(id):
         db.session.commit()
 
         response_data = {
-            "CurrentCart": [
+            "CurrentCart":
                 {
                     "cart_quantity": cart_item_to_update.cart_quantity,
                     "createdAt": cart_item_to_update.createdAt,
@@ -145,7 +145,7 @@ def update_current_cart_item(id):
                         "updatedAt": product_info.updatedAt,
                     },
                 }
-            ]
+        
         }
 
         return response_data
