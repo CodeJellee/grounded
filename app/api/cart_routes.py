@@ -75,6 +75,28 @@ def get_past_cart():
 #POST will be located within product_routes
 
 #UPDATE item from PENDING CART -checked on postman, REMINDER: value is nullable, default false (not purchased), can leave blank and it will register as false
+# @cart_routes.route("/<int:id>", methods=["PUT"])
+# @login_required
+# def update_current_cart_item(id):
+#     curr_user_id = current_user.to_dict()["id"]
+#     cart_item_to_update = CartItem.query.filter_by(userId=curr_user_id, id=id).first()
+
+#     if not cart_item_to_update:
+#         return {"message": "Product couldn't be found."}
+
+#     form = UpdateCartItem()
+
+#     form["csrf_token"].data = request.cookies["csrf_token"]
+#     if form.validate_on_submit():
+#         cart_item_to_update.cart_quantity=form.data["cart_quantity"]
+#         cart_item_to_update.purchased=form.data["purchased"]
+
+#         # pprint('THIS IS NEW_PRODUCT', new_product)
+#         db.session.commit()
+#         return cart_item_to_update.to_dict()
+#     else:
+#         return {"errors": form.errors}
+
 @cart_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def update_current_cart_item(id):
@@ -84,16 +106,49 @@ def update_current_cart_item(id):
     if not cart_item_to_update:
         return {"message": "Product couldn't be found."}
 
+    product_id = cart_item_to_update.productId
+    product_info = Product.query.filter_by(id=product_id).first()
+
+    if not product_info:
+        return {"message": "Product information couldn't be found."}
+
     form = UpdateCartItem()
 
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
-        cart_item_to_update.cart_quantity=form.data["cart_quantity"]
-        cart_item_to_update.purchased=form.data["purchased"]
+        cart_item_to_update.cart_quantity = form.data["cart_quantity"]
+        cart_item_to_update.purchased = form.data["purchased"]
 
-        # pprint('THIS IS NEW_PRODUCT', new_product)
         db.session.commit()
-        return cart_item_to_update.to_dict()
+
+        response_data = {
+            "CurrentCart": [
+                {
+                    "cart_quantity": cart_item_to_update.cart_quantity,
+                    "createdAt": cart_item_to_update.createdAt,
+                    "id": cart_item_to_update.id,
+                    "productId": cart_item_to_update.productId,
+                    "purchased": cart_item_to_update.purchased,
+                    "updatedAt": cart_item_to_update.updatedAt,
+                    "userId": cart_item_to_update.userId,
+                    "workshopId": cart_item_to_update.workshopId,
+                    "Product": {
+                        "createdAt": product_info.createdAt,
+                        "id": product_info.id,
+                        "item_name": product_info.item_name,
+                        "product_description": product_info.product_description,
+                        "product_dimension": product_info.product_dimension,
+                        "product_preview_image": product_info.product_preview_image,
+                        "product_price": product_info.product_price,
+                        "product_quantity": product_info.product_quantity,
+                        "sellerId": product_info.sellerId,
+                        "updatedAt": product_info.updatedAt,
+                    },
+                }
+            ]
+        }
+
+        return response_data
     else:
         return {"errors": form.errors}
 

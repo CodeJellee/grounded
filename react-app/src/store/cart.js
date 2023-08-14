@@ -223,12 +223,33 @@ export default function reducer(state = initialState, action) {
         //     }
         //     return { ...state, currentCart: updatedCart}
         // }
-        case POST_ITEM_IN_CART: {
+        // case POST_ITEM_IN_CART: {
+        //     newState = { ...state };
+        //     const productPayload = action.response;
+        //     console.log('What is Product Payload:', productPayload);
+
+        //     const cartItem = productPayload.CurrentCart;
+        //     console.log('waht is cartItem', cartItem)
+
+        //     newState.currentCart = {
+        //         ...newState.currentCart,
+        //         [cartItem.id]: {
+        //             ...cartItem,
+        //             Product: cartItem.Product,
+        //         },
+        //     };
+        //     return newState;
+        // }
+        case UPDATE_ITEM_QUANTITY: {
             newState = { ...state };
             const productPayload = action.response;
-            // console.log('what is this', productPayload.CurrentCart)
 
-            const cartItem = productPayload.CurrentCart[0];
+            console.log('Product Payload:', productPayload);
+
+
+            const cartItem = productPayload;
+            console.log('Processing Cart Item:', cartItem);
+
             newState.currentCart = {
                 ...newState.currentCart,
                 [cartItem.id]: {
@@ -236,6 +257,10 @@ export default function reducer(state = initialState, action) {
                     Product: cartItem.Product,
                 },
             };
+
+
+            console.log('New State:', newState);
+
             return newState;
         }
 
