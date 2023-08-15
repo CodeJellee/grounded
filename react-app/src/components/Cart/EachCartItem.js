@@ -13,21 +13,16 @@ function EachCartItem({cartItem}) {
 
 
     return (
-        <div className="main-single-product-container">
-            <div>
-                <div>
-                    <img src={cartItem.Product.product_preview_image} alt={cartItem.Product.item_name}/>
-                    <div>{cartItem.Product.item_name}</div>
-                </div>
-                <div>
-                    <div>
-                        {/* <NavLink exact to={`/products/${product.id}/edit`}>
-                            <a className="edit-delete-links">Edit</a>
-                        </NavLink> */}
-                        <div>Qauntity</div>
-                        <div className="each-product-price">${cartItem.Product.product_price}</div>
-                        <a className="edit-delete-links" onClick={(() => setModalContent(<DeleteCartItemModal productId={cartItem.productId}/>))}>Remove</a>
-                    </div>
+        <div className="each-cart-item-container">
+            <div className="cart-photo-and-title">
+                <img className="cart-product-image" src={cartItem.Product.product_preview_image} alt={cartItem.Product.item_name}/>
+                <div className="cart-product-name">{cartItem.Product.item_name}</div>
+            </div>
+            <div className="cart-quantity-price-delete">
+                <div className="cart-product-quantity">Quantity</div>
+                <div className="cart-price-delete">
+                    <div className="each-product-price">${cartItem.Product.product_price}</div>
+                    <button className="cart-delete-button" onClick={(() => setModalContent(<DeleteCartItemModal productId={cartItem.productId}/>))}>✕</button>
                 </div>
             </div>
         </div>
