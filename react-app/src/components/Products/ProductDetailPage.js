@@ -42,7 +42,7 @@ const GetProductById = () => {
                         <div>${productState.product_price}</div>
                         <div>{productState.product_description}</div>
                         <div>{productState.product_dimension}</div>
-                        <div>{productState.product_quantity}</div>
+                        {/* <div>{productState.product_quantity}</div> */}
                         <button className="add-to-cart-button">Add To Cart</button>
                     </div>
                     <div className="product-detail-image">

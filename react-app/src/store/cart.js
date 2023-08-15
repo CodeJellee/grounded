@@ -75,16 +75,14 @@ export const thunkDeleteCurrentCartItem = (productId) => async (dispatch) => {
     return "Product could not be deleted from cart"
 }
 
-export const thunkPostItemToCart = (productId, cart_quantity) => async (dispatch) => {
+export const thunkPostItemToCart = (productId) => async (dispatch) => {
     try{
         let response = await fetch(`/api/products/${productId}/to_cart`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                cart_quantity,
-            }),
+
         });
 
 
