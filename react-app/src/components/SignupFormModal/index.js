@@ -29,6 +29,7 @@ function SignupFormModal() {
     e.preventDefault();
     setSubmitted(true);
 
+
     const errorsObject = {};
 
     // First Name
@@ -76,14 +77,29 @@ function SignupFormModal() {
 
     if (Object.values(errorsObject).length > 0) return setErrors(errorsObject);
 
-	let fetchResponseFromThunk = await dispatch(signUp(first_name, last_name, username, email, password));
+	// let fetchResponseFromThunk = await dispatch(signUp(first_name, last_name, username, email, password));
 
-	if (fetchResponseFromThunk){
-		closeModal()
-		return <Redirect to="/" />
-	}
+	// if (fetchResponseFromThunk){
+	// 	closeModal()
+	// 	return <Redirect to="/" />
+	// }
 
+	try {
+		const fetchResponseFromThunk = await dispatch(
+		  signUp(first_name, last_name, username, email, password)
+		);
 
+		if (fetchResponseFromThunk) {
+		  // Handle error response from signUp action
+		  setErrors(fetchResponseFromThunk); // Assuming fetchResponseFromThunk is an object with errors
+		} else {
+		  closeModal();
+		  history.push("/");
+		}
+	  } catch (error) {
+		// Handle any unexpected error here, for example, by logging it
+		console.error("Error:", error);
+	  }
 
   };
 
