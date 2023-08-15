@@ -91,13 +91,12 @@ function SignupFormModal() {
 
 		if (fetchResponseFromThunk) {
 		  // Handle error response from signUp action
-		  setErrors(fetchResponseFromThunk); // Assuming fetchResponseFromThunk is an object with errors
+		  setErrors(fetchResponseFromThunk);
 		} else {
 		  closeModal();
 		  history.push("/");
 		}
 	  } catch (error) {
-		// Handle any unexpected error here, for example, by logging it
 		console.error("Error:", error);
 	  }
 
@@ -191,6 +190,7 @@ function SignupFormModal() {
           <a className="signup-bottom-button" onClick={(() => setModalContent(<LoginFormModal />))}>Login</a>
         </div>
       </div>
+
     </>
   );
 }
