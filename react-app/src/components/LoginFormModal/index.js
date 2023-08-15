@@ -27,6 +27,17 @@ function LoginFormModal() {
     }
   };
 
+  const handleDemoSubmit = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("demo@aa.io", "password"));
+    if (data) {
+      setErrors(data);
+    } else {
+      closeModal();
+      history.push("/");
+    }
+  };
+
   return (
     <>
       <h3 className="login-model-title">Welcome to grounded.</h3>
@@ -66,6 +77,11 @@ function LoginFormModal() {
         <div className="need-account">Need an account?</div>
         <div>
           <a className="signup-bottom-button" onClick={(() => setModalContent(<SignupFormModal />))}>Create account</a>
+        </div>
+      </div>
+      <div className="login-model-sign-up-container">
+        <div>
+          <a className="signup-bottom-button" onClick={handleDemoSubmit}>Demo User</a>
         </div>
       </div>
     </>
