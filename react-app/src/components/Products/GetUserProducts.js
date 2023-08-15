@@ -21,6 +21,8 @@ const GetUserProducts = () => {
     return(
         <>
             <div className="all-products-container">
+
+
                 <h3 className="user-selling-blurb">Plants You Are Selling!</h3>
                 <div className="user-selling-new-and-filter">
                     <NavLink to={`/products/new`} className="create-new-product-link">

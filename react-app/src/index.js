@@ -90,6 +90,17 @@ if (process.env.NODE_ENV !== "production") {
 //     })
 // );
 
+//USER----------------------------------------------------------------------------------
+// window.store.dispatch(
+// 	window.sessionActions.signUp({
+// 	first_name: "John",
+// 	last_name: "Smith",
+// 	email: "john.smith@aa.io",
+// 	username: "JohnSmith",
+// 	password: "secret password",
+// })
+// );
+
 // Wrap the application with the Modal provider and render the Modal component
 // after the App component so that all the Modal content will be layered as
 // HTML elements on top of the all the other HTML elements:
