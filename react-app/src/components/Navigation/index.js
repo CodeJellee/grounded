@@ -34,7 +34,9 @@ function Navigation({ isLoaded }){
 						</NavLink>
 					</div>
 					<div>
-						<i className="fas fa-shopping-cart" />
+						<NavLink exact to="/carts">
+							<i className="fas fa-shopping-cart" />
+						</NavLink>
 					</div>
 				</div>
 			</div>

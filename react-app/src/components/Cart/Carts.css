@@ -1,0 +1,6 @@
+/* Get All Current Cart CSS *************************/
+
+.cart-page-grid{
+    display: grid;
+    grid-template-rows: 1fr;
+}
