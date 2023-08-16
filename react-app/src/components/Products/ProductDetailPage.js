@@ -43,9 +43,13 @@ const GetProductById = () => {
                         <div>${productState.product_price}</div>
                         <div>{productState.product_description}</div>
                         <div>{productState.product_dimension}</div>
-                        {/* <div>{productState.product_quantity}</div> */}
-                        <AddProductToCart productId={productId} className="add-to-cart-button" />
-                        {/* <button className="add-to-cart-button">Add To Cart</button> */}
+
+                        {sessionUser?.id ? (
+                            <AddProductToCart productId={productId} className="add-to-cart-button" />
+                        ) : (
+                            <div lassName='PID-about-product-div'>Please log in or sign up to view or purchase the items!</div>
+                        )}
+
                     </div>
                     <div className="product-detail-image">
                         <img className="product-by-id-image" src={productState.product_preview_image} alt={productState.item_name}/>
