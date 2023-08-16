@@ -7,15 +7,16 @@ import GetCurrentCart from '../Cart/GetCurrentCart';
 //add css
 
 function DeleteCartItemModal({productId}){
+    console.log('IS THIS DELETE MODAL HITTING?')
     const { closeModal } = useModal();
     const dispatch = useDispatch();
     const history = useHistory();
 
 
-    const deleteClick = () => {
-        dispatch(thunkDeleteCurrentCartItem(productId))
+    const deleteClick = async () => {
+        await dispatch(thunkDeleteCurrentCartItem(productId))
         closeModal()
-        dispatch(thunkGetCurrentCart())
+        await dispatch(thunkGetCurrentCart())
         history.push(`/carts`)
     }
 

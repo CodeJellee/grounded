@@ -43,9 +43,9 @@ const GetCurrentCart = () => {
 
                 <div className="cart-page-grid">
                             {allCartItems.map((cartItem) => (
-                                <NavLink to={`/products/${cartItem.productId}`} className="product-link" title={cartItem.id}>
+                                // <NavLink to={`/products/${cartItem.productId}`} className="product-link" title={cartItem.id} >
                                     <EachCartItem cartItem={cartItem}/>
-                                </NavLink>
+                                // </NavLink>
                             ))}
                 </div>
             </div>

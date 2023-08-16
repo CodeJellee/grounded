@@ -39,15 +39,17 @@ function EachCartItem({cartItem}) {
         }
     };
 
-    // const featureComingSoonClick = () => {
-    //     alert("Feature coming soon!");
-    // };
+    const featureComingSoonClick = () => {
+        alert("Feature coming soon!");
+    };
 
 
     return (
         <>
-            <button onClick={onSubmit}>Update</button>
-            <form className="create-new-product-form" type="submit">
+            <div className="delete-only-button-container">
+                <button className="cart-delete-button" onClick={(() => setModalContent(<DeleteCartItemModal productId={cartItem.productId}/>))}>✕</button>
+            </div>
+            <form className="each-cart-item-form" type="submit">
                 <div className="each-cart-item-container">
                     <div className="cart-photo-and-title">
                         <input type="checkbox" class="toggle-input" />
@@ -55,17 +57,20 @@ function EachCartItem({cartItem}) {
                         <div className="cart-product-name">{cartItem.Product.item_name}</div>
                     </div>
                     <div className="cart-quantity-price-delete">
-                        <input
-                            id="quantity-input"
-                            type="number"
-                            className="quantity-input"
-                            name="quantity"
-                            min="1"
-                            defaultValue={cartItem.cart_quantity}
-                        />
+                        <div>
+                            <div>Quantity: </div>
+                            <input
+                                id="quantity-input"
+                                type="number"
+                                className="quantity-input"
+                                name="quantity"
+                                min="1"
+                                defaultValue={cartItem.cart_quantity}
+                            />
+                        </div>
+                        <button onClick={onSubmit}>Update</button>
                         <div className="cart-price-delete">
                             <div className="each-product-price">${cartItem.Product.product_price}</div>
-                            <button className="cart-delete-button" onClick={(() => setModalContent(<DeleteCartItemModal productId={cartItem.productId}/>))}>✕</button>
                         </div>
                     </div>
                 </div>
