@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useParams, useHistory } from 'react-router-dom';
 import { thunkGetSingleProduct } from "../../store/product";
-import AddProductToCart from "../Products/AddProductToCart"
+import AddProductToCart from "../Products/AddProductToCart";
+import { useModal } from "../../context/Modal";
 
 
 const GetProductById = () => {
@@ -47,7 +48,11 @@ const GetProductById = () => {
                         {sessionUser?.id ? (
                             <AddProductToCart productId={productId} className="add-to-cart-button" />
                         ) : (
-                            <div lassName='PID-about-product-div'>Please log in or sign up to view or purchase the items!</div>
+                            <div>
+                                <div lassName='PID-about-product-div'>Please
+                                <NavLink exact to="/login"> login or sign up </NavLink>
+                                to view or purchase the items!</div>
+                            </div>
                         )}
 
                     </div>
