@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useParams, useHistory } from 'react-router-dom';
 import { thunkGetSingleProduct } from "../../store/product";
+import AddProductToCart from "../Products/AddProductToCart"
 
 
 const GetProductById = () => {
@@ -43,7 +44,8 @@ const GetProductById = () => {
                         <div>{productState.product_description}</div>
                         <div>{productState.product_dimension}</div>
                         {/* <div>{productState.product_quantity}</div> */}
-                        <button className="add-to-cart-button">Add To Cart</button>
+                        <AddProductToCart productId={productId} className="add-to-cart-button" />
+                        {/* <button className="add-to-cart-button">Add To Cart</button> */}
                     </div>
                     <div className="product-detail-image">
                         <img className="product-by-id-image" src={productState.product_preview_image} alt={productState.item_name}/>

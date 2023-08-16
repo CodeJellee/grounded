@@ -16,7 +16,7 @@ function AddProductToCart({productId}) {
         return product.sellerId === currentUser.id
     };
 
-    let currentCartItems = Object.values(cartItems.currentCart)
+    let currentCartItems = Object.values(currentCart.currentCart) //ERROR HERE
 
     const productAlreadyInCart = () => {
 
@@ -47,6 +47,12 @@ function AddProductToCart({productId}) {
         }
     }
 
-
+    return(
+        <>
+        <button className='PID-cartButt PID-P-button' onClick={onClick}>Add To Cart</button>
+        </>
+    )
 
 }
+
+export default AddProductToCart;
