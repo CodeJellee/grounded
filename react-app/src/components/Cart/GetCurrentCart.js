@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
-import { thunkGetCurrentCart } from "../../store/cart";
+import { thunkGetCurrentCart, thunkCheckoutCart } from "../../store/cart";
 import EachCartItem from "../Cart/EachCartItem"
 import "./Carts.css"
 
@@ -24,6 +24,13 @@ const GetCurrentCart = () => {
     //     history.push("/checkout");
     // };
 
+    const handleClearCart = async () => {
+        await dispatch(thunkCheckoutCart());
+        await dispatch(thunkGetCurrentCart());
+        alert ("Purchase was successful!")
+        history.push('/products')
+      };
+
 
 
     return (
@@ -31,15 +38,15 @@ const GetCurrentCart = () => {
             <div>
                 <h3 className="cart-blurb">Shopping Cart</h3>
 
-                {/* <div className="checkout-button-container">
+                <div className="checkout-button-container">
                     {isCheckoutClicked ? (
                     <span>Processing...</span>
                     ) : (
-                    <button className="checkout-button" onClick={handleCheckoutClick}>
+                    <button className="checkout-button" onClick={handleClearCart}>
                         Checkout
                     </button>
                     )}
-                </div> */}
+                </div>
 
                 <div className="cart-page-grid">
                             {allCartItems.map((cartItem) => (
