@@ -29,7 +29,7 @@ const actionPostItemInCart = (response) => ({
     response,
 })
 
-const actionUpdateItemQuantityAndPurchase = (response) => ({
+export const actionUpdateItemQuantityAndPurchase = (response) => ({
     type: UPDATE_ITEM_QUANTITY_AND_PURCHASE,
     response,
 })
@@ -75,16 +75,14 @@ export const thunkDeleteCurrentCartItem = (productId) => async (dispatch) => {
     return "Product could not be deleted from cart"
 }
 
-export const thunkPostItemToCart = (productId, cart_quantity) => async (dispatch) => {
+export const thunkPostItemToCart = (productId) => async (dispatch) => {
     try{
         let response = await fetch(`/api/products/${productId}/to_cart`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                cart_quantity,
-            }),
+
         });
 
 
@@ -220,6 +218,7 @@ export default function reducer(state = initialState, action) {
 
         //     return newState;
         // }
+        //ORIGINAL BELOW
         case UPDATE_ITEM_QUANTITY_AND_PURCHASE: {
             newState = { ...state };
 
@@ -229,7 +228,7 @@ export default function reducer(state = initialState, action) {
             newState.currentCart = { ...newState.currentCart };
 
             const cartItem = productPayload.CurrentCart; // Assuming CurrentCart is an array
-            console.log('Processing Cart Item:', cartItem);
+            console.log('Processing productPayload cart quantity:', productPayload.cart_quantity);
 
             console.log('what is cartItem.id', cartItem.id)
             newState.currentCart[cartItem.id] = {

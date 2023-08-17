@@ -1,0 +1,124 @@
+/* Get All Current Cart CSS *************************/
+
+.cart-blurb {
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #88896f;
+    padding-left: 4.5%;
+    padding-top: 100px;
+}
+
+.cart-page-grid{
+    display: grid;
+    grid-template-rows: 1fr;
+}
+
+
+
+/* EachCartItem CSS ******************************/
+
+.each-cart-item-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    border-bottom:2px solid lightgrey;
+    /* padding-left: 4.5%; */
+
+}
+
+.cart-photo-and-title{
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    align-items: center;
+
+}
+
+.cart-product-image{
+    width: 100px;
+    height: 150px;
+}
+
+.cart-product-name{
+    font-size: 15px;
+}
+
+.cart-quantity-price-delete{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-self: center;
+    justify-items: center;
+    justify-content: center;
+    column-gap: 80px;
+
+}
+
+
+.cart-price-delete{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-self: right;
+    align-items: center;
+    column-gap: 40px;
+    text-decoration: none;
+    border-radius: 50px;
+
+}
+
+.each-product-price{
+    padding-top: 0px;
+}
+
+.delete-only-button-container{
+    justify-self: right;
+
+}
+
+.cart-delete-button{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: #fff9f0;
+    border: none;
+    color: lightslategrey;
+    cursor: pointer;
+}
+
+.cart-delete-button:hover{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background-color: lightslategrey;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* EditQuantityItemModal CSS ******************************/
+/* .edit-cart-item-form{
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+    align-content: center;
+} */
+
+/* #modal-content{
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+} */
+
+.edit-cart-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+}
+
+
+.edit-cart-image{
+    width: 200px;
+    height: 250px;
+}
