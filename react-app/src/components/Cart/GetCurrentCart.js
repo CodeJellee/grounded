@@ -28,7 +28,7 @@ const GetCurrentCart = () => {
         await dispatch(thunkCheckoutCart());
         await dispatch(thunkGetCurrentCart());
         alert ("Purchase was successful!")
-        history.push('/products')
+        history.push('/')
       };
 
 
