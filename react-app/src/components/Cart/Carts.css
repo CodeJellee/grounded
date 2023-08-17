@@ -92,3 +92,33 @@
     border: none;
     cursor: pointer;
 }
+
+
+/* EditQuantityItemModal CSS ******************************/
+/* .edit-cart-item-form{
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+    align-content: center;
+} */
+
+/* #modal-content{
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+} */
+
+.edit-cart-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+}
+
+
+.edit-cart-image{
+    width: 200px;
+    height: 250px;
+}
