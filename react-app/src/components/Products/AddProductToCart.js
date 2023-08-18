@@ -53,7 +53,7 @@ function AddProductToCart({productId}) {
 
     return(
         <>
-        <button className='PID-cartButt PID-P-button' onClick={onClick}>Add To Cart</button>
+        <button className='add-to-cart-button' onClick={onClick}>Add To Cart</button>
         </>
     )
 

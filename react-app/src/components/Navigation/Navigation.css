@@ -23,6 +23,12 @@ body {
   padding-top: 5%;
 }
 
+.links{
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+}
+
 .title-link{
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 30px;

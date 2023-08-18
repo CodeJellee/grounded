@@ -145,7 +145,7 @@ def update_current_cart_item(id):
                         "updatedAt": product_info.updatedAt,
                     },
                 }
-        
+
         }
 
         return response_data
@@ -165,3 +165,18 @@ def delete_current_cart_item(productId):
     db.session.delete(cart_item_to_delete)
     db.session.commit()
     return{"item_data": cart_item_to_delete.to_dict(), "message": "Product successfully removed from your cart!"}
+
+
+#DELETE CART/CLEAR CART -works on postman
+@cart_routes.route("/checkout", methods=["DELETE"])
+@login_required
+def clear_cart():
+    curr_user_id = current_user.to_dict()["id"]
+    user_cart_pending = CartItem.query.filter(CartItem.userId == curr_user_id, CartItem.purchased == False).all()
+
+    for cart_item in user_cart_pending:
+        db.session.delete(cart_item)
+
+    db.session.commit()
+
+    return {"message": "Cart cleared successfully"}

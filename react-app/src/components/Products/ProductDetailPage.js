@@ -40,17 +40,17 @@ const GetProductById = () => {
             <div>
                 <div className="product-detail-image-container">
                     <div className="product-detail-description">
-                        <div>{productState.item_name}</div>
-                        <div>${productState.product_price}</div>
-                        <div>{productState.product_description}</div>
-                        <div>{productState.product_dimension}</div>
+                        <div className="product-detail-page-item-name">{productState.item_name}</div>
+                        <div className="product-detail-page-item-price">${productState.product_price}</div>
+                        <div className="product-detail-page-item-description">{productState.product_description}</div>
+                        <div className="product-detail-page-item-dimension">{productState.product_dimension}</div>
 
                         {sessionUser?.id ? (
                             <AddProductToCart productId={productId} className="add-to-cart-button" />
                         ) : (
                             <div>
-                                <div lassName='PID-about-product-div'>Please
-                                <NavLink exact to="/login"> login or sign up </NavLink>
+                                <div className='PID-about-product-div'>Please
+                                <NavLink className="log-signup-link" exact to="/login"> login or sign up </NavLink>
                                 to view or purchase the items!</div>
                             </div>
                         )}
@@ -61,8 +61,8 @@ const GetProductById = () => {
                     </div>
                 </div>
                 <div className="product-detail-description-bottom">
-                    <div>Description</div>
-                    <div>{productState.product_description}</div>
+                    <div className="product-detail-page-item-bottom-description-title">Description</div>
+                    <div className="product-detail-page-item-bottom-description">{productState.product_description}</div>
                 </div>
             </div>
         </>

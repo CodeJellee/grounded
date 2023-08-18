@@ -75,6 +75,7 @@ if (process.env.NODE_ENV !== "production") {
 
 //CART----------------------------------------------------------------------------------
 //window.store.dispatch(window.cartActions.thunkGetCurrentCart())
+//window.store.dispatch(window.cartActions.thunkCheckoutCart())
 //window.store.dispatch(window.cartActions.thunkGetPastCart())
 //window.store.dispatch(window.cartActions.thunkDeleteCurrentCartItem(:productId))
 // window.store.dispatch(
