@@ -154,30 +154,50 @@
 
 
 /* EditQuantityItemModal CSS ******************************/
-/* .edit-cart-item-form{
-    align-items: center;
-    justify-content: center;
-    justify-self: center;
-    justify-items: center;
-    align-content: center;
-} */
 
-/* #modal-content{
-    justify-content: center;
-    justify-self: center;
-    justify-items: center;
-} */
 
-.edit-cart-info{
+.modal-content-container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    justify-self: center;
-    justify-items: center;
+    align-items: center;
+    padding-top: 10px;
+    background-color: #fff9f0;;
+    padding-bottom: 15px;
+    border-radius: 20px;
+
 }
 
 
 .edit-cart-image{
     width: 200px;
     height: 250px;
+}
+
+.edit-quantity-container{
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    column-gap: 10px;
+}
+
+.edit-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+.edit-button {
+    height: 40px;
+    width: 150px;
+    border-radius: 50px;
+    font-size: 15px;
+    background-color: #fff9f0;
+    border-color: #41483b;
+}
+
+.edit-button:hover {
+    cursor: pointer;
+    background-color: #41483b;
+    color: white;
 }
