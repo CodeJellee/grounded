@@ -34,7 +34,7 @@ function EditQuantityItemModal({ cartItem }) {
   };
 
   return (
-    <>
+    <div className="modal-content-container">
       <form className="edit-cart-item-form" onSubmit={onSubmit}>
         <div className="edit-cart-info">
           <div>
@@ -46,7 +46,7 @@ function EditQuantityItemModal({ cartItem }) {
             <div>{cartItem.Product.item_name}</div>
           </div>
           <div>
-            <div>
+            <div className="edit-quantity-container">
               <div>Quantity:</div>
               <input
                 type="number"
@@ -57,16 +57,17 @@ function EditQuantityItemModal({ cartItem }) {
                 onChange={handleQuantityChange}
               />
             </div>
-            <button type="submit">Update</button>
+              {/* <div>${cartItem.Product.product_price}</div> */}
+              <div  className="edit-button-container">
+                <button type="submit" className="edit-button">Update</button>
+              </div>
             <div>
-              <div>${cartItem.Product.product_price}</div>
             </div>
           </div>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 
 export default EditQuantityItemModal;
-
