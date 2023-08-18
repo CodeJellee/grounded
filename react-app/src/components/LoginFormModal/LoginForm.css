@@ -35,6 +35,8 @@ h1 {
 
 .shop-button:hover {
     cursor: pointer;
+    background-color: #41483b;
+    color: white;
 }
 
 
@@ -113,6 +115,14 @@ h1 {
     color: lightslategrey;
     cursor: pointer;
 }
+
+.signup-bottom-button:hover{
+    color: lightslategrey;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
 
 /* SIGN UP MODEL CSS *************************/
 

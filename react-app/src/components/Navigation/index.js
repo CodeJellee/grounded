@@ -7,22 +7,26 @@ import './Navigation.css';
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
+	const featureComingSoonClick = () => {
+        alert("Feature coming soon!");
+    };
+
 	return (
 		<div>
 			<div className='header-container'>
 				<div className="linkSet1">
-					<NavLink to={`/products`}>
+					<NavLink className="links" to={`/products`}>
 						<div className="links" href="">Shop</div>
 					</NavLink>
-					<div className="links" href="">Workshops</div>
-					<div className="links" href="">Articles</div>
-					<div className="links" href="">About</div>
-					<div className="links" href="">Contact</div>
+					<div className="links" href="" onClick={featureComingSoonClick}>Workshops</div>
+					<div className="links" href="" onClick={featureComingSoonClick}>Articles</div>
+					<div className="links" href=""onClick={featureComingSoonClick}>About</div>
+					<div className="links" href=""onClick={featureComingSoonClick}>Contact</div>
 				</div>
 				<div className='title-link'>
 					<NavLink exact to="/" className='title-link'>grounded.</NavLink>
 				</div>
-				<div className='header-login-insta-cart'>
+				<div className='header-login-insta-cart links'>
 					{isLoaded && (
 						<div className='title-login'>
 							<ProfileButton user={sessionUser} className='login-link'/>
@@ -30,12 +34,12 @@ function Navigation({ isLoaded }){
 					)}
 					<div>
 						<NavLink exact to="/products/current">
-							<i className="fas fa-leaf"></i>
+							<i className="fas fa-leaf links"></i>
 						</NavLink>
 					</div>
 					<div>
 						<NavLink exact to="/carts">
-							<i className="fas fa-shopping-cart" />
+							<i className="fas fa-shopping-cart links" />
 						</NavLink>
 					</div>
 				</div>
@@ -45,4 +49,3 @@ function Navigation({ isLoaded }){
 }
 
 export default Navigation;
-

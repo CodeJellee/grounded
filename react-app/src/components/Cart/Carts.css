@@ -1,5 +1,27 @@
 /* Get All Current Cart CSS *************************/
 
+/* .get-current-cart-background-container{
+    background: url(https://groundedfullstack.s3.amazonaws.com/grounded_product_images/background-img.jpeg) no-repeat fixed center;
+    background-size: cover;
+
+}
+
+.get-current-cart-background-container{
+    padding-top: 200px;
+    padding-left: 1.5%;
+    padding-bottom: 600px;
+
+} */
+
+
+.empty-cart{
+    padding-left: 4%;
+}
+
+.button-container{
+    padding-left: 4%;
+}
+
 .cart-blurb {
     font-size: 30px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -13,6 +35,25 @@
     grid-template-rows: 1fr;
 }
 
+.checkout-button-container{
+    padding-left: 4%;
+}
+
+.checkout-button {
+    height: 40px;
+    width: 150px;
+    border-radius: 50px;
+    font-size: 15px;
+    background-color: #fff9f0;
+    border-color: #41483b;
+
+}
+
+.checkout-button:hover {
+    cursor: pointer;
+    background-color: #41483b;
+    color: white;
+}
 
 
 /* EachCartItem CSS ******************************/
@@ -28,8 +69,10 @@
 
 .cart-photo-and-title{
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: 1fr 2fr;
+    /* grid-template-columns: 1fr 1fr 2fr need this for toggle; */
     align-items: center;
+    padding-left: 6%;
 
 }
 
@@ -91,6 +134,22 @@
     color: black;
     border: none;
     cursor: pointer;
+}
+
+
+.update-cart-quantity-button {
+    height: 40px;
+    width: 150px;
+    border-radius: 50px;
+    font-size: 15px;
+    background-color: #fff9f0;
+    border-color: #41483b;
+}
+
+.update-cart-quantity-button:hover {
+    cursor: pointer;
+    background-color: #41483b;
+    color: white;
 }
 
 

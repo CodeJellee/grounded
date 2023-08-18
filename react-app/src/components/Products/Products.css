@@ -130,7 +130,6 @@
     cursor: pointer;
     background-color: #41483b;
     color: white;
-
 }
 
 .product-detail-description-bottom{
@@ -243,6 +242,7 @@
 .errors{
     text-align: center;
     color: red;
+    font-size: 9pt;
 }
 
 

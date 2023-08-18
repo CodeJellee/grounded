@@ -35,26 +35,40 @@ const GetCurrentCart = () => {
 
     return (
         <>
-            <div>
-                <h3 className="cart-blurb">Shopping Cart</h3>
+            <div className="get-current-cart-background-container">
+                {allCartItems?.length === 0 || !allCartItems ? (
+                    <>
+                        <h2 className="empty-cart">Your cart is empty.</h2>
+                        <h3 className="empty-cart">Go shop some plants!</h3>
+                        <div class="button-container">
+                            <NavLink to={`/products`}>
+                                <button class="shop-button">Shop Now</button>
+                            </NavLink>
+                        </div>
+                    </>
+                ) : (
+                    <div>
+                        <h3 className="cart-blurb">Shopping Cart</h3>
 
-                <div className="checkout-button-container">
-                    {isCheckoutClicked ? (
-                    <span>Processing...</span>
-                    ) : (
-                    <button className="checkout-button" onClick={handleClearCart}>
-                        Checkout
-                    </button>
-                    )}
-                </div>
+                        <div className="checkout-button-container">
+                            {isCheckoutClicked ? (
+                            <span>Processing...</span>
+                            ) : (
+                            <button className="checkout-button" onClick={handleClearCart}>
+                                Checkout
+                            </button>
+                            )}
+                        </div>
 
-                <div className="cart-page-grid">
-                            {allCartItems.map((cartItem) => (
-                                // <NavLink to={`/products/${cartItem.productId}`} className="product-link" title={cartItem.id} >
-                                    <EachCartItem cartItem={cartItem}/>
-                                // </NavLink>
-                            ))}
-                </div>
+                        <div className="cart-page-grid">
+                                    {allCartItems.map((cartItem) => (
+                                        // <NavLink to={`/products/${cartItem.productId}`} className="product-link" title={cartItem.id} >
+                                            <EachCartItem cartItem={cartItem}/>
+                                        // </NavLink>
+                                    ))}
+                        </div>
+                    </div>
+                )}
             </div>
         </>
 
