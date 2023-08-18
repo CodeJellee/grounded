@@ -256,3 +256,50 @@
     border-radius: 50px;
     text-align: center;
 }
+
+
+/* Delete user item modal CSS ******************************/
+.modal-content-cart-delete{
+    width: 350px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+
+#delete-user-item-modal-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+}
+
+
+.edit-user-item-info{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px #0000001a;
+    row-gap: 10px;
+}
+
+.from-user-action{
+    height: 40px;
+    width: 150px;
+    border-radius: 50px;
+    font-size: 15px;
+    background-color: #fff9f0;
+    border-color: #41483b;
+}
+
+.from-user-action:hover {
+    cursor: pointer;
+    background-color: #41483b;
+    color: white;
+}

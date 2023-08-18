@@ -19,15 +19,17 @@ function DeleteProductModal({productId}){
 
     return(
         <>
-            <div className='modal-container'>
+        <div className='delete-user-item-modal-container'>
+            <div className='edit-user-item-info'>
                 <div className='modal-confirm'>Confirm Delete</div>
                 <div className='modal-confirm-saying'>Are you sure you want to remove this item?</div>
                 <div className='modal-yes-no-button-container'>
-                    <button onClick={deleteClick}>Yes</button>
-                    <button onClick={(() => closeModal())}>No</button>
+                    <button className="from-user-action" onClick={deleteClick}>Yes</button>
+                    <button className="from-user-action" onClick={(() => closeModal())}>No</button>
                 </div>
 
             </div>
+        </div>
         </>
     )
 }
