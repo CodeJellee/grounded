@@ -21,8 +21,8 @@ function DeleteCartItemModal({productId}){
     }
 
     return(
-        <>
-            <div className='modal-container'>
+        <div id='delete-cart-item-modal-container'>
+            <div >
                 <div className='modal-confirm'>Confirm Delete</div>
                 <div className='modal-confirm-saying'>Are you sure you want to remove this item?</div>
                 <div className='modal-yes-no-button-container'>
@@ -31,7 +31,7 @@ function DeleteCartItemModal({productId}){
                 </div>
 
             </div>
-        </>
+        </div>
     )
 }
 
