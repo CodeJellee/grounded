@@ -54,13 +54,13 @@ function EachCartItem({cartItem}) {
             {/* <form className="each-cart-item-form" type="submit"> */}
                 <div className="each-cart-item-container">
                     <div className="cart-photo-and-title">
-                        <input type="checkbox" class="toggle-input" />
+                        {/* <input type="checkbox" class="toggle-input" /> */}
                         <img className="cart-product-image" src={cartItem.Product.product_preview_image} alt={cartItem.Product.item_name}/>
                         <div className="cart-product-name">{cartItem.Product.item_name}</div>
                     </div>
                     <div className="cart-quantity-price-delete">
                         <div>
-                            <div>Quantity:{cartItem.cart_quantity}</div>
+                            <div>Quantity: {cartItem.cart_quantity}</div>
                             {/* <input
                                 id="quantity-input"
                                 type="number"

@@ -6,6 +6,7 @@ const GET_PAST_CART = "carts/GET_PAST_CART"
 const DELETE_CURRENT_CART_ITEM = "carts/DELETE_CURRENT_CART_ITEM"
 const POST_ITEM_IN_CART = "carts/POST_ITEM_IN_CART"
 const UPDATE_ITEM_QUANTITY_AND_PURCHASE = "carts/UPDATE_ITEM_QUANTITY_AND_PURCHASE"
+const CHECKOUT_CART = "carts/CHECKOUT_CART"
 
 //ACTION----------------------------------------------------------------------------------------------//
 const actionGetCurrentCart = (cart) => ({
@@ -32,6 +33,11 @@ const actionPostItemInCart = (response) => ({
 export const actionUpdateItemQuantityAndPurchase = (response) => ({
     type: UPDATE_ITEM_QUANTITY_AND_PURCHASE,
     response,
+})
+
+export const actionCheckoutCart = () => ({
+    type: CHECKOUT_CART,
+
 })
 
 
@@ -129,6 +135,26 @@ export const thunkUpdateItemQuantityAndPurchase = (id, cart_quantity, purchased)
         return { error: e.message };
     }
 
+}
+
+export const thunkCheckoutCart = () => async (dispatch) => {
+    try {
+        const response = await fetch(`/api/carts/checkout`, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (response.ok) {
+            dispatch(actionCheckoutCart(response));
+        } else {
+            const errorResponse = await response.json();
+            return errorResponse;
+        }
+    } catch (e) {
+        return { error: e.message }
+    }
 }
 
 //REDUCER----------------------------------------------------------------------------------------------//
@@ -243,6 +269,12 @@ export default function reducer(state = initialState, action) {
 
             return newState;
         }
+        case CHECKOUT_CART: {
+            newState = { ...state };
+            newState.currentCart = {};
+            return newState;
+        }
+
 
         default:
             return state

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
-import './Modal.css';
+import './ModalForCart.css';
 
 const ModalContext = React.createContext();
 
@@ -38,7 +38,7 @@ export function ModalProvider({ children }) {
   );
 }
 
-export function Modal() {
+export function ModalForCart() {
   const { modalRef, modalContent, closeModal } = useContext(ModalContext);
   // If there is no div referenced by the modalRef or modalContent is not a
   // truthy value, render nothing:
@@ -48,7 +48,7 @@ export function Modal() {
   return ReactDOM.createPortal(
     <div id="modal">
       <div id="modal-background" onClick={closeModal} />
-      <div id="modal-content" className='modal-content-cart-delete'>
+      <div id="modal-content">
         {modalContent}
       </div>
     </div>,
@@ -56,4 +56,4 @@ export function Modal() {
   );
 }
 
-export const useModal = () => useContext(ModalContext);
+export const useModalForCart = () => useContext(ModalContext);

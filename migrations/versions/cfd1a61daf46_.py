@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: c0178adcf909
+Revision ID: cfd1a61daf46
 Revises:
-Create Date: 2023-08-17 16:45:31.040577
+Create Date: 2023-08-18 12:40:04.528043
 
 """
 from alembic import op
@@ -11,12 +11,12 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
-
 # revision identifiers, used by Alembic.
-revision = 'c0178adcf909'
+revision = 'cfd1a61daf46'
 down_revision = None
 branch_labels = None
 depends_on = None
+
 
 
 def upgrade():
