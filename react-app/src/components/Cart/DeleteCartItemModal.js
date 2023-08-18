@@ -1,4 +1,5 @@
 import { useModal } from '../../context/Modal';
+// import { useModalForCart } from '../Cart/ModalForCart'
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { thunkDeleteCurrentCartItem } from '../../store/cart';
@@ -22,12 +23,12 @@ function DeleteCartItemModal({productId}){
 
     return(
         <div id='delete-cart-item-modal-container'>
-            <div >
+            <div className='delete-cart-info'>
                 <div className='modal-confirm'>Confirm Delete</div>
                 <div className='modal-confirm-saying'>Are you sure you want to remove this item?</div>
                 <div className='modal-yes-no-button-container'>
-                    <button onClick={deleteClick}>Yes</button>
-                    <button onClick={(() => closeModal())}>No</button>
+                    <button className='from-cart-action' onClick={deleteClick}>Yes</button>
+                    <button className='from-cart-action' onClick={(() => closeModal())}>No</button>
                 </div>
 
             </div>
