@@ -29,24 +29,24 @@ def seed_cart_items(users, products):
             "cart_quantity": 1,
             "purchased": False,
         },
-        {
-            "userId": 1,
-            "productId": 20,
-            "cart_quantity": 1,
-            "purchased": True,
-        },
-        {
-            "userId": 1,
-            "productId": 21,
-            "cart_quantity": 2,
-            "purchased": True,
-        },
-        {
-            "userId": 1,
-            "productId": 22,
-            "cart_quantity": 1,
-            "purchased": True,
-        },
+        # {
+        #     "userId": 1,
+        #     "productId": 20,
+        #     "cart_quantity": 1,
+        #     "purchased": True,
+        # },
+        # {
+        #     "userId": 1,
+        #     "productId": 21,
+        #     "cart_quantity": 2,
+        #     "purchased": True,
+        # },
+        # {
+        #     "userId": 1,
+        #     "productId": 22,
+        #     "cart_quantity": 1,
+        #     "purchased": True,
+        # },
     ]
 
     for item in cart_items:
