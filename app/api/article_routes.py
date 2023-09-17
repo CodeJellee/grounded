@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import db, User, CartItem, Workshop, Article
-# from app.forms import NewProduct, NewProductImage, NewArticle, NewWorkshop
+from app.forms import NewProduct, NewProductImage, NewArticle, NewWorkshop
 from sqlalchemy import insert
 
 
@@ -64,3 +64,49 @@ def delete_article(id):
     db.session.delete(article_to_delete)
     db.session.commit()
     return {"message": "Article successfully deleted!"}
+
+
+#POST new article by user - checked on postman
+@article_routes.route("/new", methods=["POST"])
+@login_required
+def create_new_article():
+    form = NewArticle()
+
+    #need to get CSRF_TOKEN for flask-wtf/wtforms to work on production
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        new_article = Article(
+            authorId=current_user.to_dict()["id"],
+            article_title=form.data["article_title"],
+            article_description=form.data["article_description"],
+            article_link=form.data["article_link"],
+        )
+        db.session.add(new_article)
+        db.session.commit()
+        return new_article.to_dict()
+    else:
+        return {"errors": form.errors}
+
+
+#UPDATE article by user - checked on postman
+@article_routes.route("/<int:id>", methods=["PUT"])
+@login_required
+def update_article(id):
+    article = Article.query.get(id)
+    if not article:
+        return {"message": "Article couldn't be found."}
+
+    form = NewArticle()
+
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        article.id=id
+        article.authorId=current_user.to_dict()["id"]
+        article.article_title=form.data["article_title"]
+        article.article_description=form.data["article_description"]
+        article.article_link=form.data["article_link"]
+
+        db.session.commit()
+        return article.to_dict()
+    else:
+        return {"errors": form.errors}
