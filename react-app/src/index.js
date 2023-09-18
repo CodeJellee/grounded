@@ -8,6 +8,7 @@ import configureStore from "./store";
 import * as sessionActions from "./store/session";
 import * as productActions from "./store/product"
 import * as cartActions from "./store/cart"
+import * as articleActions from "./store/article"
 import App from "./App";
 
 import "./index.css";
@@ -19,6 +20,7 @@ if (process.env.NODE_ENV !== "production") {
 	window.sessionActions = sessionActions;
 	window.productActions = productActions;
 	window.cartActions = cartActions;
+	window.articleActions = articleActions;
 }
 
 //example to use in console to test thunk
@@ -101,6 +103,10 @@ if (process.env.NODE_ENV !== "production") {
 // 	password: "secret password",
 // })
 // );
+
+//ARTICLES-----------------------------------------------
+//window.store.dispatch(window.articleActions.thunkGetAllArticles())
+//window.store.dispatch(window.articleActions.thunkGetSingleArticle(:articleId))
 
 // Wrap the application with the Modal provider and render the Modal component
 // after the App component so that all the Modal content will be layered as
