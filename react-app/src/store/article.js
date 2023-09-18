@@ -2,8 +2,8 @@
 const GET_ALL_ARTICLES = "articles/GET_ALL_ARTICLES"
 const GET_EACH_ARTICLE = "articles/GET_EACH_ARTICLE"
 const GET_USERS_ARTICLES ="articles/GET_USERS_ARTICLES"
-// const CREATE_NEW_ARTICLE = "articles/CREATE_NEW_ARTICLE"
-// const UPDATE_EACH_ARTICLE = "articles/UPDATE_EACH_ARTICLE"
+const CREATE_NEW_ARTICLE = "articles/CREATE_NEW_ARTICLE"
+const UPDATE_EACH_ARTICLE = "articles/UPDATE_EACH_ARTICLE"
 const DELETE_EACH_ARTICLE = "articles/DELETE_EACH_ARTICLE"
 
 //ACTION----------------------------------------------------------------------------------------------//
@@ -21,6 +21,19 @@ const actionGetSingleArticle = (article) => ({
 const actionGetUsersArticles = (articles) => ({
     type: GET_USERS_ARTICLES,
     articles,
+})
+
+const actionCreateNewArticle = (article, currentUser) => ({
+    type: CREATE_NEW_ARTICLE,
+    article,
+    currentUser,
+})
+
+const actionUpdateSingleArticle = (articleId, article, currentUser) => ({
+    type: UPDATE_EACH_ARTICLE,
+    articleId,
+    article,
+    currentUser,
 })
 
 const actionDeleteSingleArticle = (article, data) => ({
@@ -86,6 +99,58 @@ export const thunkGetUsersArticles = () => async (dispatch) => {
     }
 }
 
+export const thunkCreateNewArticle = (article, currentUser) => async (dispatch) => {
+    try {
+
+        // console.log("thunkCreateNew Body:", JSON.stringify(product))
+
+        let response = await fetch (`/api/articles/new`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(article),
+        });
+
+        if (response.ok){
+            const data = await response.json();
+            dispatch(actionCreateNewArticle(data, currentUser));
+            return data
+        } else {
+            const errorResponse = await response.json();
+            return errorResponse
+        }
+
+    } catch (e) {
+        return { error: e.message };
+    }
+}
+
+export const thunkUpdateSingleArticle = (articleId, updatedArticle, currentUser) => async(dispatch) => {
+
+    try{
+        let response = await fetch(`/api/articles/${articleId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedArticle),
+        });
+
+        if (response.ok){
+            const data = await response.json();
+            dispatch(actionUpdateSingleArticle(articleId, data, currentUser))
+            return data
+        } else {
+            const errorResponse = await response.json();
+            return errorResponse
+        }
+
+    } catch (e) {
+        return { error: e.message}
+    }
+}
+
 export const thunkDeleteSingleArticle = (articleId) => async (dispatch) => {
     let response = await fetch(`/api/articles/${articleId}`, {
         method: "DELETE"
@@ -134,6 +199,35 @@ export default function reducer(state = initialState, action) {
                 (article) => (newState.userArticles[article.id] = article)
             );
             return newState;
+        }
+        case CREATE_NEW_ARTICLE:{
+            newState = { ...state };
+            newState.singleArticle = {};
+            const article = action.article;
+
+            newState.singleArticle = article;
+
+            newState.articles[article.id] = {
+                Author: action.currentUser,
+                ...action.article,
+            }
+            return newState
+        }
+        case UPDATE_EACH_ARTICLE:{
+
+            newState = { ...state }
+            newState.singleArticle = {}
+            newState.articles = { ...newState.articles }
+            newState.userArticles= { ...newState.userArticles }
+
+            newState.singleArticle = action.article
+            newState.articles[action.articleId] = {
+                Author: action.currentUser,
+                ...action.article,
+            }
+            newState.userArticles[action.articleId] = action.article
+            return newState
+
         }
         case DELETE_EACH_ARTICLE:{
             newState = { ...state };
