@@ -107,6 +107,10 @@ if (process.env.NODE_ENV !== "production") {
 //ARTICLES-----------------------------------------------
 //window.store.dispatch(window.articleActions.thunkGetAllArticles())
 //window.store.dispatch(window.articleActions.thunkGetSingleArticle(:articleId))
+//window.store.dispatch(window.articleActions.thunkGetUsersArticles())
+
+
+
 
 // Wrap the application with the Modal provider and render the Modal component
 // after the App component so that all the Modal content will be layered as

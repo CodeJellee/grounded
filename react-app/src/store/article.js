@@ -1,7 +1,7 @@
 //TYPE----------------------------------------------------------------------------------------------//
 const GET_ALL_ARTICLES = "articles/GET_ALL_ARTICLES"
 const GET_EACH_ARTICLE = "articles/GET_EACH_ARTICLE"
-// const GET_USERS_ARTICLES ="articles/GET_USERS_ARTICLES"
+const GET_USERS_ARTICLES ="articles/GET_USERS_ARTICLES"
 // const CREATE_NEW_ARTICLE = "articles/CREATE_NEW_ARTICLE"
 // const UPDATE_EACH_ARTICLE = "articles/UPDATE_EACH_ARTICLE"
 // const DELETE_EACH_ARTICLE = "articles/DELETE_EACH_ARTICLE"
@@ -16,6 +16,11 @@ const actionGetAllArticles = (articles) => ({
 const actionGetSingleArticle = (article) => ({
     type: GET_EACH_ARTICLE,
     article,
+})
+
+const actionGetUsersArticles = (articles) => ({
+    type: GET_USERS_ARTICLES,
+    articles,
 })
 
 //THUNKS----------------------------------------------------------------------------------------------//
@@ -55,6 +60,25 @@ export const thunkGetSingleArticle = (articleId) => async (dispatch) => {
     return "Article couldn't be found.";
 }
 
+export const thunkGetUsersArticles = () => async (dispatch) => {
+    try {
+        let response = await fetch(`/api/articles/current`, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (response.ok) {
+            const userArticles = await response.json()
+            dispatch(actionGetUsersArticles(userArticles))
+        } else {
+            throw new Error("Failed to fetch user articles")
+        }
+    } catch (e) {
+        return { error: e.message }
+    }
+}
+
 //REDUCER----------------------------------------------------------------------------------------------//
 
 let initialState = {
@@ -70,7 +94,6 @@ export default function reducer(state = initialState, action) {
         case GET_ALL_ARTICLES:{
             newState = { ...state };
             action.articles.Articles.forEach(
-
                 //NOTE: STATE IS BEING FLATTENED BELOW, id to match the product.id
                 (article) => (newState.articles[article.id] = article)
             );
@@ -80,6 +103,15 @@ export default function reducer(state = initialState, action) {
             newState = { ...state };
             const article = action.article;
             newState.singleArticle = { ...article };
+            return newState;
+        }
+        case GET_USERS_ARTICLES:{
+            newState = { ...state };
+
+            newState.userArticles = {};
+            action.articles.Articles.forEach(
+                (article) => (newState.userArticles[article.id] = article)
+            );
             return newState;
         }
         default:
