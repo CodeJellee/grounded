@@ -17,6 +17,8 @@ import { thunkGetPastCart } from "./store/cart";
 import GetCurrentCart from "./components/Cart/GetCurrentCart"
 import ProtectedRoute from "./components/auth/ProtectedRoute"
 
+import GetAllArticles from "./components/Articles/GetAllArticles";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -61,6 +63,9 @@ function App() {
           </Route> */}
           <Route exact path="/products">
             <GetAllProducts />
+          </Route>
+          <Route exact path="/articles">
+            <GetAllArticles />
           </Route>
           <ProtectedRoute exact path="/carts">
             <GetCurrentCart />
