@@ -4,7 +4,7 @@ import { useHistory, NavLink } from "react-router-dom";
 // import * as articleActions from "../../store/article"
 import { thunkGetAllArticles} from "../../store/article";
 import EachArticle from "./EachArticle";
-// import "./Products.css"
+import "./Articles.css"
 
 
 const GetAllArticles = () => {
@@ -29,7 +29,7 @@ const GetAllArticles = () => {
                 <div className="arrangement-of-articles">
                     {allArticles.map((article) => (
                         <NavLink to={`/articles/${article.id}`} className="article-link" title={article.article_title}>
-                            {console.log('WHAT IS THIS', article.article_title)}
+                            {/* {console.log('WHAT IS THIS', article.article_title)} */}
                             <EachArticle article={article}/>
                         </NavLink>
                     ))}

@@ -1,0 +1,44 @@
+/* Get All Articles CSS *************************/
+
+.all-articles-container{
+    padding-top: 100px;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.arrangement-of-articles{
+    /* border: solid; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 20px;
+    text-decoration: none;
+}
+
+
+/* Each Article CSS ******************************/
+
+.main-single-article-container{
+    /* border: solid red; */
+    width: 410px;
+    height: 250px;
+    text-align: center;
+    padding-top: 20px;
+    text-decoration: none;
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+}
+
+.each-article-name{
+    font-size: 30px;
+    text-decoration: none;
+}
+
+.each-article-description{
+    /* padding-top: 20px; */
+    font-size: 18px;
+}
+
+.each-article-more{
+    /* padding-top: 20px; */
+}
