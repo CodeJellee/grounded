@@ -4,7 +4,7 @@ const GET_EACH_ARTICLE = "articles/GET_EACH_ARTICLE"
 const GET_USERS_ARTICLES ="articles/GET_USERS_ARTICLES"
 // const CREATE_NEW_ARTICLE = "articles/CREATE_NEW_ARTICLE"
 // const UPDATE_EACH_ARTICLE = "articles/UPDATE_EACH_ARTICLE"
-// const DELETE_EACH_ARTICLE = "articles/DELETE_EACH_ARTICLE"
+const DELETE_EACH_ARTICLE = "articles/DELETE_EACH_ARTICLE"
 
 //ACTION----------------------------------------------------------------------------------------------//
 
@@ -22,6 +22,13 @@ const actionGetUsersArticles = (articles) => ({
     type: GET_USERS_ARTICLES,
     articles,
 })
+
+const actionDeleteSingleArticle = (article, data) => ({
+    type: DELETE_EACH_ARTICLE,
+    article,
+    data,
+})
+
 
 //THUNKS----------------------------------------------------------------------------------------------//
 
@@ -79,6 +86,20 @@ export const thunkGetUsersArticles = () => async (dispatch) => {
     }
 }
 
+export const thunkDeleteSingleArticle = (articleId) => async (dispatch) => {
+    let response = await fetch(`/api/articles/${articleId}`, {
+        method: "DELETE"
+    });
+
+    if (response.ok){
+        const data = await response.json();
+        dispatch(actionDeleteSingleArticle(articleId, data));
+        return data
+    }
+
+    return "Article does not exist"
+}
+
 //REDUCER----------------------------------------------------------------------------------------------//
 
 let initialState = {
@@ -113,6 +134,17 @@ export default function reducer(state = initialState, action) {
                 (article) => (newState.userArticles[article.id] = article)
             );
             return newState;
+        }
+        case DELETE_EACH_ARTICLE:{
+            newState = { ...state };
+            newState.articles = { ...newState.articles };
+            newState.userArticles = { ...newState.userArticles };
+            newState.singleArticle = {};
+
+            delete newState.articles[action.article]
+            delete newState.userArticles[action.article]
+
+            return newState
         }
         default:
             return state;

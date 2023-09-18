@@ -108,7 +108,7 @@ if (process.env.NODE_ENV !== "production") {
 //window.store.dispatch(window.articleActions.thunkGetAllArticles())
 //window.store.dispatch(window.articleActions.thunkGetSingleArticle(:articleId))
 //window.store.dispatch(window.articleActions.thunkGetUsersArticles())
-
+//window.store.dispatch(window.articleActions.thunkDeleteSingleArticle(:articleId))
 
 
 
