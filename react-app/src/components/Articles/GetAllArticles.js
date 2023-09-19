@@ -12,6 +12,10 @@ const GetAllArticles = () => {
     const allArticles = useSelector((state) => Object.values(state.article.articles))
     // console.log('WHAT AM I GETTING BACK HERE', allArticles)
 
+    // const [isEditing, setIsEditing] = useState(false);
+    const sessionUser = useSelector((state) => state.session.user)
+
+
     useEffect(() => {
         dispatch(thunkGetAllArticles());
     }, [dispatch])
@@ -21,12 +25,27 @@ const GetAllArticles = () => {
     //     alert("Feature coming soon!");
     // };
 
+    // Function to toggle editing state
+    // const toggleEditing = () => {
+    //     setIsEditing(!isEditing);
+    // };
+
 
     return(
         <>
         <div className="article-background">
             <div className="all-articles-container">
-                {/* <a className="filter-link" onClick={featureComingSoonClick}>+ Filter</a> */}
+                <div className="article-edit-container">
+                    {sessionUser?.id ? (
+                            <div className="article-edit-container">
+                                <button>Edit Articles</button>
+                            </div>
+                    ) : (
+                        <>
+                        </>
+                    )}
+
+                </div>
                 <div className="arrangement-of-articles">
                     {allArticles.map((article) => (
                         <NavLink to={`/articles/${article.id}`} className="article-link" title={article.article_title}>
