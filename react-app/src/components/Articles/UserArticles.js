@@ -27,18 +27,15 @@ const UserArticles = () => {
         <>
         <div className="article-background">
             <div className="all-articles-container">
-                <div className="article-edit-container">
-                    {sessionUser?.id ? (
-                        <NavLink exact to={`/articles`}>
-                            <div className="article-edit-container-present">
+                <div className="article-edit-container-user">
+                    <NavLink className="nav-link-articles" exact to={`/articles`}>
+                        <div className="article-edit-container-present">
                             <button className="article-edit-button">Back to all articles</button>
-                            </div>
-                        </NavLink>
-                    ) : (
-                        <>
-                        </>
-                    )}
-
+                        </div>
+                    </NavLink>
+                    <NavLink to={`/articles/new`} className="create-new-article-link">
+                        <a className="list-another-article">List another article to share!</a>
+                    </NavLink>
                 </div>
                 <div className="arrangement-of-articles">
                     {userArticles.map((article) => (
