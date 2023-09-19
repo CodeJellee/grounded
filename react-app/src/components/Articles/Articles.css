@@ -1,5 +1,14 @@
 /* Get All Articles CSS *************************/
 
+.article-background {
+    background-image: url('https://groundedfullstack.s3.amazonaws.com/grounded_product_images/ArticleBackgroundPage.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+
 .all-articles-container{
     padding-top: 100px;
     padding-left: 4%;
@@ -9,7 +18,7 @@
 .arrangement-of-articles{
     /* border: solid; */
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
     column-gap: 20px;
     row-gap: 20px;
     text-decoration: none;
@@ -20,13 +29,16 @@
 
 .main-single-article-container{
     /* border: solid red; */
-    width: 410px;
-    height: 250px;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 200px;
     text-align: center;
     padding-top: 20px;
     text-decoration: none;
     display: grid;
-    grid-template-rows: 1fr 3fr 1fr;
+    grid-template-rows: 1fr 1fr 3fr auto;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .each-article-name{
@@ -35,10 +47,20 @@
 }
 
 .each-article-description{
-    /* padding-top: 20px; */
+    padding-top: 20px;
     font-size: 18px;
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    overflow: hidden; /* Hide any overflowing text */
+    text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
+    max-width: 100%; /* Ensure text doesn't overflow the container */
 }
 
 .each-article-more{
-    /* padding-top: 20px; */
+    align-self: end;
+    padding-bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }

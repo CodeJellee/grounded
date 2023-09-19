@@ -24,6 +24,7 @@ const GetAllArticles = () => {
 
     return(
         <>
+        <div className="article-background">
             <div className="all-articles-container">
                 {/* <a className="filter-link" onClick={featureComingSoonClick}>+ Filter</a> */}
                 <div className="arrangement-of-articles">
@@ -36,6 +37,7 @@ const GetAllArticles = () => {
                 </div>
 
             </div>
+        </div>
         </>
     )
 }
