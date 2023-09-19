@@ -24,6 +24,24 @@
     text-decoration: none;
 }
 
+.article-edit-container-present{
+    padding-bottom: 20px;
+}
+
+.article-edit-button{
+    height: 40px;
+    width: 150px;
+    border-radius: 50px;
+    font-size: 15px;
+    background-color: #fff9f0;
+    border-color: #41483b;
+}
+
+.article-edit-button:hover {
+    cursor: pointer;
+    background-color: #41483b;
+    color: white;
+}
 
 /* Each Article CSS ******************************/
 
@@ -65,3 +83,27 @@ a {
     color: black;
 }
 
+/* User Articles CSS ******************************/
+
+.each-article-buttons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-self: center;
+    justify-self: center;
+    column-gap: 20px;
+}
+
+.user-article-edit-delete-buttons{
+    height: 40px;
+    width: 150px;
+    border-radius: 50px;
+    font-size: 15px;
+    background-color: #fff9f0;
+    border-color: #41483b;
+}
+
+.user-article-edit-delete-buttons:hover {
+    cursor: pointer;
+    background-color: #41483b;
+    color: white;
+}

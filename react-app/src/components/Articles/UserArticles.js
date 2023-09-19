@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 // import * as articleActions from "../../store/article"
-import { thunkGetAllArticles} from "../../store/article";
-import EachArticle from "./EachArticle";
+import { thunkGetUsersArticles} from "../../store/article";
+import EditArticle from "./EditArticle";
 import "./Articles.css"
 
 
-const GetAllArticles = () => {
+const UserArticles = () => {
     const dispatch = useDispatch();
-    const allArticles = useSelector((state) => Object.values(state.article.articles))
+    const userArticles = useSelector((state) => Object.values(state.article.userArticles))
     // console.log('WHAT AM I GETTING BACK HERE', allArticles)
 
     // const [isEditing, setIsEditing] = useState(false);
@@ -17,18 +17,10 @@ const GetAllArticles = () => {
 
 
     useEffect(() => {
-        dispatch(thunkGetAllArticles());
+        dispatch(thunkGetUsersArticles());
     }, [dispatch])
 
 
-    // const featureComingSoonClick = () => {
-    //     alert("Feature coming soon!");
-    // };
-
-    // Function to toggle editing state
-    // const toggleEditing = () => {
-    //     setIsEditing(!isEditing);
-    // };
 
 
     return(
@@ -37,9 +29,9 @@ const GetAllArticles = () => {
             <div className="all-articles-container">
                 <div className="article-edit-container">
                     {sessionUser?.id ? (
-                        <NavLink exact to={`/articles/current`}>
+                        <NavLink exact to={`/articles`}>
                             <div className="article-edit-container-present">
-                            <button className="article-edit-button">Edit Articles</button>
+                            <button className="article-edit-button">Back to all articles</button>
                             </div>
                         </NavLink>
                     ) : (
@@ -49,10 +41,10 @@ const GetAllArticles = () => {
 
                 </div>
                 <div className="arrangement-of-articles">
-                    {allArticles.map((article) => (
+                    {userArticles.map((article) => (
                         <NavLink to={`/articles/${article.id}`} className="article-link" title={article.article_title}>
                             {/* {console.log('WHAT IS THIS', article.article_title)} */}
-                            <EachArticle article={article}/>
+                            <EditArticle article={article}/>
                         </NavLink>
                     ))}
                 </div>
@@ -64,4 +56,4 @@ const GetAllArticles = () => {
 }
 
 
-export default GetAllArticles;
+export default UserArticles;

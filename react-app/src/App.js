@@ -18,6 +18,8 @@ import GetCurrentCart from "./components/Cart/GetCurrentCart"
 import ProtectedRoute from "./components/auth/ProtectedRoute"
 
 import GetAllArticles from "./components/Articles/GetAllArticles";
+import UserArticles from "./components/Articles/UserArticles";
+import EditArticle from "./components/Articles/EditArticle";
 
 function App() {
   const dispatch = useDispatch();
@@ -82,6 +84,9 @@ function App() {
           <Route path="/products/:productId">
             <GetProductById />
           </Route>
+          <ProtectedRoute exact path="/articles/current">
+            <UserArticles />
+          </ProtectedRoute>
         </Switch>
       )}
     </>
