@@ -165,3 +165,75 @@ a.nav-link-articles{
     background-color: #41483b;
     color: white;
 }
+
+/* Edit Article CSS *************************/
+.create-new-article-form-container{
+    background: url(https://groundedfullstack.s3.amazonaws.com/grounded_product_images/ArticleBackgroundPage.jpg) no-repeat fixed center;
+    /* background-repeat: no-repeat; */
+    /* background-attachment: fixed; */
+    background-size: cover;
+    padding-top: 100px;
+    padding-left: 1.5%;
+    padding-bottom: 160px;
+    min-height: 100vh;
+
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.create-new-article-form-submit-button{
+    height: 55px;
+    width: 130px;
+    border-radius: 50px;
+    font-size: 15px;
+    background-color: none;
+    cursor: pointer;
+}
+
+.create-new-article-form-submit-button:hover {
+    cursor: pointer;
+    background-color: #41483b;
+    color: white;
+}
+
+.create-new-article-form{
+    padding-top: 80px;
+    justify-self: center;
+    justify-content: center;
+    justify-items: center;
+
+}
+
+.create-new-article-form-details{
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+    padding: 20px;
+
+}
+
+.article-all-input-boxes{
+    height: 50px;
+    width: 350px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.article-all-input-boxes-text{
+    height: 50px;
+    width: 350px;
+    border-radius: 30px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+}
+
+.article-errors{
+    text-align: center;
+    color: red;
+    font-size: 13pt;
+}
