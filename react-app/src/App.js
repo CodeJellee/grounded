@@ -19,7 +19,8 @@ import ProtectedRoute from "./components/auth/ProtectedRoute"
 
 import GetAllArticles from "./components/Articles/GetAllArticles";
 import UserArticles from "./components/Articles/UserArticles";
-import EditArticle from "./components/Articles/EditArticle";
+import EditArticleForm from "./components/Articles/EditArticleForm";
+import EachArticleById from "./components/Articles/EachArticleById";
 
 function App() {
   const dispatch = useDispatch();
@@ -87,6 +88,12 @@ function App() {
           <ProtectedRoute exact path="/articles/current">
             <UserArticles />
           </ProtectedRoute>
+          <ProtectedRoute exact path="/articles/:articleId/edit">
+            <EditArticleForm />
+          </ProtectedRoute>
+          <Route path="/articles/:articleId">
+            <EachArticleById />
+          </Route>
         </Switch>
       )}
     </>
