@@ -17,6 +17,12 @@ import { thunkGetPastCart } from "./store/cart";
 import GetCurrentCart from "./components/Cart/GetCurrentCart"
 import ProtectedRoute from "./components/auth/ProtectedRoute"
 
+import GetAllArticles from "./components/Articles/GetAllArticles";
+import UserArticles from "./components/Articles/UserArticles";
+import EditArticleForm from "./components/Articles/EditArticleForm";
+import EachArticleById from "./components/Articles/EachArticleById";
+import CreateNewArticleForm from "./components/Articles/CreateNewArticleForm";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -62,6 +68,9 @@ function App() {
           <Route exact path="/products">
             <GetAllProducts />
           </Route>
+          <Route exact path="/articles">
+            <GetAllArticles />
+          </Route>
           <ProtectedRoute exact path="/carts">
             <GetCurrentCart />
           </ProtectedRoute>
@@ -76,6 +85,18 @@ function App() {
           </ProtectedRoute>
           <Route path="/products/:productId">
             <GetProductById />
+          </Route>
+          <ProtectedRoute exact path="/articles/current">
+            <UserArticles />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/articles/new">
+            <CreateNewArticleForm />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/articles/:articleId/edit">
+            <EditArticleForm />
+          </ProtectedRoute>
+          <Route path="/articles/:articleId">
+            <EachArticleById />
           </Route>
         </Switch>
       )}
