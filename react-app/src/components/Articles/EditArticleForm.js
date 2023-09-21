@@ -136,7 +136,7 @@ return (
                             type="text"
                             name="articleTitle"
                             className="article-all-input-boxes-text"
-                            placeholder="Product Name"
+                            placeholder="Article Title"
                             style={{ width: '350px', height: '75px' }}
                             value={articleTitle}
                             onChange={(e) => setArticleTitle(e.target.value)}

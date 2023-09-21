@@ -21,6 +21,7 @@ import GetAllArticles from "./components/Articles/GetAllArticles";
 import UserArticles from "./components/Articles/UserArticles";
 import EditArticleForm from "./components/Articles/EditArticleForm";
 import EachArticleById from "./components/Articles/EachArticleById";
+import CreateNewArticleForm from "./components/Articles/CreateNewArticleForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -87,6 +88,9 @@ function App() {
           </Route>
           <ProtectedRoute exact path="/articles/current">
             <UserArticles />
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/articles/new">
+            <CreateNewArticleForm />
           </ProtectedRoute>
           <ProtectedRoute exact path="/articles/:articleId/edit">
             <EditArticleForm />

@@ -33,7 +33,7 @@ const UserArticles = () => {
                             <button className="article-edit-button">Back to all articles</button>
                         </div>
                     </NavLink>
-                    <NavLink to={`/articles/new`} className="create-new-article-link">
+                    <NavLink exact to={`/articles/new`} className="create-new-article-link">
                         <a className="list-another-article">List another article to share!</a>
                     </NavLink>
                 </div>
