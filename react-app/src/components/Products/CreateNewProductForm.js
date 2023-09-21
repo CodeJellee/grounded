@@ -122,7 +122,7 @@ const CreateNewProductForm = () => {
 
 
         let fetchResponseFromThunk = await dispatch(thunkCreateNewProduct(payload, sessionUser));
-        console.log('what are we getting back after creating a product s/p dispatch', fetchResponseFromThunk)
+        // console.log('what are we getting back after creating a product s/p dispatch', fetchResponseFromThunk)
 
         if (fetchResponseFromThunk) {
             await dispatch(

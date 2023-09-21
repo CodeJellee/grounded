@@ -8,6 +8,7 @@ import configureStore from "./store";
 import * as sessionActions from "./store/session";
 import * as productActions from "./store/product"
 import * as cartActions from "./store/cart"
+import * as articleActions from "./store/article"
 import App from "./App";
 
 import "./index.css";
@@ -19,6 +20,7 @@ if (process.env.NODE_ENV !== "production") {
 	window.sessionActions = sessionActions;
 	window.productActions = productActions;
 	window.cartActions = cartActions;
+	window.articleActions = articleActions;
 }
 
 //example to use in console to test thunk
@@ -99,6 +101,32 @@ if (process.env.NODE_ENV !== "production") {
 // 	email: "john.smith@aa.io",
 // 	username: "JohnSmith",
 // 	password: "secret password",
+// })
+// );
+
+//ARTICLES-----------------------------------------------
+//window.store.dispatch(window.articleActions.thunkGetAllArticles())
+//window.store.dispatch(window.articleActions.thunkGetSingleArticle(:articleId))
+//window.store.dispatch(window.articleActions.thunkGetUsersArticles())
+//window.store.dispatch(window.articleActions.thunkDeleteSingleArticle(:articleId))
+// window.store.dispatch(
+// 	window.articleActions.thunkCreateNewArticle({
+// 		article_title: "Console Test: Post New Article",
+// 		article_description: "Console Test: Posting new article to test if post article route works via console",
+// 		article_link: "url",
+// 	})
+//   );
+// window.store.dispatch(
+//     window.articleActions.thunkUpdateSingleArticle(2, {
+//         article_title: "Update Console Test: Post New Article",
+//         article_description: "Update Console Test: Posting new article to test if post article route works via console",
+//         article_link: "url",
+//     }, {
+//     email: "demo@aa.io",
+//     first_name: "Demo",
+//     id: 1,
+//     last_name: "User",
+//     username: "Demo"
 // })
 // );
 

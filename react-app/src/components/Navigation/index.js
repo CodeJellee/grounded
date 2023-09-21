@@ -19,7 +19,9 @@ function Navigation({ isLoaded }){
 						<div className="links" href="">Shop</div>
 					</NavLink>
 					<div className="links" href="" onClick={featureComingSoonClick}>Workshops</div>
-					<div className="links" href="" onClick={featureComingSoonClick}>Articles</div>
+					<NavLink className="links" to={`/articles`}>
+						<div className="links" href="">Articles</div>
+					</NavLink>
 					<div className="links" href=""onClick={featureComingSoonClick}>About</div>
 					<div className="links" href=""onClick={featureComingSoonClick}>Contact</div>
 				</div>
