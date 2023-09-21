@@ -28,7 +28,7 @@
 
 .foot1 > p {
     font-size: 15px;
-    font-weight: bold
+    /* font-weight: bold */
 }
 
 .foot1 > img {
@@ -45,7 +45,7 @@
     flex-direction: row;
     gap: 10px;
     font-size: 15px;
-    font-weight: bold;
+    /* font-weight: bold; */
     justify-content: center; /* Center-align the contents */
 }
 

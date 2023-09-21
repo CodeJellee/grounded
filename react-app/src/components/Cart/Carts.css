@@ -81,6 +81,7 @@
 
 .cart-product-name{
     font-size: 15px;
+    align-items: center;
 }
 
 .cart-quantity-price-delete{
@@ -89,6 +90,7 @@
     justify-self: center;
     justify-items: center;
     justify-content: center;
+    align-items: center;
     column-gap: 80px;
 
 }
