@@ -5,13 +5,11 @@
     background-size: cover;
 
 }
+*/
 
 .get-current-cart-background-container{
-    padding-top: 200px;
-    padding-left: 1.5%;
-    padding-bottom: 600px;
-
-} */
+    padding-bottom: 6%;
+}
 
 
 .empty-cart{
@@ -83,6 +81,7 @@
 
 .cart-product-name{
     font-size: 15px;
+    align-items: center;
 }
 
 .cart-quantity-price-delete{
@@ -91,6 +90,7 @@
     justify-self: center;
     justify-items: center;
     justify-content: center;
+    align-items: center;
     column-gap: 80px;
 
 }
@@ -171,6 +171,10 @@
 .edit-cart-image{
     width: 200px;
     height: 250px;
+}
+
+.cart-item-name-in-modal{
+    text-align: center;
 }
 
 .edit-quantity-container{
