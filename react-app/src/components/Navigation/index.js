@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import Footer from '../../Footer';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
@@ -45,6 +46,9 @@ function Navigation({ isLoaded }){
 						</NavLink>
 					</div>
 				</div>
+			</div>
+			<div className='footer-container'>
+				<Footer />
 			</div>
 		</div>
 	);
