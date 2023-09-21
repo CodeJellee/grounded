@@ -173,6 +173,10 @@
     height: 250px;
 }
 
+.cart-item-name-in-modal{
+    text-align: center;
+}
+
 .edit-quantity-container{
     display: flex;
     padding-top: 10px;
