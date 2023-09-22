@@ -43,7 +43,7 @@ function EditQuantityItemModal({ cartItem }) {
               src={cartItem.Product.product_preview_image}
               alt={cartItem.Product.item_name}
             />
-            <div>{cartItem.Product.item_name}</div>
+            <div className="cart-item-name-in-modal">{cartItem.Product.item_name}</div>
           </div>
           <div>
             <div className="edit-quantity-container">

@@ -13,6 +13,12 @@ const GetCurrentCart = () => {
     const allProducts = useSelector((state) => Object.values(state.products.products))
 //   const nonPurchasedCartItems = useSelector((state) => state.cart.nonPurchasedCartItems);
     const [isCheckoutClicked, setIsCheckoutClicked] = useState(false);
+    const [cartTotal, setCartTotal] = useState(0);
+
+
+    const calculateItemTotal = (cartItem) => {
+        return cartItem.cart_quantity * cartItem.Product.product_price;
+    };
 
     useEffect(() => {
         dispatch(thunkGetCurrentCart());
@@ -23,6 +29,16 @@ const GetCurrentCart = () => {
     //     setIsCheckoutClicked(true);
     //     history.push("/checkout");
     // };
+
+    useEffect(() => {
+        if (allCartItems) {
+            const total = allCartItems.reduce((accumulator, cartItem) => {
+                const itemTotal = calculateItemTotal(cartItem);
+                return accumulator + itemTotal;
+        }, 0);
+        setCartTotal(total);
+        }
+    }, [allCartItems]);
 
     const handleClearCart = async () => {
         await dispatch(thunkCheckoutCart());
@@ -54,9 +70,12 @@ const GetCurrentCart = () => {
                             {isCheckoutClicked ? (
                             <span>Processing...</span>
                             ) : (
-                            <button className="checkout-button" onClick={handleClearCart}>
-                                Checkout
-                            </button>
+                                <div>
+                                    <button className="checkout-button" onClick={handleClearCart}>
+                                        Checkout
+                                    </button>
+                                    <p>Total Cost: ${cartTotal.toFixed(2)}</p>
+                                </div>
                             )}
                         </div>
 

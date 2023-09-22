@@ -58,7 +58,7 @@ const CreateNewArticleForm = () => {
         }
 
         if (articleTitle.length > 125) {
-            errorsObject.articleTitle = "Less than 225 characters required.";
+            errorsObject.articleTitle = "Less than 125 characters required.";
         }
 
         if (articleDescription === "") {

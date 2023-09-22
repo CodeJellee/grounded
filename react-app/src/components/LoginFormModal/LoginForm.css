@@ -43,10 +43,17 @@ h1 {
 /* LOGIN MODEL CSS *************************/
 
 #modal-content{
-    width: 450px;
+    width: 450px ;
     height: 380px;
     border-radius: 10px;
 }
+
+/* .modal-content-login{
+    width: 450px ;
+    height: 380px;
+    border-radius: 10px;
+} */
+
 
 .login-model-title{
     text-align: center;

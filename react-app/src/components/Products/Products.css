@@ -4,6 +4,7 @@
     padding-top: 100px;
     padding-left: 4%;
     padding-right: 4%;
+    padding-bottom: 6%;
 }
 
 .product-page-grid{
@@ -144,6 +145,7 @@
 
 .product-detail-page-item-bottom-description{
     font-style: oblique;
+    padding-bottom: 6%;
 }
 
 
@@ -258,7 +260,8 @@
 }
 
 
-/* Delete user item modal CSS ******************************/
+/* Delete user item modal CSS ***************************** */
+
 .modal-content-cart-delete{
     width: 350px;
     height: 100px;
