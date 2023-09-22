@@ -49,6 +49,8 @@ export function Modal() {
     <div id="modal">
       <div id="modal-background" onClick={closeModal} />
       <div id="modal-content" className='modal-content-cart-delete'>
+      {/* <div id="modal-content" className='modal-content-cart-delete modal-content-login'> */}
+      {/* <div className='modal-content-cart-delete modal-content-login'> */}
         {modalContent}
       </div>
     </div>,
