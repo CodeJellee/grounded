@@ -39,7 +39,7 @@ function LoginFormModal() {
   };
 
   return (
-    <>
+    <div id="login-modal-background-test">
       <h3 className="login-model-title">Welcome to grounded.</h3>
       <form onSubmit={handleSubmit}>
         <div className="errors-div">
@@ -84,7 +84,7 @@ function LoginFormModal() {
           <a className="signup-bottom-button" onClick={handleDemoSubmit}>Demo User</a>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
