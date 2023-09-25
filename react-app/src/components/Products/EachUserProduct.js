@@ -25,7 +25,7 @@ function EachUserProduct({product}) {
                                 <a className="edit-delete-links">Edit</a>
                             </NavLink>
                             <div className="each-product-price">${product.product_price}</div>
-                            <a className="edit-delete-links" onClick={(() => setModalContent(<DeleteProductModal productId={product.id}/>))}>Delete</a>
+                            <div className="edit-delete-links" onClick={(() => setModalContent(<DeleteProductModal productId={product.id}/>))}>Delete</div>
                         </div>
                     </div>
                 </div>

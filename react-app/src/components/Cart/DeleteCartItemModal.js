@@ -8,7 +8,7 @@ import GetCurrentCart from '../Cart/GetCurrentCart';
 //add css
 
 function DeleteCartItemModal({productId}){
-    console.log('IS THIS DELETE MODAL HITTING?')
+    // console.log('IS THIS DELETE MODAL HITTING?')
     const { closeModal } = useModal();
     const dispatch = useDispatch();
     const history = useHistory();
