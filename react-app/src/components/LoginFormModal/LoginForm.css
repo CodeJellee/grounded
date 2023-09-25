@@ -47,6 +47,12 @@ h1 {
     height: 380px;
     border-radius: 10px;
 }
+#login-modal-background-test{
+    background-color: white;
+    width: 450px ;
+    height: 380px;
+    border-radius: 10px;
+}
 
 /* .modal-content-login{
     width: 450px ;

@@ -103,7 +103,7 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div id="sign-up-modal-background-test">
       <h3 className="login-model-title">Create Account</h3>
       <form onSubmit={onSubmit}>
 		<div className="signup-modal-info">
@@ -191,7 +191,7 @@ function SignupFormModal() {
         </div>
       </div>
 
-    </>
+    </div>
   );
 }
 

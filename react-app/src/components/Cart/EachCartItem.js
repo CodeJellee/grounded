@@ -1,4 +1,5 @@
 import { useModal } from "../../context/Modal"
+// import { ModalCart } from "./ModalCart";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -31,7 +32,7 @@ function EachCartItem({cartItem}) {
 
 
         let fetchResponseFromThunk = await dispatch(thunkUpdateItemQuantityAndPurchase(payload));
-        console.log('what are we getting back after creating a product s/p dispatch', fetchResponseFromThunk)
+        // console.log('what are we getting back after creating a product s/p dispatch', fetchResponseFromThunk)
 
         if (fetchResponseFromThunk) {
             await dispatch(
