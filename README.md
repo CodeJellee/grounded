@@ -1,6 +1,4 @@
-# Flask React Project
-
-This is the starter for the Flask React project.
+# Welcome to grounded.
 
 ## Getting started
 1. Clone this repository (only this branch)
